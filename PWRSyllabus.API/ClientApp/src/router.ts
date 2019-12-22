@@ -24,7 +24,17 @@ export default new Router({
     {
       path: '/fetch-data',
       name: 'fetch-data',
-      component: () => import(/* webpackChunkName: "fetch-data" */ './views/FetchData.vue'),
+      component: () => import('./views/FetchData.vue'),
+    },
+    {
+      path: '/subject-cards',
+      name: 'subject-cards',
+      component: () => import('./views/subjectCards/SubjectCards.vue'),
+    },
+    {
+      path: '/trace-matrix',
+      name: 'trace-matrix',
+      component: () => import('./views/traceMatrix/TraceMatrix.vue'),
     },
   ],
 });
