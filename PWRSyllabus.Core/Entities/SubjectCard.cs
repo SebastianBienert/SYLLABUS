@@ -1,0 +1,24 @@
+﻿using System.Collections.Generic;
+using PWRSyllabus.Core.Enums;
+
+namespace PWRSyllabus.Core.Entities
+{
+    public class SubjectCard : BaseEntity
+    {
+        public string NameInPolish { get; set; }
+        public string NameInEnglish { get; set; }
+        public string SubjectCode { get; set; }
+        public bool IsGroupOfCourses { get; set; }
+        public string Prerequisites { get; set; }
+        public string Objectivties { get; set; }
+        public int Version { get; set; }
+        public SubjectType SubjectType { get; set; }
+
+        public Employee Supervisor { get; set; }
+        public int SupervisorId { get; set; }
+        public List<StudyPlanSubjectCard> StudyPlanSubjectCards { get; set; }
+        public List<StudyProgramSubjectCard> StudyProgramSubjectCards { get; set; }
+        public List<EducationalEffectSubjectCard> EducationalEffectSubjectCards { get; set; }
+        public List<Course> Courses { get; set; }
+    }
+}
