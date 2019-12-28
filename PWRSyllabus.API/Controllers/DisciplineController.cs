@@ -24,9 +24,9 @@ namespace PWRSyllabusAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllDisciplines()
+        public async Task<IActionResult> GetAllDisciplines()
         {
-            var disciplineDtos = _repository.List<Discipline>()
+            var disciplineDtos = (await _repository.ListAsync<Discipline>())
                 .Select(d => _mapper.Map<Discipline, DisciplineDTO>(d));
 
             return Ok(disciplineDtos);

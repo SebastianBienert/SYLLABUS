@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PWRSyllabus.Core;
 using PWRSyllabus.Core.Interfaces;
+using PWRSyllabus.Core.UseCases.CreateMinisterialEffect;
+using PWRSyllabus.Core.UseCases.UpdateMinisterialEffect;
 using PWRSyllabus.Infrastructure.EntityFramework;
 using VueCliMiddleware;
 
@@ -31,6 +33,8 @@ namespace PWRSyllabusAPI
             services.AddRazorPages();
             services.AddScoped<ICRUDRepository, CRUDRepository>();
             services.AddScoped<IMinisterialEffectRepository, MinisterialEffectRepository>();
+            services.AddScoped<CreateMinisterialEffectUseCase>();
+            services.AddScoped<UpdateMinisterialEffectUseCase>();
             // In production, the Vue files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

@@ -25,9 +25,9 @@ namespace PWRSyllabusAPI.Controllers
 
         // GET: api/Employee
         [HttpGet]
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            var employeeDtos = _repository.List<Employee>()
+            var employeeDtos = (await  _repository.ListAsync<Employee>())
                 .Select(e => _mapper.Map<Employee, EmployeeDTO>(e));
 
             return Ok(employeeDtos);

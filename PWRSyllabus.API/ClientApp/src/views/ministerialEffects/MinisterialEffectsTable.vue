@@ -12,14 +12,18 @@
         </v-col>
         <v-col cols="3">
             <v-select
-            :items="levels"
-            label="Poziom"
+                v-model="selectedLevel"
+                :items="levels"
+                :label="$t('ministerialEffectsHeaders.level')"
+                clearable
             ></v-select>
         </v-col>
         <v-col cols="3">
             <v-select
-            :items="categories"
-            label="Kategoria"
+                v-model="selectedCategory"
+                :items="categories"
+                :label="$t('ministerialEffectsHeaders.category')"
+                clearable
             ></v-select>
         </v-col>
         <v-col cols="3">
@@ -46,7 +50,7 @@
                     </v-icon>
                     <v-icon
                         small
-                        @click="deleteItem(item)"
+                        @click="deleteEffect(item.id)"
                     >
                         delete
                     </v-icon>
@@ -66,25 +70,45 @@ import axios from 'axios';
 import MinisterialEffect from '../../models/MinisterialEffect';
 @Component
 export default class MinisterialEffectsTable extends Vue {
-    private search: string = '';
-    private ministerialEffects: MinisterialEffect[] = [];
-    private loading: boolean = false;
-    private levels: string[] = [];
-    private categories: string[] = [];
+
 
     get headers() {
       return[
-      { text: this.$t('ministerialEffectsHeaders.category'), align: 'left', value: 'category'},
+      { text: this.$t('ministerialEffectsHeaders.category'), align: 'left', value: 'category',
+        filter: this.filterCategory},
       { text: this.$t('ministerialEffectsHeaders.descriptiveCategory'), value: 'descriptiveCategory' },
       { text: this.$t('ministerialEffectsHeaders.code'), value: 'code' },
-      { text: this.$t('ministerialEffectsHeaders.level'), value: 'level' },
+      { text: this.$t('ministerialEffectsHeaders.level'), value: 'level', filter: this.filterLevel },
       { text: this.$t('ministerialEffectsHeaders.discipline'), value: 'discipline' },
       { text: this.$t('ministerialEffectsHeaders.description'), value: 'description' },
       { text: '', value: 'action', sortable: false }];
     }
+    private search: string = '';
+    private ministerialEffects: MinisterialEffect[] = [];
+    private loading: boolean = false;
+    private levels: string[] = [];
+    private selectedLevel: string = '';
+    private categories: string[] = [];
+    private selectedCategory: string = '';
 
     public async created() {
         this.ministerialEffects = await this.fetchMinisterialEffects();
+        this.levels = [...new Set(this.ministerialEffects.map((x) => x.level))];
+        this.categories = [...new Set(this.ministerialEffects.map((x) => x.category))];
+    }
+
+    private filterCategory(value: any, search: string | null, item: any): boolean {
+        if (!this.selectedCategory) {
+            return true;
+        }
+        return this.selectedCategory === value;
+    }
+
+    private filterLevel(value: any, search: string | null, item: any): boolean {
+        if (!this.selectedLevel) {
+            return true;
+        }
+        return this.selectedLevel === value;
     }
 
     private async fetchMinisterialEffects(): Promise<MinisterialEffect[]> {
@@ -95,6 +119,11 @@ export default class MinisterialEffectsTable extends Vue {
 
     private redirectToEdit(effectId: number): void {
         this.$router.push(`edit-ministerial-effect/${effectId}`);
+    }
+
+    private deleteEffect(effectId: number): void {
+        const response = axios.delete<MinisterialEffect[]>(`api/MinisterialEffect/${effectId}`);
+        this.ministerialEffects = this.ministerialEffects.filter((x) => x.id !== effectId);
     }
 
 }

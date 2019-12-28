@@ -33,6 +33,7 @@ export default class AddMinisterialEffect extends Vue {
 
     private async create(createdEffect: MinisterialEffect) {
         await axios.post<Discipline[]>('/api/MinisterialEffect', createdEffect);
+        this.$router.push('/ministerial-effects');
     }
 
 }
