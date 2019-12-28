@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PWRSyllabus.Core;
+using PWRSyllabus.Core.Interfaces;
 using PWRSyllabus.Infrastructure.EntityFramework;
 using VueCliMiddleware;
 
@@ -29,6 +30,7 @@ namespace PWRSyllabusAPI
             // Add AddRazorPages if the app uses Razor Pages.
             services.AddRazorPages();
             services.AddScoped<ICRUDRepository, CRUDRepository>();
+            services.AddScoped<IMinisterialEffectRepository, MinisterialEffectRepository>();
             // In production, the Vue files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

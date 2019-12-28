@@ -17,7 +17,7 @@
     </v-row>
     <v-row align="center" justify="center"> 
       <v-col class="text-center" cols="4">
-        <v-btn block color="primary">{{$t('mainMenu.ministerialEffects')}}</v-btn>
+        <v-btn block color="primary" to="/ministerial-effects">{{$t('mainMenu.ministerialEffects')}}</v-btn>
       </v-col>
     </v-row>
 

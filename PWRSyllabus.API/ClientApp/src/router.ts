@@ -36,5 +36,20 @@ export default new Router({
       name: 'trace-matrix',
       component: () => import('./views/traceMatrix/TraceMatrix.vue'),
     },
+    {
+      path: '/ministerial-effects',
+      name: 'ministerial-effects',
+      component: () => import('./views/ministerialEffects/MinisterialEffectsTable.vue'),
+    },
+    {
+      path: '/add-ministerial-effect',
+      name: 'add-ministerial-effect',
+      component: () => import('./views/ministerialEffects/AddMinisterialEffect.vue'),
+    },
+    {
+      path: '/edit-ministerial-effect/:id',
+      name: 'edit-ministerial-effect',
+      component: () => import('./views/ministerialEffects/EditMinisterialEffect.vue'),
+    },
   ],
 });

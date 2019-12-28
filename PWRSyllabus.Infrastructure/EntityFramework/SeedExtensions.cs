@@ -117,7 +117,9 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 {
                     Id = 1,
                     Code = "P6WG",
-                    Description = "Zakres i glebia - kompletnosc perspektywy poznawczej i zaleznosci",
+                    DescriptiveCategory = "Zakres i glebia - kompletnosc perspektywy poznawczej i zaleznosci",
+                    Category = "Wiedza: zna i rozumie",
+                    Description = "W zaawansowanym stopniu - wybrane fakty, obiekty i zjawiska oraz dotyczące ich metody...",
                     FieldOfKnowledgeId = 1,
                     Level = Level.St1Inzynier,
                     Profile = Profile.Practical,

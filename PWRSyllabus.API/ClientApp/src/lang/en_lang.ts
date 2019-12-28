@@ -36,6 +36,8 @@ export default {
             moreEvents: '{0} more',
         },
     },
+    submit: 'Submit',
+    cancel: 'Cancel',
     header: 'System supporting creation and modification of study programs',
     mainMenu: {
         subjectCards: 'Subject cards',
@@ -57,5 +59,13 @@ export default {
         ministerialEffect: 'Ministerial effect',
         educationalEffectCode: 'Educational effect code',
         educationalEffect: 'Educational effect',
+    },
+    ministerialEffectsHeaders: {
+        category: 'Category',
+        descriptiveCategory: 'Descriptive category',
+        code: 'Code',
+        level: 'Level',
+        discipline: 'Discipline',
+        description: 'Description',
     },
 };

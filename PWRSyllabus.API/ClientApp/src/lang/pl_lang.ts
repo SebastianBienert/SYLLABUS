@@ -46,6 +46,8 @@ export default {
           pm: 'PM',
         },
     },
+    submit: 'Zapisz',
+    cancel: 'Anuluj',
     header: 'System wspomagajacy tworzenie i modyfikowanie programów studiów',
     mainMenu: {
         subjectCards: 'Karty przedmiotów',
@@ -67,5 +69,13 @@ export default {
         ministerialEffect: 'Efekt ministerialny',
         educationalEffectCode: 'Kod efektu kształcenia',
         educationalEffect: 'Efekt kształcenia',
+    },
+    ministerialEffectsHeaders: {
+      category: 'Kategoria',
+      descriptiveCategory: 'Kategoria opisowa',
+      code: 'Kod',
+      level: 'Poziom',
+      discipline: 'Dyscyplina',
+      description: 'Opis',
     },
 };

@@ -7,6 +7,8 @@ namespace PWRSyllabus.Core.Entities
     {
         public string Description { get; set; }
         public string Code { get; set; }
+        public string Category { get; set; }
+        public string DescriptiveCategory { get; set; }
         public Profile Profile { get; set; }
         public Level Level { get; set; }
         public FieldOfKnowledge FieldOfKnowledge { get; set; }
