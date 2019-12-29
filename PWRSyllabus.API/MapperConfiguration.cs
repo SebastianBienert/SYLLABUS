@@ -12,6 +12,9 @@ namespace PWRSyllabusAPI
         {
             CreateMap<Employee, EmployeeDTO>().ReverseMap();
             CreateMap<Discipline, DisciplineDTO>().ReverseMap();
+            CreateMap<StudyProgram, StudyProgramDTO>()
+                .ForMember(dto => dto.Level,
+                           opt => opt.MapFrom(effect => MapLevelToString(effect.Level)));
             CreateMap<MinisterialEffect, MinisterialEffectDTO>()
                 .ForMember(dto => dto.Level,
                            opt => opt.MapFrom(effect => MapLevelToString(effect.Level)))

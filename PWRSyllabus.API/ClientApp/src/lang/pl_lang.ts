@@ -78,4 +78,12 @@ export default {
       discipline: 'Dyscyplina',
       description: 'Opis',
     },
+    studyProgramsHeaders: {
+      faculty: 'Wydział',
+      fieldOfStudy: 'Kierunek',
+      specialization: 'Specjalizacja',
+      level: 'Poziom',
+      language: 'Język',
+      formOfStudies: 'Forma studiów'
+    }
 };

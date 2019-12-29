@@ -12,7 +12,7 @@
     </v-row>
     <v-row align="center" justify="center"> 
       <v-col class="text-center" cols="4">
-        <v-btn block color="primary">{{$t('mainMenu.studyPlans')}}</v-btn>
+        <v-btn block color="primary" to="/study-programs">{{$t('mainMenu.studyPlans')}}</v-btn>
       </v-col>
     </v-row>
     <v-row align="center" justify="center"> 

@@ -68,4 +68,12 @@ export default {
         discipline: 'Discipline',
         description: 'Description',
     },
+    studyProgramsHeaders: {
+        faculty: 'Faculty',
+        fieldOfStudy: 'FieldOfStudy',
+        specialization: 'Specialization',
+        level: 'Level',
+        language: 'Language',
+        formOfStudies: 'Form of studies'
+      }
 };
