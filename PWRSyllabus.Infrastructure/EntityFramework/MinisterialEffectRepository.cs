@@ -27,31 +27,6 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
             return ministerialEffects;
         }
 
-        public async Task<MinisterialEffect> UpdateMinisterialEffect(MinisterialEffect ministerialEffect)
-        {
-            var exist = _dbContext.MinisterialEffects.Find(ministerialEffect.Id);
-            _dbContext.Entry(exist).CurrentValues.SetValues(ministerialEffect);
-
-            await _dbContext.SaveChangesAsync();
-            return ministerialEffect;
-        }
-
-        public async Task DeleteMinisterialEffect(int ministerialEffectId)
-        {
-            var delete =
-                _dbContext.MinisterialEffects.Remove(
-                    _dbContext.MinisterialEffects.First(me => me.Id == ministerialEffectId));
-            await _dbContext.SaveChangesAsync();
-        }
-
-        public async Task<MinisterialEffect> CreateMinisterialEffect(MinisterialEffect ministerialEffect)
-        {
-            var added = _dbContext.MinisterialEffects.Add(ministerialEffect);
-            await _dbContext.SaveChangesAsync();
-
-            return added.Entity;
-        }
-
         public async Task<MinisterialEffect> GetMinisterialEffect(int ministerialEffectId)
         {
             var ministerialEffect = await _dbContext.MinisterialEffects

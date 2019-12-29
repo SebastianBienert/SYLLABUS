@@ -35,7 +35,8 @@ export default class EditMinisterialEffect extends Vue {
     }
 
     private async edit(editedEffect: MinisterialEffect) {
-        await axios.put<Discipline[]>('/api/MinisterialEffect', editedEffect);
+        await axios.put<Discipline[]>(`/api/MinisterialEffect/${this.$route.params.id}`, editedEffect);
+        this.$router.push('/ministerial-effects');
     }
 
 }

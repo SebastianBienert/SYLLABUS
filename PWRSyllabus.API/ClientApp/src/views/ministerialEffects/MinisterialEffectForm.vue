@@ -7,6 +7,7 @@
         required
     ></v-text-field>
     <v-select
+        v-model="effect.discipline"
         :label="$t('ministerialEffectsHeaders.discipline')"
         :placeholder="$t('ministerialEffectsHeaders.discipline')"
         :items="disciplines"

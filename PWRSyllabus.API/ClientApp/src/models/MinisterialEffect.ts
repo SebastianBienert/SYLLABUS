@@ -1,4 +1,5 @@
 export default interface MinisterialEffect {
+    id: number;
     code: string;
     discipline: string;
     category: string;
@@ -8,6 +9,7 @@ export default interface MinisterialEffect {
 }
 
 const DefaultMinisterialEffect: MinisterialEffect = {
+    id: 0,
     code : '',
     discipline : '',
     category: '',

@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using PWRSyllabus.Core;
 using PWRSyllabus.Core.Entities;
 using PWRSyllabus.Core.Interfaces;
+using PWRSyllabus.Core.UseCases.CreateMinisterialEffect;
+using PWRSyllabus.Core.UseCases.UpdateMinisterialEffect;
 using PWRSyllabusAPI.DTOs;
 
 namespace PWRSyllabusAPI.Controllers
@@ -17,11 +19,18 @@ namespace PWRSyllabusAPI.Controllers
     public class MinisterialEffectController : ControllerBase
     {
         private readonly IMinisterialEffectRepository _repository;
+        private readonly ICRUDRepository _crudRepository;
         private readonly IMapper _mapper;
-        public MinisterialEffectController(IMinisterialEffectRepository repository, IMapper mapper)
+        private readonly CreateMinisterialEffectUseCase _createEffect;
+        private readonly UpdateMinisterialEffectUseCase _updateEffect;
+
+        public MinisterialEffectController(IMinisterialEffectRepository repository, IMapper mapper, CreateMinisterialEffectUseCase createEffect, UpdateMinisterialEffectUseCase updateEffect, ICRUDRepository crudRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _createEffect = createEffect;
+            _updateEffect = updateEffect;
+            _crudRepository = crudRepository;
         }
 
         [HttpGet]
@@ -42,19 +51,26 @@ namespace PWRSyllabusAPI.Controllers
             return Ok(ministerialEffectDto);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditMinisterialEffect([FromRoute] int id, [FromBody]MinisterialEffectDTO ministerialEffectDto)
+        {
+            var updateEffectInput = _mapper.Map<MinisterialEffectDTO, UpdateMinisterialEffectInput>(ministerialEffectDto);
+            var editedEffect = await _updateEffect.Execute(updateEffectInput);
+            return Ok(editedEffect);
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMinisterialEffect(int id)
         {
-            await _repository.DeleteMinisterialEffect(id);
+            await _crudRepository.DeleteAsync<MinisterialEffect>(id);
             return Ok();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMinisterialEffecct(MinisterialEffectDTO ministerialEffectDto)
+        public async Task<IActionResult> CreateMinisterialEffect(MinisterialEffectDTO ministerialEffectDto)
         {
-            var ministerialEffect = _mapper.Map<MinisterialEffectDTO, MinisterialEffect>(ministerialEffectDto);
-            var addedEffect = await _repository.CreateMinisterialEffect(ministerialEffect);
-
+            var createEffectInput = _mapper.Map<MinisterialEffectDTO, CreateMinisterialEffectInput>(ministerialEffectDto);
+            var addedEffect = await _createEffect.Execute(createEffectInput);
             return CreatedAtRoute("GetMinisterialEffectById", new {id = addedEffect.Id});
         }
 
