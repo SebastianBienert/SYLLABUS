@@ -10,7 +10,7 @@ namespace PWRSyllabusAPI.DTOs
     {
         public int Id { get; set; }
         public string Faculty { get; set; }
-        public string FieldOfStudy { get; set; }
+        public FieldOfStudyDTO FieldOfStudy { get; set; }
         public string Specialization { get; set; }
         public string FormOfStudies { get; set; }
         public string Language { get; set; }

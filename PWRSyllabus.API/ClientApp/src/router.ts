@@ -42,11 +42,6 @@ export default new Router({
       component: () => import('./views/ministerialEffects/MinisterialEffectsTable.vue'),
     },
     {
-      path: '/study-programs',
-      name: 'study-programs',
-      component: () => import('./views/studyPrograms/StudyProgramsTable.vue'),
-    },
-    {
       path: '/add-ministerial-effect',
       name: 'add-ministerial-effect',
       component: () => import('./views/ministerialEffects/AddMinisterialEffect.vue'),
@@ -56,5 +51,15 @@ export default new Router({
       name: 'edit-ministerial-effect',
       component: () => import('./views/ministerialEffects/EditMinisterialEffect.vue'),
     },
+    {
+      path: '/study-programs',
+      name: 'study-programs',
+      component: () => import('./views/studyPrograms/StudyProgramsTable.vue'),
+    },
+    {
+      path: '/add-study-program',
+      name: 'add-study-program',
+      component: () => import('./views/studyPrograms/AddStudyProgram.vue'),
+    }
   ],
 });

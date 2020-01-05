@@ -1,6 +1,8 @@
+import FieldOfStudy, { DefaultFieldOfStudy } from "./FieldOfStudy";
+
 export default interface StudyProgram {
     faculty: string;
-    fieldOfStudy: string;
+    fieldOfStudy: FieldOfStudy;
     specialization: string;
     level: string;
     language: string;
@@ -9,7 +11,7 @@ export default interface StudyProgram {
 
 const DefaultStudyProgram: StudyProgram = {
     faculty: '',
-    fieldOfStudy: '',
+    fieldOfStudy: DefaultFieldOfStudy,
     specialization: '',
     level: '',
     language: '',

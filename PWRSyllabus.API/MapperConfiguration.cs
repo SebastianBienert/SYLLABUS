@@ -3,6 +3,7 @@ using Microsoft.JSInterop.Infrastructure;
 using PWRSyllabus.Core.Entities;
 using PWRSyllabus.Core.Enums;
 using PWRSyllabus.Core.UseCases.CreateMinisterialEffect;
+using PWRSyllabus.Core.UseCases.CreateStudyProgram;
 using PWRSyllabus.Core.UseCases.UpdateMinisterialEffect;
 using PWRSyllabusAPI.DTOs;
 using Profile = AutoMapper.Profile;
@@ -15,9 +16,36 @@ namespace PWRSyllabusAPI
         {
             CreateMap<Employee, EmployeeDTO>().ReverseMap();
             CreateMap<Discipline, DisciplineDTO>().ReverseMap();
+            CreateMap<FieldOfStudy, FieldOfStudyDTO>()
+                .ForMember(dto => dto.Faculty,
+                           opt => opt.MapFrom(fos => fos.Faculty.Name));
+
+            CreateMap<FieldOfStudyDTO, FieldOfStudy>();
+
             CreateMap<StudyProgram, StudyProgramDTO>()
                 .ForMember(dto => dto.Level,
-                           opt => opt.MapFrom(effect => MapLevelToString(effect.Level)));
+                           opt => opt.MapFrom(effect => MapLevelToString(effect.Level)))
+                .ForMember(dto => dto.FieldOfStudy,
+                           opt => opt.MapFrom(fos => fos.FieldOfStudy))
+                .ForMember(dto => dto.FormOfStudies,
+                           opt => opt.MapFrom(fos => MapFormOfStudiesToString(fos.FormOfStudies)));
+
+            CreateMap<StudyProgramDTO, StudyProgram>()
+                .ForMember(dto => dto.FormOfStudies,
+                           opt => opt.MapFrom(fos => GetFormOfStudiesEnum(fos.FormOfStudies)))
+                .ForMember(sp => sp.Level,
+                           dto => dto.MapFrom(effect => GetLevelEnum(effect.Level)))
+                .ForMember(sp => sp.FieldOfStudy,
+                           dto => dto.MapFrom(fos => fos.FieldOfStudy));
+
+            CreateMap<StudyProgramDTO, CreateStudyProgramInput>()
+                .ForMember(input => input.FieldOfStudyId,
+                    opt => opt.MapFrom(dto => dto.FieldOfStudy.Id));
+
+            CreateMap<CreateStudyProgramInput, StudyProgram>()
+                .ForMember(effect => effect.Level,
+                    opt => opt.MapFrom(input => GetLevelEnum(input.Level)));
+
             CreateMap<MinisterialEffect, MinisterialEffectDTO>()
                 .ForMember(dto => dto.Level,
                            opt => opt.MapFrom(effect => MapLevelToString(effect.Level)))
@@ -61,5 +89,23 @@ namespace PWRSyllabusAPI
             return Level.St3Doktoranckie;
         }
 
+        private string MapFormOfStudiesToString(FormOfStudies formOfStudies)
+        {
+            if (formOfStudies == FormOfStudies.FullTime)
+                return "Stacjonarne";
+            if (formOfStudies == FormOfStudies.PartTime)
+                return "Niestacjonarne";
+            return "Stacjonarne";
+        }
+
+        private FormOfStudies GetFormOfStudiesEnum(string formOfStudies)
+        {
+            if (formOfStudies == "Stacjonarne")
+                return FormOfStudies.FullTime;
+            if (formOfStudies == "Niestacjonarne")
+                return FormOfStudies.PartTime;
+
+            return FormOfStudies.FullTime;
+        }
     }
 }

@@ -11,3 +11,4 @@ namespace PWRSyllabus.Core.Interfaces
         Task<IEnumerable<StudyProgram>> GetAllStudiesPrograms();
     }
 }
+    
