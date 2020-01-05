@@ -29,10 +29,6 @@ namespace PWRSyllabus.API.Controllers
             var fieldOfStudiesDto = (await _repository.ListAsync<FieldOfStudy>())
                 .Select(d => _mapper.Map<FieldOfStudy, FieldOfStudyDTO>(d));
 
-            foreach(var f in fieldOfStudiesDto)
-            {
-                f.Faculty = "aaa";
-            }
 
             return Ok(fieldOfStudiesDto);
         }
