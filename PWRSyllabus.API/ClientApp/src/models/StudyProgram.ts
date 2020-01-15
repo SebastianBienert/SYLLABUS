@@ -17,3 +17,5 @@ const DefaultStudyProgram: StudyProgram = {
     language: '',
     formOfStudies: ''
 };
+
+export {DefaultStudyProgram, StudyProgram};

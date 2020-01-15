@@ -83,10 +83,9 @@ export default class StudyProgramsTable extends Vue {
         return studyPrograms;
     }
 
-    private redirectToEdit(effectId: number): void {
-        this.$router.push(`edit-ministerial-effect/${effectId}`);
+    private redirectToEdit(programId: number): void {
+        this.$router.push(`edit-study-program/${programId}`);
     }
-
 }
 </script>
 

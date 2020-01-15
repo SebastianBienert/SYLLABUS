@@ -9,6 +9,7 @@ namespace PWRSyllabus.Core.Interfaces
     public interface IStudyProgramRepository
     {
         Task<IEnumerable<StudyProgram>> GetAllStudiesPrograms();
+        Task<StudyProgram> GetStudyProgram(int studyProgramId);
     }
 }
     

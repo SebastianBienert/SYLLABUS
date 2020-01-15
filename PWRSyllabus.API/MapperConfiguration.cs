@@ -3,7 +3,6 @@ using Microsoft.JSInterop.Infrastructure;
 using PWRSyllabus.Core.Entities;
 using PWRSyllabus.Core.Enums;
 using PWRSyllabus.Core.UseCases.CreateMinisterialEffect;
-using PWRSyllabus.Core.UseCases.CreateStudyProgram;
 using PWRSyllabus.Core.UseCases.UpdateMinisterialEffect;
 using PWRSyllabusAPI.DTOs;
 using Profile = AutoMapper.Profile;
@@ -38,13 +37,6 @@ namespace PWRSyllabusAPI
                 .ForMember(sp => sp.FieldOfStudy,
                            dto => dto.MapFrom(fos => fos.FieldOfStudy));
 
-            CreateMap<StudyProgramDTO, CreateStudyProgramInput>()
-                .ForMember(input => input.FieldOfStudyId,
-                    opt => opt.MapFrom(dto => dto.FieldOfStudy.Id));
-
-            CreateMap<CreateStudyProgramInput, StudyProgram>()
-                .ForMember(effect => effect.Level,
-                    opt => opt.MapFrom(input => GetLevelEnum(input.Level)));
 
             CreateMap<MinisterialEffect, MinisterialEffectDTO>()
                 .ForMember(dto => dto.Level,

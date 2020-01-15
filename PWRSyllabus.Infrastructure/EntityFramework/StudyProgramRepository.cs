@@ -27,5 +27,14 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
 
             return studiesPrograms;
         }
+
+        public async Task<StudyProgram> GetStudyProgram(int studyProgramId)
+        {
+            var studyProgram = await _dbContext.StudyPrograms
+                .Include(me => me.FieldOfStudy)
+                .FirstAsync(me => me.Id == studyProgramId);
+
+            return studyProgram;
+        }
     }
 }

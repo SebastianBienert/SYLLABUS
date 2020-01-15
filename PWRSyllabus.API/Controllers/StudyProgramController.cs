@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using PWRSyllabus.Core;
 using PWRSyllabus.Core.Entities;
 using PWRSyllabus.Core.Interfaces;
-using PWRSyllabus.Core.UseCases.CreateStudyProgram;
 using PWRSyllabusAPI.DTOs;
 
 namespace PWRSyllabus.API.Controllers
@@ -36,12 +35,30 @@ namespace PWRSyllabus.API.Controllers
             return Ok(studyPlanDtos);
         }
 
+        [HttpGet("{id}", Name = "GetStudyProgramById")]
+        public async Task<IActionResult> GetStudyProgramDetails(int id)
+        {
+            var minsiterialEffect = await _repository.GetStudyProgram(id);
+            var studyProgramDto = _mapper.Map<StudyProgram, StudyProgramDTO>(minsiterialEffect);
+
+            return Ok(studyProgramDto);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditStudyProgram([FromRoute] int id, [FromBody]StudyProgramDTO studyProgramDto)
+        {
+            //var updateEffectInput = _mapper.Map<StudyProgramDTO, UpdateStudyProgramInput>(studyProgramDto);
+            //var editedEffect = await _updateEffect.Execute(updateEffectInput);
+            //return Ok(editedEffect);
+            return null;
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateStudyPlan(StudyProgramDTO studyProgramDto)
         {
             var studyProgram = _mapper.Map<StudyProgramDTO, StudyProgram>(studyProgramDto);
             var addedEffect = await _crudRepository.AddAsync(studyProgram);
-            return CreatedAtRoute("GetMinisterialEffectById", new { id = addedEffect.Id });
+            return CreatedAtRoute("GetStudyProgramById", new { id = addedEffect.Id });
         }
     }
 }
