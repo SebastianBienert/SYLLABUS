@@ -19,11 +19,17 @@ pipeline {
                 echo 'test done'
             }
         }
-        // stage('Docker-build') {
-        //     steps {
-        //         sh 'docker-compose build'
-        //         echo 'Container build done'
-        //     }
-        // }
+        stage('Docker-build') {
+            steps {
+                sh 'docker-compose build'
+                echo 'Containers build done'
+            }
+        }
+        stage('Docker-run') {
+            steps {
+                sh 'docker-compose up'
+                echo 'Containers launched'
+            }
+        }
     }
 }
