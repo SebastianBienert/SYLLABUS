@@ -51,7 +51,7 @@ import FieldOfStudy from '@/models/FieldOfStudy';
 
 @Component
 export default class StudyProgramForm extends Vue {
-    public studyProgram: StudyProgram = {};
+    public studyProgram: any = {};
 
     @Prop()
     public fieldsOfStudies!: FieldOfStudy[];
