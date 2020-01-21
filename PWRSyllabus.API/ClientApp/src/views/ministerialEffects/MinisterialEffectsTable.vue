@@ -5,7 +5,7 @@
             <v-text-field
                 v-model="search"
                 append-icon="search"
-                label="Search"
+                :placeholder="$t('search')"
                 single-line
                 hide-details
             ></v-text-field>
@@ -28,7 +28,7 @@
         </v-col>
         <v-col cols="3">
             <v-btn color="primary" to="/add-ministerial-effect">
-                Nowy efekt
+                {{$t('ministerialEffectsHeaders.addEffect')}}
             </v-btn>
         </v-col>
     </v-row>

@@ -38,6 +38,7 @@ export default {
     },
     submit: 'Submit',
     cancel: 'Cancel',
+    search: 'Search',
     header: 'System supporting creation and modification of study programs',
     mainMenu: {
         subjectCards: 'Subject cards',
@@ -67,13 +68,15 @@ export default {
         level: 'Level',
         discipline: 'Discipline',
         description: 'Description',
+        addEffect: 'New effect'
     },
     studyProgramsHeaders: {
         faculty: 'Faculty',
-        fieldOfStudy: 'FieldOfStudy',
+        fieldOfStudy: 'Field of study',
         specialization: 'Specialization',
         level: 'Level',
         language: 'Language',
-        formOfStudies: 'Form of studies'
+        formOfStudies: 'Form of studies',
+        newProgram: 'New program'
       }
 };

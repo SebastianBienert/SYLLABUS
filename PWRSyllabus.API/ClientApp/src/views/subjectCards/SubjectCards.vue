@@ -4,7 +4,7 @@
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        :placeholder="$t('search')"
         single-line
         hide-details
       ></v-text-field>

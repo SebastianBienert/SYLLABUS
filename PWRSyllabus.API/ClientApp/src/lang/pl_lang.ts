@@ -48,6 +48,7 @@ export default {
     },
     submit: 'Zapisz',
     cancel: 'Anuluj',
+    search: 'Szukaj',
     header: 'System wspomagajacy tworzenie i modyfikowanie programów studiów',
     mainMenu: {
         subjectCards: 'Karty przedmiotów',
@@ -77,6 +78,7 @@ export default {
       level: 'Poziom',
       discipline: 'Dyscyplina',
       description: 'Opis',
+      addEffect: 'Nowy efekt'
     },
     studyProgramsHeaders: {
       faculty: 'Wydział',
@@ -84,6 +86,7 @@ export default {
       specialization: 'Specjalizacja',
       level: 'Poziom',
       language: 'Język',
-      formOfStudies: 'Forma studiów'
+      formOfStudies: 'Forma studiów',
+      newProgram: 'Nowy program'
     }
 };
