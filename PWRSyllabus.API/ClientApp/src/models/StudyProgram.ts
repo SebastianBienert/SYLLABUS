@@ -1,4 +1,5 @@
 import FieldOfStudy, { DefaultFieldOfStudy } from "./FieldOfStudy";
+import SubjectCard from './SubjectCard';
 
 export default interface StudyProgram {
     faculty: string;
@@ -7,6 +8,7 @@ export default interface StudyProgram {
     level: string;
     language: string;
     formOfStudies: string;
+    subjectCards: SubjectCard[];
 }
 
 const DefaultStudyProgram: StudyProgram = {
@@ -15,7 +17,8 @@ const DefaultStudyProgram: StudyProgram = {
     specialization: '',
     level: '',
     language: '',
-    formOfStudies: ''
+    formOfStudies: '',
+    subjectCards: []
 };
 
 export {DefaultStudyProgram, StudyProgram};

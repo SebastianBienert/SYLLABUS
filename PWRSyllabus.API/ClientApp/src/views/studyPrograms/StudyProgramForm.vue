@@ -38,9 +38,11 @@
         :label="$t('studyProgramsHeaders.formOfStudies')"
         :placeholder="$t('studyProgramsHeaders.formOfStudies')"
     ></v-text-field>
+    <select-subject-cards @selectedItemsChanged="handleItemsChange"></select-subject-cards>
+
     <v-btn class="mr-4" @click="$emit('submit', studyProgram)">{{$t('submit')}}</v-btn>
     <v-btn @click="$emit('cancel')">{{$t('cancel')}}</v-btn>
-  </form>
+    </form>
 </template>
 
 <script lang="ts">
@@ -48,8 +50,14 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import StudyProgram, {DefaultStudyProgram} from '@/models/StudyProgram';
 import axios from 'axios';
 import FieldOfStudy from '@/models/FieldOfStudy';
+import SubjectCard from '../../models/SubjectCard';
+import SelectSubjectCards from '@/views/studyPrograms/SelectSubjectCards.vue';
 
-@Component
+@Component({
+  components: {
+    SelectSubjectCards,
+  }
+})
 export default class StudyProgramForm extends Vue {
     public studyProgram: any = {};
 
@@ -66,6 +74,10 @@ export default class StudyProgramForm extends Vue {
         }
     }
 
+    public handleItemsChange(params: SubjectCard[]) {
+        this.studyProgram.subjectCards = params;
+        console.log(params[0].subjectCode);
+    }
 }
 </script>
 

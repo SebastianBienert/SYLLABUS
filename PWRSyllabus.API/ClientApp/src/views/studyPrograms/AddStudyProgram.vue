@@ -32,6 +32,7 @@ export default class AddStudyProgram extends Vue {
     }
 
     private async create(createdEffect: StudyProgram) {
+        debugger;
         await axios.post<any>('/api/StudyProgram', createdEffect);
         this.$router.push('/study-programs');
     }

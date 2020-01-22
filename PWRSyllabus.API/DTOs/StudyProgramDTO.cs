@@ -15,5 +15,6 @@ namespace PWRSyllabusAPI.DTOs
         public string FormOfStudies { get; set; }
         public string Language { get; set; }
         public string Level { get; set; }
+        public IEnumerable<SubjectCardDTO> SubjectCards { get; set; }
     }
 }

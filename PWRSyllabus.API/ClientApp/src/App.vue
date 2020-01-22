@@ -35,10 +35,11 @@
 
 <script lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue';
+import SelectSubjectCards from '@/views/studyPrograms/SelectSubjectCards.vue';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-  components: { HelloWorld },
+  components: { HelloWorld, SelectSubjectCards },
 })
 export default class App extends Vue {
   private clipped: boolean = true;
