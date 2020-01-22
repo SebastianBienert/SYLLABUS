@@ -8,6 +8,11 @@
         single-line
         hide-details
       ></v-text-field>
+      <v-col cols="3">
+            <v-btn color="primary" to="/add-subject">
+                {{$t('subjectCardsHeaders.newSubject')}}
+            </v-btn>
+        </v-col>
     </v-card-title>
     <v-data-table
         :loading="loading"
@@ -15,6 +20,7 @@
         :items="subjectCards"
         :search="search"
     ></v-data-table>
+    
   </v-card>
 </template>
 

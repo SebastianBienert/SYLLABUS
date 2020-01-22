@@ -49,6 +49,7 @@ export default {
     submit: 'Zapisz',
     cancel: 'Anuluj',
     search: 'Szukaj',
+    edit: 'Edytuj',
     header: 'System wspomagajacy tworzenie i modyfikowanie programów studiów',
     mainMenu: {
         subjectCards: 'Karty przedmiotów',
@@ -64,6 +65,7 @@ export default {
         specialization: 'Specjalizacja',
         code: 'Kod',
         subjectName: 'Nazwa przedmiotu',
+        newSubject: 'Nowy przedmiot'
     },
     traceMatrixHeaders: {
         ministerialEffectCode: 'Kod efektu ministerialnego',
@@ -93,5 +95,22 @@ export default {
       select: 'Wybierz',
       subjectCode: 'Kod kursu',
       name: 'Nazwa'
+    },
+    subjectCardHeaders: {
+      nameInPolish: 'Nazwa w języku polskim',
+      nameInEnglish: 'Nazwa w języku angielskim',
+      subjectCode: 'Kod przedmiotu',
+      fieldOfStudy: 'Kierunek',
+      specialization: 'Specjalność',
+      level: 'Stopień studiów',
+      formOfStudies: 'Forma studiów',
+      courseGroup: 'Grupa kursów',
+      subjectType: 'Rodzaj przedmiotu',
+      prerequisites: 'Wymagania wstępne',
+      objectivities: 'Cele przedmiotu',
+      teachingTools: 'Narzędzia dydaktyczne',
+      literature: 'Literatura',
+      supervisor: 'Opiekun przedmiotu',
+
     }
 };
