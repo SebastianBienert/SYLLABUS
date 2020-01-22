@@ -39,6 +39,7 @@ export default {
     submit: 'Submit',
     cancel: 'Cancel',
     search: 'Search',
+    edit: 'Edit',
     header: 'System supporting creation and modification of study programs',
     mainMenu: {
         subjectCards: 'Subject cards',
@@ -54,6 +55,7 @@ export default {
         specialization: 'Specialization',
         code: 'Code',
         subjectName: 'Subject name',
+        newSubject: '+ New subject'
     },
     traceMatrixHeaders: {
         ministerialEffectCode: 'Ministerial effect code',
@@ -83,5 +85,25 @@ export default {
         select: 'Select',
         subjectCode: 'Subject code',
         name: 'Name'
+      },
+      subjectCardHeaders: {
+        nameInPolish: 'Nazwa w języku polskim',
+        nameInEnglish: 'Nazwa w języku angielskim',
+        subjectCode: 'Kod przedmiotu',
+        fieldOfStudy: 'Kierunek',
+        specialization: 'Specjalność',
+        level: 'Stopień studiów',
+        formOfStudies: 'Forma studiów',
+        courseGroup: 'Grupa kursów',
+        subjectType: 'Rodzaj przedmiotu',
+        prerequisites: 'Wymagania wstępne',
+        objectivities: 'Cele przedmiotu',
+        teachingTools: 'Narzędzia dydaktyczne',
+        literature: 'Literatura',
+        supervisor: 'Opiekun przedmiotu',
+        educationalEffect: 'Educational effect',
+        subjectSchedule: 'Schedule',
+        curriculum: 'Curriculum',
+        trackingMatrix: 'Tracking matrix',
       }
 };

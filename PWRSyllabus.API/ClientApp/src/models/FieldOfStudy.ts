@@ -9,7 +9,7 @@ const DefaultFieldOfStudy: FieldOfStudy = {
     id: 0,
     name: '',
     specialization: '',
-    faculty: ''
+    faculty: '',
 };
 
 export {DefaultFieldOfStudy, FieldOfStudy};

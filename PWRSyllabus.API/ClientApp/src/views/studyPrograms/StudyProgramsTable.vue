@@ -75,7 +75,6 @@ export default class StudyProgramsTable extends Vue {
     }
 
     public async created() {
-        debugger;
         this.studyPrograms = await this.fetchStudyPrograms();
     }
 
