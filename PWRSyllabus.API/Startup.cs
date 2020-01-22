@@ -35,6 +35,7 @@ namespace PWRSyllabusAPI
             services.AddScoped<ICRUDRepository, CRUDRepository>();
             services.AddScoped<IMinisterialEffectRepository, MinisterialEffectRepository>();
             services.AddScoped<IStudyProgramRepository, StudyProgramRepository>();
+            services.AddScoped<ISubjectCardRepository, SubjectCardRepository>();
             services.AddScoped<CreateMinisterialEffectUseCase>();
             services.AddScoped<UpdateMinisterialEffectUseCase>();
             // In production, the Vue files will be served from this directory

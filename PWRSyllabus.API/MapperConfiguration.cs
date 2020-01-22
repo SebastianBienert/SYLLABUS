@@ -21,11 +21,25 @@ namespace PWRSyllabusAPI
 
             CreateMap<FieldOfStudyDTO, FieldOfStudy>();
 
+            CreateMap<Course, CourseDTO>()
+                .ForMember(dto => dto.CourseForm,
+                           opt => opt.MapFrom(c => MapCourseFormToString(c.CourseForm)));
+
+            CreateMap<CourseDTO, Course>()
+                .ForMember(dto => dto.CourseForm,
+                           opt => opt.MapFrom(c => GetCourseFormEnum(c.CourseForm)));
+
+            CreateMap<SubjectCard, SubjectCardDTO>().ReverseMap();
+
             CreateMap<StudyProgram, StudyProgramDTO>()
                 .ForMember(dto => dto.Level,
                            opt => opt.MapFrom(effect => MapLevelToString(effect.Level)))
                 .ForMember(dto => dto.FieldOfStudy,
                            opt => opt.MapFrom(fos => fos.FieldOfStudy))
+                .ForMember(dto => dto.Faculty,
+                           opt => opt.MapFrom(fos => fos.FieldOfStudy.Faculty.Name))
+                .ForMember(dto => dto.Language,
+                           opt => opt.MapFrom(fos => fos.LanguageOfStudy))
                 .ForMember(dto => dto.FormOfStudies,
                            opt => opt.MapFrom(fos => MapFormOfStudiesToString(fos.FormOfStudies)));
 
@@ -80,7 +94,7 @@ namespace PWRSyllabusAPI
 
             return Level.St3Doktoranckie;
         }
-
+        
         private string MapFormOfStudiesToString(FormOfStudies formOfStudies)
         {
             if (formOfStudies == FormOfStudies.FullTime)
@@ -98,6 +112,32 @@ namespace PWRSyllabusAPI
                 return FormOfStudies.PartTime;
 
             return FormOfStudies.FullTime;
+        }
+
+        private string MapCourseFormToString(CourseForm courseForm)
+        {
+            return courseForm switch
+            {
+                CourseForm.Classes => "C",
+                CourseForm.Laboratory => "L",
+                CourseForm.Lecutre => "W",
+                CourseForm.Project => "P",
+                CourseForm.Seminar => "S",
+                _ => "W",
+            };
+        }
+
+        private CourseForm GetCourseFormEnum(string courseForm)
+        {
+            return courseForm switch
+            {
+                "C" => CourseForm.Classes,
+                "L" => CourseForm.Laboratory,
+                "W" => CourseForm.Lecutre,
+                "P" => CourseForm.Project,
+                "S" => CourseForm.Seminar,
+                _ => CourseForm.Lecutre,
+            };
         }
     }
 }
