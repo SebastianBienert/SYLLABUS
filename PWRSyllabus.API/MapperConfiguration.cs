@@ -29,7 +29,17 @@ namespace PWRSyllabusAPI
                 .ForMember(dto => dto.CourseForm,
                            opt => opt.MapFrom(c => GetCourseFormEnum(c.CourseForm)));
 
-            CreateMap<SubjectCard, SubjectCardDTO>().ReverseMap();
+            CreateMap<SubjectCard, SubjectCardDTO>();
+            //CreateMap<SubjectCardDTO, SubjectCard>();
+            CreateMap<SubjectCardDTO, StudyProgramSubjectCard>()
+                .ForMember(dto => dto.SubjectCardId,
+                           opt => opt.MapFrom(sc => sc.Id));
+                //.ForMember(dto => dto.SubjectCard,
+                //           opt => opt.MapFrom(sc => new SubjectCard() { 
+                //                Id = sc.Id,
+                //                NameInEnglish = sc.NameInEnglish
+                //                //itd
+                //           }));
 
             CreateMap<StudyProgram, StudyProgramDTO>()
                 .ForMember(dto => dto.Level,
@@ -45,11 +55,15 @@ namespace PWRSyllabusAPI
 
             CreateMap<StudyProgramDTO, StudyProgram>()
                 .ForMember(dto => dto.FormOfStudies,
-                           opt => opt.MapFrom(fos => GetFormOfStudiesEnum(fos.FormOfStudies)))
+                           opt => opt.MapFrom(sp => GetFormOfStudiesEnum(sp.FormOfStudies)))
                 .ForMember(sp => sp.Level,
-                           dto => dto.MapFrom(effect => GetLevelEnum(effect.Level)))
-                .ForMember(sp => sp.FieldOfStudy,
-                           dto => dto.MapFrom(fos => fos.FieldOfStudy));
+                           dto => dto.MapFrom(sp => GetLevelEnum(sp.Level)))
+                .ForMember(sp => sp.LanguageOfStudy,
+                           dto => dto.MapFrom(sp => sp.Language))
+                .ForMember(sp => sp.StudyProgramSubjectCards,
+                           dto => dto.MapFrom(sp => sp.SubjectCards))
+                .ForMember(sp => sp.FieldOfStudyId,
+                           dto => dto.MapFrom(sp => sp.FieldOfStudy.Id));
 
 
             CreateMap<MinisterialEffect, MinisterialEffectDTO>()
@@ -94,7 +108,7 @@ namespace PWRSyllabusAPI
 
             return Level.St3Doktoranckie;
         }
-        
+
         private string MapFormOfStudiesToString(FormOfStudies formOfStudies)
         {
             if (formOfStudies == FormOfStudies.FullTime)

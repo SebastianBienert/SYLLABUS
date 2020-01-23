@@ -73,8 +73,5 @@ namespace PWRSyllabusAPI.Controllers
             var addedEffect = await _createEffect.Execute(createEffectInput);
             return CreatedAtRoute("GetMinisterialEffectById", new {id = addedEffect.Id});
         }
-
-
-
     }
 }

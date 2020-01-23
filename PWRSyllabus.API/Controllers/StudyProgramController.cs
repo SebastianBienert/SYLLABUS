@@ -57,6 +57,8 @@ namespace PWRSyllabus.API.Controllers
         public async Task<IActionResult> CreateStudyPlan(StudyProgramDTO studyProgramDto)
         {
             var studyProgram = _mapper.Map<StudyProgramDTO, StudyProgram>(studyProgramDto);
+            studyProgram.FieldOfStudy = null;
+            
             var addedEffect = await _crudRepository.AddAsync(studyProgram);
             return CreatedAtRoute("GetStudyProgramById", new { id = addedEffect.Id });
         }

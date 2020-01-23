@@ -34,8 +34,8 @@ export default class EditStudyProgram extends Vue {
         this.$router.push('/study-programs');
     }
 
-    private async edit(editedEffect: StudyProgram) {
-        await axios.put<any>(`/api/StudyProgram/${this.$route.params.id}`, editedEffect);
+    private async edit(editedStudyProgram: StudyProgram) {
+        await axios.put<any>(`/api/StudyProgram/${this.$route.params.id}`, editedStudyProgram);
         this.$router.push('/study-programs');
     }
 
