@@ -77,6 +77,11 @@ export default {
         level: 'Level',
         language: 'Language',
         formOfStudies: 'Form of studies',
-        newProgram: 'New program'
+        newProgram: 'New program',
+        selectSubjectCards: 'Select subject cards',
+        searchAndSelectSubjectCards: 'Search and select subject cards',
+        select: 'Select',
+        subjectCode: 'Subject code',
+        name: 'Name'
       }
 };

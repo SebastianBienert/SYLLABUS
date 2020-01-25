@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-        <v-col cols="3">
+        <v-col cols="12">
             <v-text-field
                 v-model="search"
                 append-icon="search"
@@ -22,7 +22,6 @@
                 v-model="initialSubjectCards"
                 @input="$emit('selectedItemsChanged', initialSubjectCards)"
             >
-
             </v-data-table>
         </v-col>
     </v-row>
@@ -40,18 +39,11 @@ export default class SelectSubjectCards extends Vue {
     private loading: boolean = false;
     private levels: string[] = [];
     private categories: string[] = [];
-    private selected: SubjectCard[] = [];
-    private selected1: SubjectCard[] = [];
-
 
     get headers() {
       return[
-      { text: this.$t('studyProgramsHeaders.faculty'), align: 'left', value: 'subjectCode'},
-    //   { text: this.$t('studyProgramsHeaders.fieldOfStudy'), value: 'fieldOfStudy.name' },
-    //   { text: this.$t('studyProgramsHeaders.specialization'), value: 'specialization' },
-    //   { text: this.$t('studyProgramsHeaders.level'), value: 'level' },
-    //   { text: this.$t('studyProgramsHeaders.formOfStudies'), value: 'formOfStudies' },
-    //   { text: this.$t('studyProgramsHeaders.language'), value: 'language' },
+      { text: this.$t('studyProgramsHeaders.subjectCode'), align: 'left', value: 'subjectCode'},
+      { text: this.$t('studyProgramsHeaders.name'), align: 'left', value: 'nameInPolish'},
       { text: '', value: 'action', sortable: false }];
     }
 

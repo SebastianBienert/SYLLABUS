@@ -87,6 +87,11 @@ export default {
       level: 'Poziom',
       language: 'Język',
       formOfStudies: 'Forma studiów',
-      newProgram: 'Nowy program'
+      newProgram: 'Nowy program',
+      selectSubjectCards: 'Wybierz karty przedmiotów',
+      searchAndSelectSubjectCards: 'Wyszukaj i wybierz karty przedmiotów',
+      select: 'Wybierz',
+      subjectCode: 'Kod kursu',
+      name: 'Nazwa'
     }
 };

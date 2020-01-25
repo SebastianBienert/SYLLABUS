@@ -38,10 +38,23 @@
         :label="$t('studyProgramsHeaders.formOfStudies')"
         :placeholder="$t('studyProgramsHeaders.formOfStudies')"
     ></v-text-field>
-    <select-subject-cards 
-        @selectedItemsChanged="handleItemsChange" 
-        :initialSubjectCards="studyProgram.subjectCards">
-    </select-subject-cards>
+    
+    <v-dialog v-model="dialog" persistent max-width="600">
+        <template v-slot:activator="{ on }">
+          <v-btn color="primary" dark v-on="on">{{$t('studyProgramsHeaders.selectSubjectCards')}}</v-btn>
+        </template>
+        <v-card>
+            <v-card-title class="headline">{{$t('studyProgramsHeaders.searchAndSelectSubjectCards')}}</v-card-title>
+            <select-subject-cards 
+                @selectedItemsChanged="handleItemsChange" 
+                :initialSubjectCards="studyProgram.subjectCards">
+            </select-subject-cards>          
+            <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" text @click="dialog = false">{{$t('studyProgramsHeaders.select')}}</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
     <v-btn class="mr-4" @click="$emit('submit', studyProgram)">{{$t('submit')}}</v-btn>
     <v-btn @click="$emit('cancel')">{{$t('cancel')}}</v-btn>
@@ -63,6 +76,7 @@ import SelectSubjectCards from '@/views/studyPrograms/SelectSubjectCards.vue';
 })
 export default class StudyProgramForm extends Vue {
     public studyProgram: StudyProgram = DefaultStudyProgram;
+    private dialog: boolean = false;
 
     @Prop()
     public fieldsOfStudies!: FieldOfStudy[];
