@@ -1,11 +1,5 @@
 <template>
     <form>
-    <v-text-field
-        v-model="studyProgram.faculty"
-        :label="$t('studyProgramsHeaders.faculty')"
-        :placeholder="$t('studyProgramsHeaders.faculty')"
-        required
-    ></v-text-field>
     <v-select
         v-model="studyProgram.fieldOfStudy"
         :label="$t('studyProgramsHeaders.fieldOfStudy')"
@@ -16,9 +10,17 @@
         required
     ></v-select>
     <v-text-field
+    disabled
         v-model="studyProgram.fieldOfStudy.specialization"
         :label="$t('studyProgramsHeaders.specialization')"
         :placeholder="$t('studyProgramsHeaders.specialization')"
+        required
+    ></v-text-field>
+    <v-text-field
+    disabled
+        v-model="studyProgram.fieldOfStudy.faculty"
+        :label="$t('studyProgramsHeaders.faculty')"
+        :placeholder="$t('studyProgramsHeaders.faculty')"
         required
     ></v-text-field>
     <v-text-field

@@ -29,8 +29,8 @@ namespace PWRSyllabus.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllStudyPlans()
         {
-            var minsiterialEffects = await _repository.GetAllStudiesPrograms();
-            var studyPlanDtos = minsiterialEffects.Select(d => _mapper.Map<StudyProgram, StudyProgramDTO>(d));
+            var studyProgramss = await _repository.GetAllStudiesPrograms();
+            var studyPlanDtos = studyProgramss.Select(d => _mapper.Map<StudyProgram, StudyProgramDTO>(d));
 
             return Ok(studyPlanDtos);
         }
@@ -38,8 +38,8 @@ namespace PWRSyllabus.API.Controllers
         [HttpGet("{id}", Name = "GetStudyProgramById")]
         public async Task<IActionResult> GetStudyProgramDetails(int id)
         {
-            var minsiterialEffect = await _repository.GetStudyProgram(id);
-            var studyProgramDto = _mapper.Map<StudyProgram, StudyProgramDTO>(minsiterialEffect);
+            var studyPrograms = await _repository.GetStudyProgram(id);
+            var studyProgramDto = _mapper.Map<StudyProgram, StudyProgramDTO>(studyPrograms);
 
             return Ok(studyProgramDto);
         }
@@ -47,10 +47,9 @@ namespace PWRSyllabus.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditStudyProgram([FromRoute] int id, [FromBody]StudyProgramDTO studyProgramDto)
         {
-            //var updateEffectInput = _mapper.Map<StudyProgramDTO, UpdateStudyProgramInput>(studyProgramDto);
-            //var editedEffect = await _updateEffect.Execute(updateEffectInput);
-            //return Ok(editedEffect);
-            return null;
+            var studyProgram = _mapper.Map<StudyProgramDTO, StudyProgram>(studyProgramDto);
+            await _crudRepository.UpdateAsync(studyProgram);
+            return Ok(studyProgram);
         }
 
         [HttpPost]

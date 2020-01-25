@@ -2,7 +2,6 @@ import FieldOfStudy, { DefaultFieldOfStudy } from "./FieldOfStudy";
 import SubjectCard from './SubjectCard';
 
 export default interface StudyProgram {
-    faculty: string;
     fieldOfStudy: FieldOfStudy;
     level: string;
     language: string;
@@ -11,7 +10,6 @@ export default interface StudyProgram {
 }
 
 const DefaultStudyProgram: StudyProgram = {
-    faculty: '',
     fieldOfStudy: DefaultFieldOfStudy,
     level: '',
     language: '',
