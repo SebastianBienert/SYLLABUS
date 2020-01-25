@@ -62,7 +62,7 @@ export default new Router({
       component: () => import('./views/studyPrograms/AddStudyProgram.vue'),
     },
     {
-      path: '/edit-study-program',
+      path: '/edit-study-program/:id',
       name: 'edit-study-program',
       component: () => import('./views/studyPrograms/EditStudyProgram.vue'),
     }

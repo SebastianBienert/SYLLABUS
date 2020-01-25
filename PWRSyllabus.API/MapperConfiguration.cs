@@ -30,16 +30,26 @@ namespace PWRSyllabusAPI
                            opt => opt.MapFrom(c => GetCourseFormEnum(c.CourseForm)));
 
             CreateMap<SubjectCard, SubjectCardDTO>();
-            //CreateMap<SubjectCardDTO, SubjectCard>();
+
+            CreateMap<StudyProgramSubjectCard, SubjectCardDTO>()
+                .ForMember(dto => dto.Id,
+                       opt => opt.MapFrom(sc => sc.SubjectCard.Id))
+                .ForMember(dto => dto.NameInEnglish,
+                       opt => opt.MapFrom(sc => sc.SubjectCard.NameInEnglish))
+                .ForMember(dto => dto.NameInPolish,
+                       opt => opt.MapFrom(sc => sc.SubjectCard.NameInPolish))
+                .ForMember(dto => dto.SubjectCode,
+                       opt => opt.MapFrom(sc => sc.SubjectCard.SubjectCode));
+
             CreateMap<SubjectCardDTO, StudyProgramSubjectCard>()
                 .ForMember(dto => dto.SubjectCardId,
                            opt => opt.MapFrom(sc => sc.Id));
-                //.ForMember(dto => dto.SubjectCard,
-                //           opt => opt.MapFrom(sc => new SubjectCard() { 
-                //                Id = sc.Id,
-                //                NameInEnglish = sc.NameInEnglish
-                //                //itd
-                //           }));
+            //.ForMember(dto => dto.SubjectCard,
+            //           opt => opt.MapFrom(sc => new SubjectCard() { 
+            //                Id = sc.Id,
+            //                NameInEnglish = sc.NameInEnglish
+            //                //itd
+            //           }));
 
             CreateMap<StudyProgram, StudyProgramDTO>()
                 .ForMember(dto => dto.Level,
@@ -50,6 +60,8 @@ namespace PWRSyllabusAPI
                            opt => opt.MapFrom(fos => fos.FieldOfStudy.Faculty.Name))
                 .ForMember(dto => dto.Language,
                            opt => opt.MapFrom(fos => fos.LanguageOfStudy))
+                .ForMember(sp => sp.SubjectCards,
+                           dto => dto.MapFrom(sp => sp.StudyProgramSubjectCards))
                 .ForMember(dto => dto.FormOfStudies,
                            opt => opt.MapFrom(fos => MapFormOfStudiesToString(fos.FormOfStudies)));
 

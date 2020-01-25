@@ -10,11 +10,6 @@
                 hide-details
             ></v-text-field>
         </v-col>
-        <!-- <v-col cols="3">
-            <v-btn color="primary" to="/add-study-program">
-                {{$t('studyProgramsHeaders.newProgram')}}
-            </v-btn>
-        </v-col> -->
     </v-row>
     <v-row>
         <v-col cols="12">
@@ -24,27 +19,10 @@
                 :items="subjectCards"
                 :search="search"
                 show-select
-                v-model="selected"
-                @input="$emit('selectedItemsChanged', selected)"
+                v-model="initialSubjectCards"
+                @input="$emit('selectedItemsChanged', initialSubjectCards)"
             >
-                <!-- <template v-slot:item.action="{ item }">
-                    <v-icon
-                        small
-                        class="mr-2"
-                        @click="redirectToEdit(item.id)"
-                    >
-                        edit
-                    </v-icon>
-                    <v-icon
-                        small
-                        @click="deleteItem(item)"
-                    >
-                        delete
-                    </v-icon>
-                </template>
-                <template v-slot:item.discipline="{ item }">
-                    {{item.discipline.name}}
-                </template> -->
+
             </v-data-table>
         </v-col>
     </v-row>
@@ -52,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import axios from 'axios';
 import SubjectCard from '../../models/SubjectCard';
 @Component
@@ -63,6 +41,8 @@ export default class SelectSubjectCards extends Vue {
     private levels: string[] = [];
     private categories: string[] = [];
     private selected: SubjectCard[] = [];
+    private selected1: SubjectCard[] = [];
+
 
     get headers() {
       return[
@@ -75,13 +55,16 @@ export default class SelectSubjectCards extends Vue {
       { text: '', value: 'action', sortable: false }];
     }
 
+    @Prop()
+    public initialSubjectCards: SubjectCard[] | undefined = [];
+
     public async created() {
         this.subjectCards = await this.fetchSubjectCards();
     }
 
     private async fetchSubjectCards(): Promise<SubjectCard[]> {
         
-        const response = await axios.get<SubjectCard[]>('api/SubjectCard');
+        const response = await axios.get<SubjectCard[]>('/api/SubjectCard');
         const subjectCards = response.data;
         return subjectCards;
     }

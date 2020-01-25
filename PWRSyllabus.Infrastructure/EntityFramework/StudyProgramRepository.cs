@@ -31,7 +31,10 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
         public async Task<StudyProgram> GetStudyProgram(int studyProgramId)
         {
             var studyProgram = await _dbContext.StudyPrograms
+                .Include(me => me.StudyProgramSubjectCards)
+                .ThenInclude(me => me.SubjectCard)
                 .Include(me => me.FieldOfStudy)
+                .ThenInclude(fos => fos.Faculty)
                 .FirstAsync(me => me.Id == studyProgramId);
 
             return studyProgram;

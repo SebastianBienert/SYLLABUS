@@ -16,7 +16,7 @@
         required
     ></v-select>
     <v-text-field
-        v-model="studyProgram.specialization"
+        v-model="studyProgram.fieldOfStudy.specialization"
         :label="$t('studyProgramsHeaders.specialization')"
         :placeholder="$t('studyProgramsHeaders.specialization')"
         required
@@ -38,7 +38,10 @@
         :label="$t('studyProgramsHeaders.formOfStudies')"
         :placeholder="$t('studyProgramsHeaders.formOfStudies')"
     ></v-text-field>
-    <select-subject-cards @selectedItemsChanged="handleItemsChange"></select-subject-cards>
+    <select-subject-cards 
+        @selectedItemsChanged="handleItemsChange" 
+        :initialSubjectCards="studyProgram.subjectCards">
+    </select-subject-cards>
 
     <v-btn class="mr-4" @click="$emit('submit', studyProgram)">{{$t('submit')}}</v-btn>
     <v-btn @click="$emit('cancel')">{{$t('cancel')}}</v-btn>
@@ -59,7 +62,7 @@ import SelectSubjectCards from '@/views/studyPrograms/SelectSubjectCards.vue';
   }
 })
 export default class StudyProgramForm extends Vue {
-    public studyProgram: any = {};
+    public studyProgram: StudyProgram = DefaultStudyProgram;
 
     @Prop()
     public fieldsOfStudies!: FieldOfStudy[];
@@ -76,7 +79,6 @@ export default class StudyProgramForm extends Vue {
 
     public handleItemsChange(params: SubjectCard[]) {
         this.studyProgram.subjectCards = params;
-        console.log(params[0].subjectCode);
     }
 }
 </script>

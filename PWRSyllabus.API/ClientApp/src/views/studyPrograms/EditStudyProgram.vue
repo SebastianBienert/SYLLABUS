@@ -3,7 +3,7 @@
         <study-program-form
             @cancel="handleCancel"
             @submit="edit"
-            :disciplines="availableDisciplines"
+            :fieldsOfStudies="availableFieldsOfStudies"
             :initialData="studyProgram"
         ></study-program-form>
     </v-container>
@@ -15,7 +15,9 @@ import StudyProgramForm from '@/views/studyPrograms/StudyProgramForm.vue';
 import axios from 'axios';
 import StudyProgram, {DefaultStudyProgram} from '@/models/StudyProgram';
 import FieldOfStudy from '../../models/FieldOfStudy';
-@Component({
+
+@Component
+({
     components: {
         'study-program-form': StudyProgramForm,
     },
@@ -38,7 +40,6 @@ export default class EditStudyProgram extends Vue {
         await axios.put<any>(`/api/StudyProgram/${this.$route.params.id}`, editedStudyProgram);
         this.$router.push('/study-programs');
     }
-
 }
 </script>
 
