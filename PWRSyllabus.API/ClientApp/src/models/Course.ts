@@ -4,6 +4,8 @@ export default interface Course {
     ZZU: number;
     CNPS: number;
     CourseForm: string;
+    FormOfCrediting: string;
+    isSelected: boolean; // I need it, okay? no matter the cost
 }
 
 const DefaultCourse: Course = {
@@ -11,7 +13,9 @@ const DefaultCourse: Course = {
     ECTS: 0,
     ZZU: 0,
     CNPS: 0,
-    CourseForm: ""
+    CourseForm: "",
+    FormOfCrediting: "",
+    isSelected: false
 };
 
 export {DefaultCourse, Course};

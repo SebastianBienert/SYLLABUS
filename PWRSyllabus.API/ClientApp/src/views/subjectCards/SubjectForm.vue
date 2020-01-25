@@ -155,13 +155,20 @@
           }}</v-btn>
         </v-col>
       </v-row>
-      <v-row align="start" justify="start">
-        <v-col class="text-center" cols="4" align-self="center">
-          <v-btn block color="primary">{{
+      <v-dialog v-model="curriculumModalOpen" persistent max-width="290">
+        <template v-slot:activator="{ on }">
+          <v-btn color="primary" dark v-on="on">{{
             $t("subjectCardHeaders.curriculum")
           }}</v-btn>
-        </v-col>
-      </v-row>
+        </template>
+        <CoursesTable
+          v-on:changeList="updatecurriculum($event)"
+          v-on:closeModal="closecurriculumModal($event)"
+          :courses="[...subjectCard.courses]"
+          :label="$t('subjectCardHeaders.curriculum')"
+          :placeholder="$t('subjectCardHeaders.curriculum')"
+        ></CoursesTable>
+      </v-dialog>
       <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
           <v-btn block color="primary">{{
@@ -184,10 +191,13 @@ import axios from "axios";
 import FieldOfStudy from "@/models/FieldOfStudy";
 import Employee from "../../models/Employee";
 import EditableList from "@/views/subjectCards/EditableList.vue";
+import CoursesTable from "@/views/subjectCards/CoursesTable.vue";
+import { Course } from '@/models/Course';
 
 @Component({
   components: {
-    EditableList
+    EditableList,
+    CoursesTable
   }
 })
 export default class SubjectForm extends Vue {
@@ -196,6 +206,7 @@ export default class SubjectForm extends Vue {
   private teachingToolsModalOpen = false;
   private prerequisitesModalOpen = false;
   private literatureModalOpen = false;
+  private curriculumModalOpen = false;
 
   @Prop()
   public fieldsOfStudies!: FieldOfStudy[];
@@ -252,5 +263,15 @@ export default class SubjectForm extends Vue {
   private closeliteratureModal() {
     this.literatureModalOpen = false;
   }
+
+   private updatecurriculum(updatedcurriculum: Course[]) {
+    this.subjectCard.courses = updatedcurriculum;
+    this.curriculumModalOpen = false;
+  }
+
+  private closecurriculumModal() {
+    this.curriculumModalOpen = false;
+  }
+
 }
 </script>
