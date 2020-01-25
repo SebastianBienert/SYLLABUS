@@ -11,9 +11,11 @@ namespace PWRSyllabus.Core.Entities
         public bool IsGroupOfCourses { get; set; }
         public string Prerequisites { get; set; }
         public string Objectivties { get; set; }
+        public string PrimaryLiterature { get; set; }
+        public string SecondaryLiterature { get; set; }
         public int Version { get; set; }
         public SubjectType SubjectType { get; set; }
-
+        public CourseForm? FinalCourseForm { get; set; }
         public Employee Supervisor { get; set; }
         public int SupervisorId { get; set; }
         public List<StudyPlanSubjectCard> StudyPlanSubjectCards { get; set; }

@@ -146,7 +146,7 @@ namespace PWRSyllabusAPI
             {
                 CourseForm.Classes => "C",
                 CourseForm.Laboratory => "L",
-                CourseForm.Lecutre => "W",
+                CourseForm.Lecture => "W",
                 CourseForm.Project => "P",
                 CourseForm.Seminar => "S",
                 _ => "W",
@@ -159,10 +159,10 @@ namespace PWRSyllabusAPI
             {
                 "C" => CourseForm.Classes,
                 "L" => CourseForm.Laboratory,
-                "W" => CourseForm.Lecutre,
+                "W" => CourseForm.Lecture,
                 "P" => CourseForm.Project,
                 "S" => CourseForm.Seminar,
-                _ => CourseForm.Lecutre,
+                _ => CourseForm.Lecture,
             };
         }
     }

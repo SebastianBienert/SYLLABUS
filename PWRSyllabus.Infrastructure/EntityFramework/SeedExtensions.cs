@@ -65,13 +65,17 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                     Id = 1,
                     Version = 1,
                     SupervisorId = 1,
+                    FinalCourseForm = CourseForm.Lecture,
                     NameInPolish = "Analiza matematyczna",
                     SubjectType = SubjectType.UniversityWide,
                     SubjectCode = "AM123",
-                    Prerequisites = "PRE1|PRE2",
-                    Objectivties = "OBJ1|OBJ2",
+                    Prerequisites = "Znajomość pojęcia funkcji i podstawowych typów funkcji elementarnych.|Umiejętność sprawnego przekształcana wyrażeń algebraicznych.",
+                    Objectivties = "Opanowanie podstawowej wiedzy z zakresu analizy matematycznej",
                     IsGroupOfCourses = true,
-                    NameInEnglish = "Calculus"
+                    NameInEnglish = "Calculus",
+                    PrimaryLiterature = "James Stewart, Essential Calculus: Early Transcendentals, 2018|" +
+                                        "Silvanus P. Thompson, Calculus Made Easy, 1998",
+                    SecondaryLiterature = "Adrian Banner, The Calculus Lifesaver: All the Tools You Need to Excel at Calculus, 2007"
                 }
             );
 
@@ -138,7 +142,9 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 new EducationalEffectSubjectCard
                 {
                     EducationalEffectId = 1,
-                    SubjectCardId = 1
+                    SubjectCardId = 1,
+                    Code = "PEK_W1",
+                    Description = "Posiada podstawową wiedzę z analizy matematycznej potrzebną do rozwiązywania praktycznych problemów inżynierskich",
                 }
             );
 
@@ -164,7 +170,7 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 {
                     Id = 1,
                     CNPS = 400,
-                    CourseForm = CourseForm.Lecutre,
+                    CourseForm = CourseForm.Lecture,
                     ECTS = 3,
                     ECTSForPracticalClassees = 0,
                     ECTSForTeacherStudentContact = 3,
@@ -182,6 +188,37 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                     CourseId = 1,
                     Hours = 2,
                     Description = "Wstęp (cel wykładu). Notacja matematyczna (spójniki logiczne, kwantyfikatory)," +
+                                  " elementy teorii mnogości, liczby rzeczywiste," +
+                                  " podzbiory zbioru liczb rzeczywistych (odcinki, półproste)." +
+                                  " Funkcje liniowe i kwadratowe"
+
+                }
+            );
+
+
+            modelBuilder.Entity<Course>().HasData(
+                new Course
+                {
+                    Id = 2,
+                    CNPS = 320,
+                    CourseForm = CourseForm.Classes,
+                    ECTS = 2,
+                    ECTSForPracticalClassees = 1.5,
+                    ECTSForTeacherStudentContact = 0.5,
+                    SubjectCardId = 1,
+                    ZZU = 220,
+                    FormOfCrediting = "Zaliczenie"
+                }
+            );
+
+            modelBuilder.Entity<Class>().HasData(
+                new Class
+                {
+                    Id = 2,
+                    ClassNumber = 1,
+                    CourseId = 2,
+                    Hours = 2,
+                    Description = "Wstęp (cel ćwiczeń). Notacja matematyczna (spójniki logiczne, kwantyfikatory)," +
                                   " elementy teorii mnogości, liczby rzeczywiste," +
                                   " podzbiory zbioru liczb rzeczywistych (odcinki, półproste)." +
                                   " Funkcje liniowe i kwadratowe"
