@@ -97,6 +97,10 @@ namespace PWRSyllabusAPI
             CreateMap<UpdateMinisterialEffectInput, MinisterialEffect>()
                 .ForMember(effect => effect.Level,
                     opt => opt.MapFrom(input => GetLevelEnum(input.Level)));
+            CreateMap<SubjectCardDTO, SubjectCard>()
+                .ForMember(input => input.SupervisorId,
+                    opt => opt.MapFrom(dto => dto.Supervisor.Id));
+
 
             //TODO
             CreateMap<MinisterialEffectEducationalEffect, MatrixRow>()

@@ -11,7 +11,7 @@ using PWRSyllabusAPI.DTOs;
 
 namespace PWRSyllabusAPI.Controllers
 {
-    [Route("api/employees")]
+    [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
