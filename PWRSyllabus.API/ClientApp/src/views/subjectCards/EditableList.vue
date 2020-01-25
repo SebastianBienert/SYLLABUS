@@ -1,7 +1,12 @@
 <template>
   <div class="modal-backdrop">
     <v-container class="modal">
-      <v-row v-for="n in objectivities.length" v-bind:key="n">
+      <v-row align="center" justify="center">
+        <v-col cols="1" class="text-center" align-self="center">
+          <h1>{{ staticData.header }}</h1>
+        </v-col>
+      </v-row>
+      <v-row v-for="n in list.length" v-bind:key="n">
         <v-col cols="1" class="text-center" align-self="center">
           <v-btn rounded @click="deleteObjFromArray(n - 1)"
             ><v-icon small @click="deleteEffect(item.id)">
@@ -10,13 +15,13 @@
           >
         </v-col>
         <v-col>
-          <v-label>{{ objectivities[n - 1] }}</v-label>
+          <v-label>{{ list[n - 1] }}</v-label>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="1" class="text-center" align-self="center">
           <v-btn rounded @click="addObjToArray()"
-            ><v-icon small @click="deleteEffect(item.id)">
+            ><v-icon small @click="deleteObjFromArray(item.id)">
               add
             </v-icon></v-btn
           >
@@ -32,41 +37,46 @@
 
       <v-row>
         <v-col cols="1">
-          <v-btn class="mr-4" @click="changeObjectivities">{{
+          <v-btn class="mr-4" @click="changeList">{{
             $t("submit")
           }}</v-btn>
         </v-col>
         <v-col cols="1">
-          <v-btn @click="$emit('cancel')">{{ $t("cancel") }}</v-btn>
+          <v-btn @click="$emit('closeModal')">{{
+            $t("cancel")
+          }}</v-btn>
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import axios from "axios";
 @Component
-export default class Objectivities extends Vue {
-  private objectivities: string[] = ["test", "tess"];
+export default class EditableList extends Vue {
+  @Prop()
+  public list!: string[] | string[];
   private strin: string = "";
+  @Prop()
+  public staticData!: {
+    header: string;
+    textPlaceholder: string;
+  };
 
   private addObjToArray() {
     if (this.strin !== "") {
-      this.objectivities.push(this.strin);
+      this.list.push(this.strin);
       this.strin = "";
     }
   }
 
   private deleteObjFromArray(index: number) {
-    this.objectivities.splice(index, 1);
-    console.log(this.objectivities);
+    this.list.splice(index, 1);
   }
 
-  private changeObjectivities() {
-    this.$emit("changeObjectivities", this.objectivities);
-    this.$emit("close", true);
-    console.log(this.objectivities);
+  private changeList() {
+    this.$emit("changeList", this.list);
   }
 }
 </script>
@@ -95,42 +105,4 @@ export default class Objectivities extends Vue {
   flex-direction: column;
 }
 
-.modal-header,
-.modal-footer {
-  padding: 15px;
-  display: flex;
-}
-
-.modal-header {
-  border-bottom: 1px solid #eeeeee;
-  color: #4aae9b;
-  justify-content: space-between;
-}
-
-.modal-footer {
-  border-top: 1px solid #eeeeee;
-  justify-content: flex-end;
-}
-
-.modal-body {
-  position: relative;
-  padding: 20px 10px;
-}
-
-.btn-close {
-  border: none;
-  font-size: 20px;
-  padding: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #4aae9b;
-  background: transparent;
-}
-
-.btn-green {
-  color: white;
-  background: #4aae9b;
-  border: 1px solid #4aae9b;
-  border-radius: 2px;
-}
 </style>
