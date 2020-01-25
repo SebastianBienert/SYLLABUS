@@ -16,6 +16,9 @@ export default interface SubjectCard {
     objectivities: string[];
     courses: Course[];
     supervisor: Employee; // !!! ???
+    educationalEfects: string[];
+    teachingTools: string[];
+    literature: string[];
 }
 
 const DefaultSubjectCard: SubjectCard = {
@@ -32,6 +35,9 @@ const DefaultSubjectCard: SubjectCard = {
     objectivities: [],
     courses: [],
     supervisor: DefaultEmployee, // !!! ???
+    educationalEfects: [],
+    teachingTools: [],
+    literature: []
 };
 
 export {DefaultSubjectCard, SubjectCard};

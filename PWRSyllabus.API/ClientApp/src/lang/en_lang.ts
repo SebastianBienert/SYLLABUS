@@ -105,5 +105,6 @@ export default {
         subjectSchedule: 'Schedule',
         curriculum: 'Curriculum',
         trackingMatrix: 'Tracking matrix',
+        newObjectivity: 'New objectivity',
       }
 };
