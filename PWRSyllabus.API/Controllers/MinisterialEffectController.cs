@@ -71,7 +71,7 @@ namespace PWRSyllabusAPI.Controllers
         {
             var createEffectInput = _mapper.Map<MinisterialEffectDTO, CreateMinisterialEffectInput>(ministerialEffectDto);
             var addedEffect = await _createEffect.Execute(createEffectInput);
-            return CreatedAtRoute("GetMinisterialEffectById", new {id = addedEffect.Id});
+            return CreatedAtRoute("GetMinisterialEffectById", new {id = addedEffect.Id}, addedEffect);
         }
     }
 }

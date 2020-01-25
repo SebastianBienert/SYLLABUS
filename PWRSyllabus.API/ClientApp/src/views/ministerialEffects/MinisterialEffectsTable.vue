@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row>
         <v-col cols="3">
             <v-text-field
@@ -41,19 +41,21 @@
                 :search="search"
             >
                 <template v-slot:item.action="{ item }">
-                    <v-icon
-                        small
-                        class="mr-2"
-                        @click="redirectToEdit(item.id)"
-                    >
-                        edit
-                    </v-icon>
-                    <v-icon
-                        small
-                        @click="deleteEffect(item.id)"
-                    >
-                        delete
-                    </v-icon>
+                    <div class="table--action">
+                        <v-icon
+                            small
+                            class="mr-2"
+                            @click="redirectToEdit(item.id)"
+                        >
+                            edit
+                        </v-icon>
+                        <v-icon
+                            small
+                            @click="deleteEffect(item.id)"
+                        >
+                            delete
+                        </v-icon>
+                    </div>
                 </template>
                 <template v-slot:item.discipline="{ item }">
                     {{item.discipline.name}}

@@ -6,7 +6,7 @@
         :placeholder="$t('ministerialEffectsHeaders.code')"
         required
     ></v-text-field>
-    <v-select
+    <v-autocomplete
         v-model="effect.discipline"
         :label="$t('ministerialEffectsHeaders.discipline')"
         :placeholder="$t('ministerialEffectsHeaders.discipline')"
@@ -14,7 +14,7 @@
         item-text="name"
         return-object
         required
-    ></v-select>
+    ></v-autocomplete>
     <v-text-field
         v-model="effect.category"
         :label="$t('ministerialEffectsHeaders.category')"
@@ -27,12 +27,13 @@
         :placeholder="$t('ministerialEffectsHeaders.descriptiveCategory')"
         required
     ></v-text-field>
-    <v-text-field
+    <v-select
+        :items="levels"
         v-model="effect.level"
         :label="$t('ministerialEffectsHeaders.level')"
         :placeholder="$t('ministerialEffectsHeaders.level')"
         required
-    ></v-text-field>
+    ></v-select>
     <v-textarea
         v-model="effect.description"
         :label="$t('ministerialEffectsHeaders.description')"
@@ -48,6 +49,7 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import MinisterialEffect, {DefaultMinisterialEffect} from '@/models/MinisterialEffect';
 import axios from 'axios';
 import Discipline from '@/models/Discipline';
+import levels from "@/models/Levels";
 
 @Component
 export default class MinisterialEffectForm extends Vue {
@@ -58,6 +60,8 @@ export default class MinisterialEffectForm extends Vue {
 
     @Prop()
     public initialData: MinisterialEffect | undefined;
+
+    public levels: string[] = levels;
 
     // mounted(){
     //     if(this.initialData){
