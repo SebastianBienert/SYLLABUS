@@ -41,6 +41,7 @@ namespace PWRSyllabusAPI
             services.AddScoped<IMinisterialEffectRepository, MinisterialEffectRepository>();
             services.AddScoped<IStudyProgramRepository, StudyProgramRepository>();
             services.AddScoped<ISubjectCardRepository, SubjectCardRepository>();
+            services.AddScoped<ITraceMatrixRepository, TraceMatrixRepository>();
             services.AddScoped<CreateMinisterialEffectUseCase>();
             services.AddScoped<UpdateMinisterialEffectUseCase>();
             services.AddScoped<GenerateSubjectCardPDFUSeCase>();

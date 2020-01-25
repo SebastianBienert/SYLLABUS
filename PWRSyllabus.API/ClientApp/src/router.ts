@@ -34,7 +34,7 @@ export default new Router({
     {
       path: '/trace-matrix',
       name: 'trace-matrix',
-      component: () => import('./views/traceMatrix/TraceMatrix.vue'),
+      component: () => import('./views/traceMatrix/TraceMatrixTable.vue'),
     },
     {
       path: '/ministerial-effects',
