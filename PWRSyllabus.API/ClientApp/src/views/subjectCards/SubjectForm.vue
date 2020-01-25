@@ -1,7 +1,7 @@
 <template>
-  <form>
+  <v-form>
     <v-container fluid>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
           <v-text-field
             v-model="subjectCard.nameInPolish"
@@ -11,7 +11,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
           <v-text-field
             v-model="subjectCard.nameInEnglish"
@@ -21,7 +21,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
           <v-text-field
             v-model="subjectCard.subjectCode"
@@ -31,7 +31,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
           <v-select
             v-model="subjectCard.supervisor"
@@ -44,7 +44,7 @@
           ></v-select>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
           <v-text-field
             v-model="subjectCard.prerequisites"
@@ -54,7 +54,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
           <v-radio-group
             v-model="subjectCard.level"
@@ -94,55 +94,60 @@
           :value="'UniversityWide'"
         ></v-radio>
       </v-radio-group>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
 
-            <v-btn color="primary" @click="objectivitiesModalOpen = true">{{
-              $t("subjectCardHeaders.objectivities")
-            }}</v-btn>
+            <v-col cols="4">
+                <v-btn block color="primary" @click="objectivitiesModalOpen = true">{{
+                  $t("subjectCardHeaders.objectivities")
+                }}</v-btn>
+            </v-col>
 
-          <objectivities v-show="objectivitiesModalOpen"
-            v-on:changeObjectivities="updateObjectivities($event)"
-          ></objectivities>
+          <EditableList v-show="objectivitiesModalOpen"
+            v-on:changeList="updateObjectivities($event)"
+            v-on:closeModal="closeObjectivitiesModal($event)"
+            :list="subjectCard.objectivities"
+            :staticData="{header: 'pies', textPlaceholder: 'pies2'}"
+          ></EditableList>
 
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
-          <v-btn block color="primary" to="/study-programs">{{
+          <v-btn block color="primary">{{
             $t("subjectCardHeaders.educationalEffect")
           }}</v-btn>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
-          <v-btn block color="primary" to="/study-programs">{{
+          <v-btn block color="primary">{{
             $t("subjectCardHeaders.teachingTools")
           }}</v-btn>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
-          <v-btn block color="primary" to="/study-programs">{{
+          <v-btn block color="primary">{{
             $t("subjectCardHeaders.literature")
           }}</v-btn>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
-          <v-btn block color="primary" to="/study-programs">{{
+          <v-btn block color="primary">{{
             $t("subjectCardHeaders.subjectSchedule")
           }}</v-btn>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
-          <v-btn block color="primary" to="/study-programs">{{
+          <v-btn block color="primary">{{
             $t("subjectCardHeaders.curriculum")
           }}</v-btn>
         </v-col>
       </v-row>
-      <v-row align="left" justify="left">
+      <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
-          <v-btn block color="primary" to="/study-programs">{{
+          <v-btn block color="primary">{{
             $t("subjectCardHeaders.trackingMatrix")
           }}</v-btn>
         </v-col>
@@ -152,25 +157,25 @@
       $t("submit")
     }}</v-btn>
     <v-btn @click="test()">{{ $t("cancel") }}</v-btn>
-  </form>
+  </v-form>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import SubjectCard from "@/models/SubjectCard";
+import {SubjectCard, DefaultSubjectCard} from "@/models/SubjectCard";
 import axios from "axios";
 import FieldOfStudy from "@/models/FieldOfStudy";
 import Employee from "../../models/Employee";
-import Objectivities from "@/views/subjectCards/Objectivities.vue";
+import EditableList from "@/views/subjectCards/EditableList.vue";
 
 @Component({
   components: {
-    Objectivities
+    EditableList
   }
 })
 export default class SubjectForm extends Vue {
-  public subjectCard: any = {};
-  private objectivitiesModalOpen = true;
+  public subjectCard: SubjectCard = DefaultSubjectCard;
+  private objectivitiesModalOpen = false;
 
   @Prop()
   public fieldsOfStudies!: FieldOfStudy[];
@@ -194,6 +199,10 @@ export default class SubjectForm extends Vue {
 
   private updateObjectivities(updatedObjectivities: string[]) {
     this.subjectCard.objectivities = updatedObjectivities;
+    this.objectivitiesModalOpen = false;
+  }
+
+  private closeObjectivitiesModal() {
     this.objectivitiesModalOpen = false;
   }
 }
