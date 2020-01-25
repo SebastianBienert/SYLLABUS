@@ -71,5 +71,10 @@ export default new Router({
       name: 'add-subject',
       component: () => import('./views/subjectCards/AddSubject.vue'),
     },
+    {
+      path: '/subject/objectivities',
+      name: 'objectivities',
+      component: () => import('./views/subjectCards/Objectivities.vue'),
+    },
   ],
 });

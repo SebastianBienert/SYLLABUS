@@ -50,8 +50,15 @@ namespace PWRSyllabus.API.Controllers
 
         // POST: api/SubjectCard
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> CreateSubjectCard(SubjectCardDTO subjectCardDTO)
         {
+            var subjectCard = _mapper.Map<SubjectCardDTO, SubjectCard>(subjectCardDTO);
+            subjectCard.Supervisor = null;
+            var addedSubjectCard = await _crudRepository.AddAsync(subjectCard);
+            //return CreatedAtRoute("GetStudyProgramById", new { id = addedEffect.Id });
+            int c = 9;
+            c++;
+            return null;
         }
 
         // PUT: api/SubjectCard/5

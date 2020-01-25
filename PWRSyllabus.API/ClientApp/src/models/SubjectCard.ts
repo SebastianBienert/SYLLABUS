@@ -1,12 +1,12 @@
 import Course from './Course';
 import FieldOfStudy from './FieldOfStudy';
+import Employee from './Employee';
 
 export default interface SubjectCard {
     id: number;
+    subjectCode: string;
     nameInPolish: string;
     nameInEnglish: string;
-    subjectCode: string;
-    fieldOfStudy: FieldOfStudy;
     specialization: string;
     level: string;
     formOfStudies: string;
@@ -15,7 +15,7 @@ export default interface SubjectCard {
     prerequisites: string[];
     objectivties: string[];
     courses: Course[];
-    supervisor: string; // !!! ???
+    supervisor: Employee; // !!! ???
 }
 
 const DefaultSubjectCard: SubjectCard = {
