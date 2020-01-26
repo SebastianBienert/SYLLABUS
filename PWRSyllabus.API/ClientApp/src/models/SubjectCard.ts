@@ -20,7 +20,8 @@ export default interface SubjectCard {
     supervisor: Employee; // !!! ???
     educationalEffects: EducationalEffect[];
     teachingTools: string[];
-    literature: string[];
+    primaryLiterature: string[];
+    secondaryLiterature: string[];
 }
 
 const DefaultSubjectCard: SubjectCard = {
@@ -39,7 +40,8 @@ const DefaultSubjectCard: SubjectCard = {
     supervisor: DefaultEmployee, // !!! ???
     educationalEffects: [],
     teachingTools: [],
-    literature: []
+    primaryLiterature: [],
+    secondaryLiterature: []
 };
 
 export {DefaultSubjectCard, SubjectCard};

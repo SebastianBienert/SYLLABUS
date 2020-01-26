@@ -99,12 +99,13 @@ export default {
         prerequisites: 'Wymagania wstępne',
         objectivities: 'Cele przedmiotu',
         teachingTools: 'Narzędzia dydaktyczne',
-        literature: 'Literatura',
+        primaryLiterature: 'Literatura główna',
+        secondaryLiterature: 'Literatura uzupełniająca',
         supervisor: 'Opiekun przedmiotu',
         educationalEffects: 'Educational effects',
-        subjectSchedule: 'Schedule',
         curriculum: 'Curriculum',
         trackingMatrix: 'Tracking matrix',
         newObjectivity: 'New objectivity',
+        schedule: 'Schedule'
       }
 };

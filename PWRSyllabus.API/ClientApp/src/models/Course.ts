@@ -1,3 +1,5 @@
+import Class from './Class';
+
 export default interface Course {
     id: number;
     ECTS: number;
@@ -5,6 +7,7 @@ export default interface Course {
     CNPS: number;
     CourseForm: string;
     FormOfCrediting: string;
+    Classes: Class[];
     isSelected: boolean; // I need it, okay? no matter the cost
 }
 
@@ -15,6 +18,7 @@ const DefaultCourse: Course = {
     CNPS: 0,
     CourseForm: "",
     FormOfCrediting: "",
+    Classes: [],
     isSelected: false
 };
 

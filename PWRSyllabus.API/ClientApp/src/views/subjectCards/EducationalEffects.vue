@@ -1,35 +1,11 @@
 <template>
   <div class="modal-backdrop">
     <v-container class="modal">
-      <!-- <v-tabs>
-        <v-tab>
-          Tab
-          <v-tab-item>
-            <EditableListWithoutButtons
-              v-on:changeList="updateliterature($event)"
-              v-on:closeModal="closeliteratureModal($event)"
-              :label="$t('subjectCardHeaders.literature')"
-              :placeholder="$t('subjectCardHeaders.literature')"
-            ></EditableListWithoutButtons>
-          </v-tab-item>
-        </v-tab>
-        <v-tab>
-          <EditableListWithoutButtons
-            v-on:changeList="updateliterature($event)"
-            v-on:closeModal="closeliteratureModal($event)"
-            :label="$t('subjectCardHeaders.literature')"
-            :placeholder="$t('subjectCardHeaders.literature')"
-          ></EditableListWithoutButtons>
-        </v-tab>
-        <v-tab>
-          <EditableListWithoutButtons
-            v-on:changeList="updateliterature($event)"
-            v-on:closeModal="closeliteratureModal($event)"
-            :label="$t('subjectCardHeaders.literature')"
-            :placeholder="$t('subjectCardHeaders.literature')"
-          ></EditableListWithoutButtons>
-        </v-tab>
-      </v-tabs> -->
+    <v-row align="center" justify="center">
+        <v-col class="text-center" align-self="center">
+          <h1>{{ $t('subjectCardHeaders.educationalEffects') }}</h1>
+        </v-col>
+      </v-row>
       <v-tabs>
         <v-tab>
           Z zakresu wiedzy

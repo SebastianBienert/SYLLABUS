@@ -4,7 +4,7 @@
       <template>
         <v-row align="center" justify="center">
         <v-col class="text-center" align-self="center">
-          <h1>{{ $t("subjectCardHeaders.curriculum") }}</h1>
+          <h1>{{ $t("subjectCardHeaders.schedule") }}</h1>
         </v-col>
       </v-row>
         <v-row>
@@ -20,7 +20,7 @@
             <v-row>
               <v-col>
                 <v-text-field
-                  v-model="course.ZZU"
+                  v-model.number="course.ZZU"
                   type="number"
                   min="0"
                   :label="$t('subjectCardHeaders.nameInPolish')"
@@ -32,7 +32,7 @@
             <v-row>
               <v-col>
                 <v-text-field
-                  v-model="course.CNPS"
+                  v-model.number="course.CNPS"
                   type="number"
                   min="0"
                   :label="$t('subjectCardHeaders.nameInPolish')"
@@ -62,7 +62,7 @@
             <v-row>
               <v-col>
                 <v-text-field
-                  v-model="course.ECTS"
+                  v-model.number="course.ECTS"
                   type="number"
                   min="0"
                   :label="$t('subjectCardHeaders.nameInPolish')"
@@ -107,7 +107,8 @@ export default class CoursesTable extends Vue {
         CNPS: corresponding && corresponding.CNPS || 0,
         CourseForm: form,
         FormOfCrediting: corresponding && corresponding.FormOfCrediting || "",
-        isSelected: false
+        isSelected: false,
+        Classes: []
       });
       this.copied = this.originalPrepared.map(x => Object.assign({}, x));
     });

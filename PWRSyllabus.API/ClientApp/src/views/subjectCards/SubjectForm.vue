@@ -44,20 +44,6 @@
           ></v-select>
         </v-col>
       </v-row>
-      <v-dialog v-model="prerequisitesModalOpen" persistent max-width="290">
-        <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on">{{
-            $t("subjectCardHeaders.prerequisites")
-          }}</v-btn>
-        </template>
-        <EditableList
-          v-on:changeList="updateprerequisites($event)"
-          v-on:closeModal="closeprerequisitesModal($event)"
-          :list="[...subjectCard.prerequisites]"
-          :label="$t('subjectCardHeaders.prerequisites')"
-          :placeholder="$t('subjectCardHeaders.prerequisites')"
-        ></EditableList>
-      </v-dialog>
       <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
           <v-radio-group
@@ -98,11 +84,33 @@
           :value="'UniversityWide'"
         ></v-radio>
       </v-radio-group>
+      <v-dialog v-model="prerequisitesModalOpen" persistent max-width="290">
+        <template v-slot:activator="{ on }">
+          <v-row>
+            <v-col class="text-center" cols="4" align-self="center">
+              <v-btn block color="primary" dark v-on="on">{{
+                $t("subjectCardHeaders.prerequisites")
+              }}</v-btn>
+            </v-col>
+          </v-row>
+        </template>
+        <EditableList
+          v-on:changeList="updateprerequisites($event)"
+          v-on:closeModal="closeprerequisitesModal($event)"
+          :list="[...subjectCard.prerequisites]"
+          :label="$t('subjectCardHeaders.prerequisites')"
+          :placeholder="$t('subjectCardHeaders.prerequisites')"
+        ></EditableList>
+      </v-dialog>
       <v-dialog v-model="objectivitiesModalOpen" persistent max-width="290">
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on">{{
-            $t("subjectCardHeaders.objectivities")
-          }}</v-btn>
+          <v-row>
+            <v-col class="text-center" cols="4" align-self="center">
+              <v-btn block color="primary" dark v-on="on">{{
+                $t("subjectCardHeaders.objectivities")
+              }}</v-btn>
+            </v-col>
+          </v-row>
         </template>
         <EditableList
           v-on:changeList="updateObjectivities($event)"
@@ -112,73 +120,127 @@
           :placeholder="$t('subjectCardHeaders.newObjectivity')"
         ></EditableList>
       </v-dialog>
-      <v-row align="start" justify="start">
-        <v-dialog v-model="educationalEffectsModalOpen" persistent max-width="290">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">{{
-              $t("subjectCardHeaders.educationalEffects")
-            }}</v-btn>
-          </template>
-          <!-- :list="[...subjectCard.educationalEffects]" !!! -->
-          <EducationalEffects
-            v-on:changeList="updateceducationalEffects($event)"
-            v-on:closeModal="closeeducationalEffectsmModal($event)"
-            :list="subjectCard.educationalEffects.map(x => Object.assign({}, x))"
-            :label="$t('subjectCardHeaders.educationalEffects')"
-            :placeholder="$t('subjectCardHeaders.educationalEffects')"
-          ></EducationalEffects>
-        </v-dialog>
-      </v-row>
-      <v-row align="start" justify="start">
-        <v-dialog v-model="teachingToolsModalOpen" persistent max-width="290">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">{{
-              $t("subjectCardHeaders.teachingTools")
-            }}</v-btn>
-          </template>
-          <EditableList
-            v-on:changeList="updateTeachingTools($event)"
-            v-on:closeModal="closeteachingToolsModal($event)"
-            :list="[...subjectCard.teachingTools]"
-            :label="$t('subjectCardHeaders.teachingTools')"
-            :placeholder="$t('subjectCardHeaders.teachingTools')"
-          ></EditableList>
-        </v-dialog>
-      </v-row>
-      <v-dialog v-model="literatureModalOpen" persistent max-width="290">
+
+      <v-dialog
+        v-model="educationalEffectsModalOpen"
+        persistent
+        max-width="290"
+      >
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on">{{
-            $t("subjectCardHeaders.literature")
-          }}</v-btn>
+          <v-row>
+            <v-col class="text-center" cols="4" align-self="center">
+              <v-btn block color="primary" dark v-on="on">{{
+                $t("subjectCardHeaders.educationalEffects")
+              }}</v-btn>
+            </v-col>
+          </v-row>
+        </template>
+        <!-- :list="[...subjectCard.educationalEffects]" !!! -->
+        <EducationalEffects
+          v-on:changeList="updateceducationalEffects($event)"
+          v-on:closeModal="closeeducationalEffectsmModal($event)"
+          :list="subjectCard.educationalEffects.map(x => Object.assign({}, x))"
+          :label="$t('subjectCardHeaders.educationalEffects')"
+          :placeholder="$t('subjectCardHeaders.educationalEffects')"
+        ></EducationalEffects>
+      </v-dialog>
+
+      <v-dialog v-model="teachingToolsModalOpen" persistent max-width="290">
+        <template v-slot:activator="{ on }">
+          <v-row>
+            <v-col class="text-center" cols="4" align-self="center">
+              <v-btn block color="primary" dark v-on="on">{{
+                $t("subjectCardHeaders.teachingTools")
+              }}</v-btn>
+            </v-col>
+          </v-row>
         </template>
         <EditableList
-          v-on:changeList="updateliterature($event)"
-          v-on:closeModal="closeliteratureModal($event)"
-          :list="[...subjectCard.literature]"
-          :label="$t('subjectCardHeaders.literature')"
-          :placeholder="$t('subjectCardHeaders.literature')"
+          v-on:changeList="updateTeachingTools($event)"
+          v-on:closeModal="closeteachingToolsModal($event)"
+          :list="[...subjectCard.teachingTools]"
+          :label="$t('subjectCardHeaders.teachingTools')"
+          :placeholder="$t('subjectCardHeaders.teachingTools')"
         ></EditableList>
       </v-dialog>
-      <v-row align="start" justify="start">
-        <v-col class="text-center" cols="4" align-self="start">
-          <v-btn block color="primary">{{
-            $t("subjectCardHeaders.subjectSchedule")
-          }}</v-btn>
-        </v-col>
-      </v-row>
-      <v-dialog v-model="curriculumModalOpen" persistent max-width="290">
+      <v-dialog v-model="primaryLiteratureModalOpen" persistent max-width="290">
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on">{{
-            $t("subjectCardHeaders.curriculum")
-          }}</v-btn>
+          <v-row>
+            <v-col class="text-center" cols="4" align-self="center">
+              <v-btn block color="primary" dark v-on="on">{{
+                $t("subjectCardHeaders.primaryLiterature")
+              }}</v-btn>
+            </v-col>
+          </v-row>
+        </template>
+        <EditableList
+          v-on:changeList="updateprimaryLiterature($event)"
+          v-on:closeModal="closeprimaryLiteratureModal($event)"
+          :list="[...subjectCard.primaryLiterature]"
+          :label="$t('subjectCardHeaders.primaryLiterature')"
+          :placeholder="$t('subjectCardHeaders.primaryLiterature')"
+        ></EditableList>
+      </v-dialog>
+      <v-dialog
+        v-model="secondaryLiteratureModalOpen"
+        persistent
+        max-width="290"
+      >
+        <template v-slot:activator="{ on }">
+          <v-row>
+            <v-col class="text-center" cols="4" align-self="center">
+              <v-btn block color="primary" dark v-on="on">{{
+                $t("subjectCardHeaders.secondaryLiterature")
+              }}</v-btn>
+            </v-col>
+          </v-row>
+        </template>
+        <EditableList
+          v-on:changeList="updatesecondaryLiterature($event)"
+          v-on:closeModal="closesecondaryLiteratureModal($event)"
+          :list="[...subjectCard.secondaryLiterature]"
+          :label="$t('subjectCardHeaders.secondaryLiterature')"
+          :placeholder="$t('subjectCardHeaders.secondaryLiterature')"
+        ></EditableList>
+      </v-dialog>
+       <v-dialog v-model="scheduleModalOpen" persistent max-width="290">
+        <template v-slot:activator="{ on }">
+          <v-row>
+            <v-col cols="4">
+              <v-btn block color="primary" dark v-on="on">{{
+                $t("subjectCardHeaders.schedule")
+              }}</v-btn>
+            </v-col>
+          </v-row>
         </template>
         <CoursesTable
-          v-on:changeList="updatecurriculum($event)"
-          v-on:closeModal="closecurriculumModal($event)"
+          v-on:changeList="updateschedule($event)"
+          v-on:closeModal="closescheduleModal($event)"
           :courses="[...subjectCard.courses]"
-          :label="$t('subjectCardHeaders.curriculum')"
-          :placeholder="$t('subjectCardHeaders.curriculum')"
+          :label="$t('subjectCardHeaders.schedule')"
+          :placeholder="$t('subjectCardHeaders.schedule')"
         ></CoursesTable>
+      </v-dialog>
+      <v-dialog v-model="curriculumModalOpen" persistent max-width="290">
+        <template v-slot:activator="{ on }">
+          <v-row>
+            <v-col cols="4">
+              <v-btn
+                block
+                color="primary"
+                
+                v-on="on"
+                :disabled="subjectCard.courses === undefined || subjectCard.courses.length === 0"
+                >{{ $t("subjectCardHeaders.curriculum") }}</v-btn
+              >
+            </v-col>
+          </v-row>
+        </template>
+        <Curriculum
+          v-on:changeList="updatecurriculum($event)"
+          v-on:closeModal="closecurriculumeModal($event)"
+          :courses="[...subjectCard.courses]"
+        ></Curriculum>
       </v-dialog>
       <v-row align="start" justify="start">
         <v-col class="text-center" cols="4" align-self="center">
@@ -203,16 +265,17 @@ import FieldOfStudy from "@/models/FieldOfStudy";
 import Employee from "../../models/Employee";
 import EditableList from "@/views/subjectCards/EditableList.vue";
 import EducationalEffects from "@/views/subjectCards/EducationalEffects.vue";
-import EducationalEffect from '@models/EducationalEffect';
+import EducationalEffect from "@models/EducationalEffect";
 import CoursesTable from "@/views/subjectCards/CoursesTable.vue";
-
+import Curriculum from "@/views/subjectCards/Curriculum.vue";
 import { Course } from "@/models/Course";
 
 @Component({
   components: {
     EditableList,
     CoursesTable,
-    EducationalEffects
+    EducationalEffects,
+    Curriculum
   }
 })
 export default class SubjectForm extends Vue {
@@ -220,11 +283,13 @@ export default class SubjectForm extends Vue {
   private objectivitiesModalOpen = false;
   private teachingToolsModalOpen = false;
   private prerequisitesModalOpen = false;
-  private literatureModalOpen = false;
-  private curriculumModalOpen = false;
+  private primaryLiteratureModalOpen = false;
+  private secondaryLiteratureModalOpen = false;
+  private scheduleModalOpen = false;
   private educationalEffectsModalOpen = false;
+  private curriculumModalOpen = false;
 
-  private testey = [{code: "PEK_W", description: "DUPADUP", id: 0}];
+  private testey = [{ code: "PEK_W", description: "DUPADUP", id: 0 }];
 
   @Prop()
   public fieldsOfStudies!: FieldOfStudy[];
@@ -243,7 +308,7 @@ export default class SubjectForm extends Vue {
   }
 
   public test() {
-    console.log(this.subjectCard.educationalEffects);
+    console.log(this.subjectCard.courses);
   }
 
   private updateObjectivities(updatedObjectivities: string[]) {
@@ -273,25 +338,36 @@ export default class SubjectForm extends Vue {
     this.prerequisitesModalOpen = false;
   }
 
-  private updateliterature(updatedliterature: string[]) {
-    this.subjectCard.literature = updatedliterature;
-    this.literatureModalOpen = false;
+  private updateprimaryLiterature(updatedliterature: string[]) {
+    this.subjectCard.primaryLiterature = updatedliterature;
+    this.primaryLiteratureModalOpen = false;
   }
 
-  private closeliteratureModal() {
-    this.literatureModalOpen = false;
+  private closeprimaryLiteratureModal() {
+    this.primaryLiteratureModalOpen = false;
   }
 
-  private updatecurriculum(updatedcurriculum: Course[]) {
-    this.subjectCard.courses = updatedcurriculum;
-    this.curriculumModalOpen = false;
+  private updatesecondaryLiterature(updatedliterature: string[]) {
+    this.subjectCard.secondaryLiterature = updatedliterature;
+    this.secondaryLiteratureModalOpen = false;
   }
 
-  private closecurriculumModal() {
-    this.curriculumModalOpen = false;
+  private closesecondaryLiteratureModal() {
+    this.secondaryLiteratureModalOpen = false;
   }
 
-  private updateceducationalEffects(updatededucationalEffects: EducationalEffect[]) {
+  private updateschedule(updatedschedule: Course[]) {
+    this.subjectCard.courses = updatedschedule;
+    this.scheduleModalOpen = false;
+  }
+
+  private closescheduleModal() {
+    this.scheduleModalOpen = false;
+  }
+
+  private updateceducationalEffects(
+    updatededucationalEffects: EducationalEffect[]
+  ) {
     console.log(updatededucationalEffects);
     this.subjectCard.educationalEffects = updatededucationalEffects;
     this.educationalEffectsModalOpen = false;
@@ -299,6 +375,15 @@ export default class SubjectForm extends Vue {
 
   private closeeducationalEffectsmModal() {
     this.educationalEffectsModalOpen = false;
+  }
+
+  private updatecurriculum(updatedcurriculum: Course[]) {
+    this.subjectCard.courses = updatedcurriculum;
+    this.curriculumModalOpen = false;
+  }
+
+  private closecurriculumeModal() {
+    this.curriculumModalOpen = false;
   }
 }
 </script>
