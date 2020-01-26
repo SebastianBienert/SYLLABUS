@@ -23,18 +23,36 @@
         :placeholder="$t('studyProgramsHeaders.faculty')"
         required
     ></v-text-field>
-    <v-text-field
+    <v-select
+        v-model="studyProgram.level"
+        :label="$t('studyProgramsHeaders.level')"
+        :placeholder="$t('studyProgramsHeaders.level')"
+        :items="availableLevels"
+        item-text="name"
+        return-object
+        required
+    ></v-select>
+    <!-- <v-text-field
         v-model="studyProgram.level"
         :label="$t('studyProgramsHeaders.level')"
         :placeholder="$t('studyProgramsHeaders.level')"
         required
-    ></v-text-field>
-    <v-text-field
+    ></v-text-field> -->
+    <v-select
+        v-model="studyProgram.language"
+        :label="$t('studyProgramsHeaders.language')"
+        :placeholder="$t('studyProgramsHeaders.language')"
+        :items="availableLanguages"
+        item-text="name"
+        return-object
+        required
+    ></v-select>
+    <!-- <v-text-field
         v-model="studyProgram.language"
         :label="$t('studyProgramsHeaders.language')"
         :placeholder="$t('studyProgramsHeaders.language')"
         required
-    ></v-text-field>
+    ></v-text-field> -->
     <v-text-field
         v-model="studyProgram.formOfStudies"
         :label="$t('studyProgramsHeaders.formOfStudies')"
@@ -79,6 +97,8 @@ import SelectSubjectCards from '@/views/studyPrograms/SelectSubjectCards.vue';
 export default class StudyProgramForm extends Vue {
     public studyProgram: StudyProgram = DefaultStudyProgram;
     private dialog: boolean = false;
+    private availableLevels: string[] = ["6", "7"];
+    private availableLanguages: string[] = ["polski", "angielski"];
 
     @Prop()
     public fieldsOfStudies!: FieldOfStudy[];
