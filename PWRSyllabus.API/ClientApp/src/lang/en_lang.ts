@@ -101,7 +101,7 @@ export default {
         teachingTools: 'Narzędzia dydaktyczne',
         literature: 'Literatura',
         supervisor: 'Opiekun przedmiotu',
-        educationalEffect: 'Educational effect',
+        educationalEffects: 'Educational effects',
         subjectSchedule: 'Schedule',
         curriculum: 'Curriculum',
         trackingMatrix: 'Tracking matrix',

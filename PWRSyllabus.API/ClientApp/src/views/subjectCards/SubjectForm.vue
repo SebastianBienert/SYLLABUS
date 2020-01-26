@@ -113,12 +113,23 @@
         ></EditableList>
       </v-dialog>
       <v-row align="start" justify="start">
-        <v-col class="text-center" cols="4" align-self="center">
-          <v-btn @click="test" block color="primary">{{
-            $t("subjectCardHeaders.educationalEffect")
-          }}</v-btn>
-        </v-col> </v-row
-      ><v-row align="start" justify="start">
+        <v-dialog v-model="educationalEffectsModalOpen" persistent max-width="290">
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" dark v-on="on">{{
+              $t("subjectCardHeaders.educationalEffects")
+            }}</v-btn>
+          </template>
+          <!-- :list="[...subjectCard.educationalEffects]" !!! -->
+          <EducationalEffects
+            v-on:changeList="updateceducationalEffects($event)"
+            v-on:closeModal="closeeducationalEffectsmModal($event)"
+            :list="subjectCard.educationalEffects.map(x => Object.assign({}, x))"
+            :label="$t('subjectCardHeaders.educationalEffects')"
+            :placeholder="$t('subjectCardHeaders.educationalEffects')"
+          ></EducationalEffects>
+        </v-dialog>
+      </v-row>
+      <v-row align="start" justify="start">
         <v-dialog v-model="teachingToolsModalOpen" persistent max-width="290">
           <template v-slot:activator="{ on }">
             <v-btn color="primary" dark v-on="on">{{
@@ -191,13 +202,17 @@ import axios from "axios";
 import FieldOfStudy from "@/models/FieldOfStudy";
 import Employee from "../../models/Employee";
 import EditableList from "@/views/subjectCards/EditableList.vue";
+import EducationalEffects from "@/views/subjectCards/EducationalEffects.vue";
+import EducationalEffect from '@models/EducationalEffect';
 import CoursesTable from "@/views/subjectCards/CoursesTable.vue";
-import { Course } from '@/models/Course';
+
+import { Course } from "@/models/Course";
 
 @Component({
   components: {
     EditableList,
-    CoursesTable
+    CoursesTable,
+    EducationalEffects
   }
 })
 export default class SubjectForm extends Vue {
@@ -207,6 +222,9 @@ export default class SubjectForm extends Vue {
   private prerequisitesModalOpen = false;
   private literatureModalOpen = false;
   private curriculumModalOpen = false;
+  private educationalEffectsModalOpen = false;
+
+  private testey = [{code: "PEK_W", description: "DUPADUP", id: 0}];
 
   @Prop()
   public fieldsOfStudies!: FieldOfStudy[];
@@ -225,7 +243,7 @@ export default class SubjectForm extends Vue {
   }
 
   public test() {
-    console.log(this.subjectCard);
+    console.log(this.subjectCard.educationalEffects);
   }
 
   private updateObjectivities(updatedObjectivities: string[]) {
@@ -264,7 +282,7 @@ export default class SubjectForm extends Vue {
     this.literatureModalOpen = false;
   }
 
-   private updatecurriculum(updatedcurriculum: Course[]) {
+  private updatecurriculum(updatedcurriculum: Course[]) {
     this.subjectCard.courses = updatedcurriculum;
     this.curriculumModalOpen = false;
   }
@@ -273,5 +291,14 @@ export default class SubjectForm extends Vue {
     this.curriculumModalOpen = false;
   }
 
+  private updateceducationalEffects(updatededucationalEffects: EducationalEffect[]) {
+    console.log(updatededucationalEffects);
+    this.subjectCard.educationalEffects = updatededucationalEffects;
+    this.educationalEffectsModalOpen = false;
+  }
+
+  private closeeducationalEffectsmModal() {
+    this.educationalEffectsModalOpen = false;
+  }
 }
 </script>
