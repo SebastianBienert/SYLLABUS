@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PWRSyllabus.Core;
 using PWRSyllabus.Core.Entities;
+using PWRSyllabus.Core.Interfaces;
 using PWRSyllabusAPI.DTOs;
 
 namespace PWRSyllabus.API.Controllers
@@ -15,9 +16,9 @@ namespace PWRSyllabus.API.Controllers
     [ApiController]
     public class FieldOfStudyController : ControllerBase
     {
-        private readonly ICRUDRepository _repository;
+        private readonly IFieldOfStudyRepository _repository;
         private readonly IMapper _mapper;
-        public FieldOfStudyController(ICRUDRepository repository, IMapper mapper)
+        public FieldOfStudyController(IFieldOfStudyRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -26,7 +27,7 @@ namespace PWRSyllabus.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllStudyPlans()
         {
-            var fieldOfStudiesDto = (await _repository.ListAsync<FieldOfStudy>())
+            var fieldOfStudiesDto = (await _repository.GetAllFieldsOfStudy())
                 .Select(d => _mapper.Map<FieldOfStudy, FieldOfStudyDTO>(d));
 
 
