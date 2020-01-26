@@ -1,6 +1,5 @@
 <template>
-  <div class="modal-backdrop">
-    <v-container class="modal">
+    <v-container>
       <v-row align="center" justify="center">
         <v-col class="text-center" align-self="center">
           <h1>{{ label }}</h1>
@@ -14,8 +13,15 @@
             </v-icon></v-btn
           >
         </v-col>
-        <v-col align-self="center">
-          <v-label>{{ copied[n - 1] }}</v-label>
+        <v-col>
+          <v-row>
+          <v-col cols="2">
+            <v-label>{{ copied[n - 1].code }}</v-label>
+          </v-col >
+          <v-col cols="2">
+            <v-label>{{ copied[n - 1].description }}</v-label>
+          </v-col>
+          </v-row>
         </v-col>
       </v-row>
       <v-row>
@@ -35,39 +41,31 @@
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col cols="1">
-          <v-btn class="mr-4" @click="changeList">{{
-            $t("submit")
-          }}</v-btn>
-        </v-col>
-        <v-col cols="1">
-          <v-btn @click="cancelHandler">{{
-            $t("cancel")
-          }}</v-btn>
-        </v-col>
-      </v-row>
     </v-container>
-  </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import axios from "axios";
+import EducationalEffect from '@models/EducationalEffect';
 @Component
 export default class EditableList extends Vue {
   @Prop()
-  public list!: string[] | string[];
-  private copied: string[] = [];
+  public list!: EducationalEffect[] | EducationalEffect[];
+
+  private copied: EducationalEffect[] = [];
   private strin: string = "";
   @Prop()
   label!: string | string;
   @Prop()
   placeholder!: string | string;
+  @Prop()
+  eduEffectCodeStart!: string | string;
 
 
   private addObjToArray() {
     if (this.strin !== "") {
-      this.copied.push(this.strin);
+      const codeC = this.copied.length + 1;
+      this.copied.push({code: this.eduEffectCodeStart + codeC, description: this.strin});
       this.strin = "";
     }
   }
@@ -78,7 +76,14 @@ public async created() {
 
   private deleteObjFromArray(index: number) {
     this.copied.splice(index-1, 1);
-    console.log(this.copied);
+    this.reiterateCodeIndex();
+  }
+  reiterateCodeIndex() {
+    let cop = [];
+    for(let i = 0; i < this.copied.length; i++) {
+      this.copied[i].code = this.eduEffectCodeStart + (i+1);
+    }
+
   }
 
   private changeList() {

@@ -1,6 +1,8 @@
 import Course from './Course';
 import FieldOfStudy from './FieldOfStudy';
 import {Employee, DefaultEmployee} from './Employee';
+import EducationalEffect from '@models/EducationalEffect';
+
 
 export default interface SubjectCard {
     id: number;
@@ -16,7 +18,7 @@ export default interface SubjectCard {
     objectivities: string[];
     courses: Course[];
     supervisor: Employee; // !!! ???
-    educationalEfects: string[];
+    educationalEffects: EducationalEffect[];
     teachingTools: string[];
     literature: string[];
 }
@@ -35,7 +37,7 @@ const DefaultSubjectCard: SubjectCard = {
     objectivities: [],
     courses: [],
     supervisor: DefaultEmployee, // !!! ???
-    educationalEfects: [],
+    educationalEffects: [],
     teachingTools: [],
     literature: []
 };
