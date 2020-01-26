@@ -9,5 +9,7 @@ namespace PWRSyllabus.Core.Interfaces
     {
         Task<IEnumerable<SubjectCard>> GetAllSubjectCards();
         Task<SubjectCard> GetSubjectCard(int SubjectCardId);
+
+        Task<SubjectCard> GetSubjectCardForReport(int SubjectCardId);
     }
 }

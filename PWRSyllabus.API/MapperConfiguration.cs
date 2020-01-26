@@ -98,6 +98,15 @@ namespace PWRSyllabusAPI
                 .ForMember(effect => effect.Level,
                     opt => opt.MapFrom(input => GetLevelEnum(input.Level)));
 
+            //TODO
+            CreateMap<MinisterialEffectEducationalEffect, MatrixRow>()
+                .ForMember(input => input.EducationalEffectID, opt => opt.MapFrom(dto => dto.EducationalEffectId))
+                .ForMember(input => input.EducationalEffectCode, opt => opt.MapFrom(dto => dto.EducationalEffect.Code))
+                .ForMember(input => input.EducationalEffectDescription, opt => opt.MapFrom(dto => "Educationl Effect description"))
+                .ForMember(input => input.MinisterialEffectID, opt => opt.MapFrom(dto => dto.MinisterialEffectId))
+                .ForMember(input => input.MinisterialEffectCode, opt => opt.MapFrom(dto => dto.MinisterialEffect.Code))
+                .ForMember(input => input.MinisterialEffectDescription, opt => opt.MapFrom(dto => dto.MinisterialEffect.Description));
+
 
         }
 
@@ -146,7 +155,7 @@ namespace PWRSyllabusAPI
             {
                 CourseForm.Classes => "C",
                 CourseForm.Laboratory => "L",
-                CourseForm.Lecutre => "W",
+                CourseForm.Lecture => "W",
                 CourseForm.Project => "P",
                 CourseForm.Seminar => "S",
                 _ => "W",
@@ -159,10 +168,10 @@ namespace PWRSyllabusAPI
             {
                 "C" => CourseForm.Classes,
                 "L" => CourseForm.Laboratory,
-                "W" => CourseForm.Lecutre,
+                "W" => CourseForm.Lecture,
                 "P" => CourseForm.Project,
                 "S" => CourseForm.Seminar,
-                _ => CourseForm.Lecutre,
+                _ => CourseForm.Lecture,
             };
         }
     }

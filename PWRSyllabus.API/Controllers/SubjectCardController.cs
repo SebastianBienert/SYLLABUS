@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using PWRSyllabus.Core;
 using PWRSyllabus.Core.Entities;
 using PWRSyllabus.Core.Interfaces;
+using PWRSyllabus.Core.UseCases;
+using PWRSyllabus.Core.UseCases.GenerateSubjectCardReport;
 using PWRSyllabusAPI.DTOs;
 
 namespace PWRSyllabus.API.Controllers
@@ -19,12 +21,14 @@ namespace PWRSyllabus.API.Controllers
         private readonly ICRUDRepository _crudRepository;
         private readonly IMapper _mapper;
         private readonly ISubjectCardRepository _subjectCardRepository;
+        private readonly GenerateSubjectCardPDFUSeCase _generateSubjectCardPdfUseCase;
 
-        public SubjectCardController(ICRUDRepository crudRepository, IMapper mapper, ISubjectCardRepository subjectCardRepository)
+        public SubjectCardController(ICRUDRepository crudRepository, IMapper mapper, ISubjectCardRepository subjectCardRepository, GenerateSubjectCardPDFUSeCase generateSubjectCardPdfUseCase)
         {
             _crudRepository = crudRepository;
             _mapper = mapper;
             _subjectCardRepository = subjectCardRepository;
+            _generateSubjectCardPdfUseCase = generateSubjectCardPdfUseCase;
         }
 
         // GET: api/SubjectCard
@@ -60,6 +64,14 @@ namespace PWRSyllabus.API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet("{id}/pdf", Name = "GetSubjectCardPDF")]
+        public async Task<IActionResult> GetPDF(int id)
+        {
+            var pdfBytes = await _generateSubjectCardPdfUseCase.Execute(id);
+
+            return File(pdfBytes, "application/pdf", $"SubjectCard_{id}.pdf");
         }
     }
 }

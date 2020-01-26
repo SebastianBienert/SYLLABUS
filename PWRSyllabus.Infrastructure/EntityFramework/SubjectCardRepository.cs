@@ -36,5 +36,17 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
 
             return SubjectCard;
         }
+
+        public async Task<SubjectCard> GetSubjectCardForReport(int SubjectCardId)
+        {
+            var SubjectCard = await _dbContext.SubjectCards
+                .Include(sc => sc.StudyProgramSubjectCards).ThenInclude(sp => sp.StudyProgram).ThenInclude(sp => sp.FieldOfStudy)
+                .Include(sc => sc.Supervisor)
+                .Include(sc => sc.Courses).ThenInclude(c => c.Classes)
+                .Include(sc => sc.EducationalEffectSubjectCards).ThenInclude(x => x.EducationalEffect)
+                .FirstAsync(me => me.Id == SubjectCardId);
+
+            return SubjectCard;
+        }
     }
 }

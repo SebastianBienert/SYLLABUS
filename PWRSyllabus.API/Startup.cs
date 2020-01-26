@@ -12,6 +12,10 @@ using PWRSyllabus.Core.UseCases.CreateMinisterialEffect;
 using PWRSyllabus.Core.UseCases.UpdateMinisterialEffect;
 using PWRSyllabus.Infrastructure.EntityFramework;
 using System;
+using DinkToPdf;
+using DinkToPdf.Contracts;
+using PWRSyllabus.Core.UseCases;
+using PWRSyllabus.Core.UseCases.GenerateSubjectCardReport;
 using VueCliMiddleware;
 
 namespace PWRSyllabusAPI
@@ -30,6 +34,7 @@ namespace PWRSyllabusAPI
         {
             services.AddControllersWithViews();
             services.AddAutoMapper(typeof(Startup));
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             // Add AddRazorPages if the app uses Razor Pages.
             services.AddRazorPages();
             services.AddScoped<ICRUDRepository, CRUDRepository>();
@@ -37,8 +42,10 @@ namespace PWRSyllabusAPI
             services.AddScoped<IStudyProgramRepository, StudyProgramRepository>();
             services.AddScoped<ISubjectCardRepository, SubjectCardRepository>();
             services.AddScoped<IFieldOfStudyRepository, FieldOfStudyRepository>();
+            services.AddScoped<ITraceMatrixRepository, TraceMatrixRepository>();
             services.AddScoped<CreateMinisterialEffectUseCase>();
             services.AddScoped<UpdateMinisterialEffectUseCase>();
+            services.AddScoped<GenerateSubjectCardPDFUSeCase>();
             // In production, the Vue files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

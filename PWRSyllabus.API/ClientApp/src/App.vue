@@ -58,3 +58,15 @@ export default class App extends Vue {
 
 }
 </script>
+
+<style>
+
+th{
+  white-space: nowrap;
+}
+
+.table--action{
+  white-space: nowrap;
+}
+
+</style>

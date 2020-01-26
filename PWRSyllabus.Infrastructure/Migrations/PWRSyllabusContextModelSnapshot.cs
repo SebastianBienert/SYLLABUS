@@ -51,6 +51,14 @@ namespace PWRSyllabus.Infrastructure.Migrations
                             CourseId = 1,
                             Description = "Wstęp (cel wykładu). Notacja matematyczna (spójniki logiczne, kwantyfikatory), elementy teorii mnogości, liczby rzeczywiste, podzbiory zbioru liczb rzeczywistych (odcinki, półproste). Funkcje liniowe i kwadratowe",
                             Hours = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClassNumber = 1,
+                            CourseId = 2,
+                            Description = "Wstęp (cel ćwiczeń). Notacja matematyczna (spójniki logiczne, kwantyfikatory), elementy teorii mnogości, liczby rzeczywiste, podzbiory zbioru liczb rzeczywistych (odcinki, półproste). Funkcje liniowe i kwadratowe",
+                            Hours = 2
                         });
                 });
 
@@ -97,11 +105,23 @@ namespace PWRSyllabus.Infrastructure.Migrations
                         {
                             Id = 1,
                             CNPS = 400,
-                            CourseForm = "Lecutre",
+                            CourseForm = "Lecture",
                             ECTS = 3,
                             ECTSForPracticalClassees = 0.0,
                             ECTSForTeacherStudentContact = 3.0,
                             FormOfCrediting = "Egzamin",
+                            SubjectCardId = 1,
+                            ZZU = 220
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CNPS = 320,
+                            CourseForm = "Classes",
+                            ECTS = 2,
+                            ECTSForPracticalClassees = 1.5,
+                            ECTSForTeacherStudentContact = 0.5,
+                            FormOfCrediting = "Zaliczenie",
                             SubjectCardId = 1,
                             ZZU = 220
                         });
@@ -191,7 +211,9 @@ namespace PWRSyllabus.Infrastructure.Migrations
                         new
                         {
                             EducationalEffectId = 1,
-                            SubjectCardId = 1
+                            SubjectCardId = 1,
+                            Code = "PEK_W1",
+                            Description = "Posiada podstawową wiedzę z analizy matematycznej potrzebną do rozwiązywania praktycznych problemów inżynierskich"
                         });
                 });
 
@@ -526,6 +548,9 @@ namespace PWRSyllabus.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("FinalCourseForm")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsGroupOfCourses")
                         .HasColumnType("bit");
 
@@ -539,6 +564,12 @@ namespace PWRSyllabus.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Prerequisites")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrimaryLiterature")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondaryLiterature")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubjectCode")
@@ -564,11 +595,14 @@ namespace PWRSyllabus.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            FinalCourseForm = 0,
                             IsGroupOfCourses = true,
                             NameInEnglish = "Calculus",
                             NameInPolish = "Analiza matematyczna",
-                            Objectivties = "OBJ1|OBJ2",
-                            Prerequisites = "PRE1|PRE2",
+                            Objectivties = "Opanowanie podstawowej wiedzy z zakresu analizy matematycznej",
+                            Prerequisites = "Znajomość pojęcia funkcji i podstawowych typów funkcji elementarnych.|Umiejętność sprawnego przekształcana wyrażeń algebraicznych.",
+                            PrimaryLiterature = "James Stewart, Essential Calculus: Early Transcendentals, 2018|Silvanus P. Thompson, Calculus Made Easy, 1998",
+                            SecondaryLiterature = "Adrian Banner, The Calculus Lifesaver: All the Tools You Need to Excel at Calculus, 2007",
                             SubjectCode = "AM123",
                             SubjectType = "UniversityWide",
                             SupervisorId = 1,

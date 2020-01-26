@@ -1,11 +1,18 @@
-﻿namespace PWRSyllabus.Core.Enums
+﻿using EnumStringValues;
+
+namespace PWRSyllabus.Core.Enums
 {
     public enum CourseForm
     {
-        Lecutre,
+        [StringValue("Wykład")]
+        Lecture,
+        [StringValue("Seminarium")]
         Seminar,
+        [StringValue("Laboratorium")]
         Laboratory,
+        [StringValue("Ćwiczenia")]
         Classes,
+        [StringValue("Projekt")]
         Project
     }
 }
