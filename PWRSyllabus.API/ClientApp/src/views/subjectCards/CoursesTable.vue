@@ -23,7 +23,7 @@
                   v-model.number="course.ZZU"
                   type="number"
                   min="0"
-                  :label="$t('subjectCardHeaders.nameInPolish')"
+                  :label="$t('subjectCardHeaders.ZZU')"
                   :disabled="!course.isSelected"
                 >
                 </v-text-field>
@@ -35,7 +35,7 @@
                   v-model.number="course.CNPS"
                   type="number"
                   min="0"
-                  :label="$t('subjectCardHeaders.nameInPolish')"
+                  :label="$t('subjectCardHeaders.CNPS')"
                   :disabled="!course.isSelected"
                 >
                 </v-text-field>
@@ -49,11 +49,11 @@
                   :disabled="!course.isSelected"
                 >
                   <v-radio
-                    :label="'Examination'"
+                    :label="$t('subjectCardHeaders.examination')"
                     :value="'Examination'"
                   ></v-radio>
                   <v-radio
-                    :label="'Crediting with grade'"
+                    :label="$t('subjectCardHeaders.creditingWithGrade')"
                     :value="'CreditingWithGrade'"
                   ></v-radio>
                 </v-radio-group>
@@ -65,7 +65,7 @@
                   v-model.number="course.ECTS"
                   type="number"
                   min="0"
-                  :label="$t('subjectCardHeaders.nameInPolish')"
+                  :label="$t('subjectCardHeaders.ECTS')"
                   :disabled="!course.isSelected"
                 >
                 </v-text-field>

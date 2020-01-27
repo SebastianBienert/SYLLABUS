@@ -8,13 +8,13 @@
       </v-row>
       <v-tabs>
         <v-tab>
-          Z zakresu wiedzy
+          {{ $t('subjectCardHeaders.knowledgeField') }}
         </v-tab>
         <v-tab>
-          Z zakresu umiejętności
+          {{ $t('subjectCardHeaders.competenciesField') }}
         </v-tab>
         <v-tab>
-          Z zakresu kompetencji społecznych
+          {{ $t('subjectCardHeaders.socialField') }}
         </v-tab>
 
         <v-tab-item>
