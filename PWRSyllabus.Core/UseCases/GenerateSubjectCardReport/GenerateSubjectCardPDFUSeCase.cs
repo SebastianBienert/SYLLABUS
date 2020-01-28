@@ -23,7 +23,7 @@ namespace PWRSyllabus.Core.UseCases.GenerateSubjectCardReport
             _pdfConverter = pdfConverter;
         }
 
-        public async Task<byte[]> Execute(int subjectCardId)
+        public async Task<SubjectCardPDF> Execute(int subjectCardId)
         {
             var subjectCard = await _subjectCardRepository.GetSubjectCardForReport(subjectCardId);
             var template = GetHTMLString(subjectCard);
@@ -33,10 +33,9 @@ namespace PWRSyllabus.Core.UseCases.GenerateSubjectCardReport
                 Orientation = Orientation.Portrait,
                 PaperSize = PaperKind.A4,
                 Margins = new MarginSettings { Top = 10 },
-                DocumentTitle = "PDF Report"
+                DocumentTitle = "Karta przedmiotu"
             };
 
-            var currentDir = Directory.GetCurrentDirectory();
             var objectSettings = new ObjectSettings
             {
                 PagesCount = true,
@@ -50,8 +49,9 @@ namespace PWRSyllabus.Core.UseCases.GenerateSubjectCardReport
                 Objects = { objectSettings }
             };
 
-            var pdf = _pdfConverter.Convert(document);
-            return pdf;
+            var pdfBytes = _pdfConverter.Convert(document);
+            var pdfReport = new SubjectCardPDF(pdfBytes, subjectCard.SubjectCode, subjectCard.Id);
+            return pdfReport;
         }
 
         private string GetHTMLString(SubjectCard subjectCard)
