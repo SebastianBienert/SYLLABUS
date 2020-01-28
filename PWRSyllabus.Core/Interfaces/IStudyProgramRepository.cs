@@ -10,6 +10,7 @@ namespace PWRSyllabus.Core.Interfaces
     {
         Task<IEnumerable<StudyProgram>> GetAllStudiesPrograms();
         Task<StudyProgram> GetStudyProgram(int studyProgramId);
+        Task<IEnumerable<StudyProgram>> SearchStudyPrograms(string query, int pageSize, int pageNumber);
     }
 }
     

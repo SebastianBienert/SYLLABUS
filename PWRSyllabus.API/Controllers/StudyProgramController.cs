@@ -35,6 +35,19 @@ namespace PWRSyllabus.API.Controllers
             return Ok(studyPlanDtos);
         }
 
+        [HttpPost("search")]
+        public async Task<IActionResult> SearchSubjectCards([FromBody] StudyProgramSearchParameters studyProgramSearchParameters)
+        {
+            var studyPrograms = await _repository.SearchStudyPrograms(
+                studyProgramSearchParameters.SearchText,
+                studyProgramSearchParameters.PageSize,
+                studyProgramSearchParameters.PageNumber
+            );
+            var studyProgramsDtos = _mapper.Map<IEnumerable<StudyProgram>, IEnumerable<StudyProgramDTO>>(studyPrograms);
+
+            return Ok(studyProgramsDtos);
+        }
+
         [HttpGet("{id}", Name = "GetStudyProgramById")]
         public async Task<IActionResult> GetStudyProgramDetails(int id)
         {

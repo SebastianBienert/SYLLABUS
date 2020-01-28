@@ -3,6 +3,7 @@ using PWRSyllabus.Core.Entities;
 using PWRSyllabus.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +39,22 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 .FirstAsync(me => me.Id == studyProgramId);
 
             return studyProgram;
+        }
+
+        public async Task<IEnumerable<StudyProgram>> SearchStudyPrograms(string query, int pageSize, int pageNumber)
+        {
+            var studiesPrograms = await _dbContext.StudyPrograms
+                .Include(me => me.StudyProgramSubjectCards)
+                .Include(sp => sp.FieldOfStudy)
+                .ThenInclude(fos => fos.Faculty)
+                .Where(sp => sp.Description.Contains(query) ||
+                             sp.FieldOfStudy.Name.Contains(query) || 
+                             sp.FieldOfStudy.Specialization.Contains(query))
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return studiesPrograms;
         }
     }
 }

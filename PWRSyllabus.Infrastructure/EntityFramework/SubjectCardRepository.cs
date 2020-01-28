@@ -3,6 +3,7 @@ using PWRSyllabus.Core.Entities;
 using PWRSyllabus.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +48,24 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 .FirstAsync(me => me.Id == SubjectCardId);
 
             return SubjectCard;
+        }
+
+        public async Task<IEnumerable<SubjectCard>> SearchSubjectCards(string query, int pageSize, int pageNumber)
+        {
+            var subjectCards = await _dbContext.SubjectCards
+                .Include(sc => sc.Courses).ThenInclude(sc => sc.Classes)
+                .Where(x => x.NameInEnglish.Contains(query) || 
+                            x.NameInPolish.Contains(query) || 
+                            x.Objectivties.Contains(query) || 
+                            x.Prerequisites.Contains(query) || 
+                            x.PrimaryLiterature.Contains(query) || 
+                            x.SecondaryLiterature.Contains(query) || 
+                            x.Courses.Any(c => c.Classes.Any(cl => cl.Description.Contains(query))))
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return subjectCards;
         }
     }
 }

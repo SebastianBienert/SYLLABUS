@@ -11,5 +11,7 @@ namespace PWRSyllabus.Core.Interfaces
         Task<SubjectCard> GetSubjectCard(int SubjectCardId);
 
         Task<SubjectCard> GetSubjectCardForReport(int SubjectCardId);
+
+        Task<IEnumerable<SubjectCard>> SearchSubjectCards(string query, int pageSize, int pageNumber);
     }
 }

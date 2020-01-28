@@ -41,6 +41,19 @@ namespace PWRSyllabus.API.Controllers
             return subjectCardDtos;
         }
 
+        [HttpPost("search")]
+        public async Task<IEnumerable<SubjectCardDTO>> SearchSubjectCards([FromBody] SubjectCardSearchParameters subjectCardSearchParameters)
+        {
+            var subjectCards = await _subjectCardRepository.SearchSubjectCards(
+                subjectCardSearchParameters.SearchText,
+                subjectCardSearchParameters.PageSize,
+                subjectCardSearchParameters.PageNumber
+                );
+            var subjectCardDtos = _mapper.Map<IEnumerable<SubjectCard>, IEnumerable<SubjectCardDTO>>(subjectCards);
+
+            return subjectCardDtos;
+        }
+
         // GET: api/SubjectCard/5
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
