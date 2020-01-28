@@ -61,6 +61,7 @@ namespace PWRSyllabus.Core.UseCases.GenerateSubjectCardReport
             var secondaryLiterature = subjectCard.SecondaryLiterature.Split('|');
             var supervisor = subjectCard.Supervisor;
             var prerequisites = subjectCard.Prerequisites.Split('|');
+            var teachingTools = subjectCard.TeachingTools.Split('|');
 
             var educationalEffects = subjectCard.EducationalEffectSubjectCards
                 .Select(sc => (educationalEffectcode: sc.EducationalEffect.Code, description: sc.Description));
@@ -83,6 +84,8 @@ namespace PWRSyllabus.Core.UseCases.GenerateSubjectCardReport
                 .AddCourseObjectivesSection(objectives)
                 .AddSpace()
                 .AddEducationalEffectsSection(educationalEffects)
+                .AddSpace()
+                .AddTeachingToolsSection(teachingTools)
                 .AddSpace()
                 .AddLiteratureSection(primaryLiterature, secondaryLiterature)
                 .AddSpace()

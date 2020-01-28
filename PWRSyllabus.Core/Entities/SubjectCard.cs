@@ -13,6 +13,7 @@ namespace PWRSyllabus.Core.Entities
         public string Objectivties { get; set; }
         public string PrimaryLiterature { get; set; }
         public string SecondaryLiterature { get; set; }
+        public string TeachingTools { get; set; }
         public int Version { get; set; }
         public SubjectType SubjectType { get; set; }
         public CourseForm? FinalCourseForm { get; set; }
