@@ -51,7 +51,7 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import axios from "axios";
 import EditableListWithoutButtons from "@/views/subjectCards/EditableListWithoutButtons.vue";
-import EducationalEffect from '@models/EducationalEffect';
+import EducationalEffect from '@/models/EducationalEffect';
 @Component({
   components: {
     EditableListWithoutButtons

@@ -48,8 +48,8 @@ export default class App extends Vue {
   private right: boolean = true;
   private items = [
     { title: 'Home', icon: 'home', link: '/' },
-    { title: 'Counter', icon: 'touch_app', link: '/counter' },
-    { title: 'Fetch data', icon: 'get_app', link: '/fetch-data' },
+    // { title: 'Counter', icon: 'touch_app', link: '/counter' },
+    // { title: 'Fetch data', icon: 'get_app', link: '/fetch-data' },
   ];
 
   private get title() {
