@@ -19,7 +19,18 @@
       :headers="headers"
       :items="subjectCards"
       :search="search"
-    ></v-data-table>
+    >
+      <template v-slot:item.action="{ item }">
+        <div class="table--action">
+            <v-icon
+                small
+                @click="fetchPDF(item.id, item.subjectCode)"
+            >
+                picture_as_pdf
+            </v-icon>
+        </div>
+      </template>
+    </v-data-table>
   </v-card>
 </template>
 
@@ -43,19 +54,44 @@ export default class SubjectCards extends Vue {
       // { text: this.$t("subjectCardsHeaders.specialization"), value: "specialization" },
       { text: this.$t("subjectCardsHeaders.code"), value: "subjectCode" },
       { text: this.$t("subjectCardsHeaders.subjectName"), value: "nameInPolish" },
-      { text: this.$t("subjectCardsHeaders.subjectName"), value: "nameInEnglish" }
+      { text: this.$t("subjectCardsHeaders.subjectName"), value: "nameInEnglish" },
+      { text: '', value: 'action', sortable: false }
     ];
   }
   public async created() {
     this.fetchSubjectCards();
   }
+
+  private async fetchPDF(subjectCardId: number, subjectCardCode: string){
+    this.loading = true;
+      try {
+        const response = await axios.get(`api/SubjectCard/${subjectCardId}/pdf`,{
+          responseType: 'blob'
+        });
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `SubjectCard_${subjectCardCode}.pdf`);
+        document.body.appendChild(link);
+        link.click();
+      } catch (e) {      
+      } finally{
+        this.loading = false;
+      }
+    }
+
+
+  
   private async fetchSubjectCards() {
+    this.loading = true;
     try {
       const response = await axios.get<SubjectCard[]>("api/SubjectCard");
       this.subjectCards = response.data;
       console.log(this.subjectCards);
     } catch (e) {}
-    this.loading = false;
+    finally{
+      this.loading = false;
+    }
   }
 }
 </script>

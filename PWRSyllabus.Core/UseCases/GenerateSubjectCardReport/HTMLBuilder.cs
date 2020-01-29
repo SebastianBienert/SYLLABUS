@@ -229,6 +229,20 @@ namespace PWRSyllabus.Core.UseCases.GenerateSubjectCardReport
             return this;
         }
 
+        public HTMLBuilder AddTeachingToolsSection(IEnumerable<string> teachingTools)
+        {
+            _sb.Append($@"<div class='border'>
+			                <h3>STOSOWANE NARZĘDZIA DYDAKTYCZNE</h3>");
+
+            foreach (var (obj, index) in teachingTools.WithIndex())
+            {
+                _sb.Append($@"<p>N{index + 1} {obj}</p>");
+            }
+
+            _sb.Append("</div>");
+            return this;
+        }
+
 		public HTMLBuilder AddLiteratureSection(string[] primaryLietrature, string[] secondaryLiterature)
 		{
             _sb.Append($@"

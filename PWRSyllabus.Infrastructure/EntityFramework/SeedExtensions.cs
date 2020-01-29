@@ -75,7 +75,8 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                     NameInEnglish = "Calculus",
                     PrimaryLiterature = "James Stewart, Essential Calculus: Early Transcendentals, 2018|" +
                                         "Silvanus P. Thompson, Calculus Made Easy, 1998",
-                    SecondaryLiterature = "Adrian Banner, The Calculus Lifesaver: All the Tools You Need to Excel at Calculus, 2007"
+                    SecondaryLiterature = "Adrian Banner, The Calculus Lifesaver: All the Tools You Need to Excel at Calculus, 2007",
+                    TeachingTools = "Wykład tradycyjny|Konsultacjedla studentów|Praca własna –samodzielne studia i przygotowanie do egzaminu"
                 }
             );
 

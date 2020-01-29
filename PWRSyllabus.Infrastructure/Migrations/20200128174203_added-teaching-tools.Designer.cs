@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PWRSyllabus.Infrastructure.EntityFramework;
 
 namespace PWRSyllabus.Infrastructure.Migrations
 {
     [DbContext(typeof(PWRSyllabusContext))]
-    partial class PWRSyllabusContextModelSnapshot : ModelSnapshot
+    [Migration("20200128174203_added-teaching-tools")]
+    partial class addedteachingtools
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,7 +167,12 @@ namespace PWRSyllabus.Infrastructure.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Profile")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -177,7 +184,8 @@ namespace PWRSyllabus.Infrastructure.Migrations
                         {
                             Id = 1,
                             Code = "PEK_W1",
-                            Description = "Umie robić ciekawe rzeczy."
+                            Level = "St1Inzynier",
+                            Profile = "Practical"
                         });
                 });
 

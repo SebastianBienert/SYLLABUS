@@ -86,9 +86,9 @@ namespace PWRSyllabus.API.Controllers
         [HttpGet("{id}/pdf", Name = "GetSubjectCardPDF")]
         public async Task<IActionResult> GetPDF(int id)
         {
-            var pdfBytes = await _generateSubjectCardPdfUseCase.Execute(id);
+            var subjectCardPdf = await _generateSubjectCardPdfUseCase.Execute(id);
 
-            return File(pdfBytes, "application/pdf", $"SubjectCard_{id}.pdf");
+            return File(subjectCardPdf.Data.ToArray(), "application/pdf", $"SubjectCard_{subjectCardPdf.SubjectCardCode}.pdf");
         }
     }
 }
