@@ -70,7 +70,7 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                     SubjectType = SubjectType.UniversityWide,
                     SubjectCode = "AM123",
                     Prerequisites = "Znajomość pojęcia funkcji i podstawowych typów funkcji elementarnych.|Umiejętność sprawnego przekształcana wyrażeń algebraicznych.",
-                    Objectivties = "Opanowanie podstawowej wiedzy z zakresu analizy matematycznej",
+                    Objectivities = "Opanowanie podstawowej wiedzy z zakresu analizy matematycznej",
                     IsGroupOfCourses = true,
                     NameInEnglish = "Calculus",
                     PrimaryLiterature = "James Stewart, Essential Calculus: Early Transcendentals, 2018|" +

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PWRSyllabus.Infrastructure.EntityFramework;
 
 namespace PWRSyllabus.Infrastructure.Migrations
 {
     [DbContext(typeof(PWRSyllabusContext))]
-    partial class PWRSyllabusContextModelSnapshot : ModelSnapshot
+    [Migration("20200129131618_namefix")]
+    partial class namefix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -545,9 +547,6 @@ namespace PWRSyllabus.Infrastructure.Migrations
                     b.Property<int?>("FinalCourseForm")
                         .HasColumnType("int");
 
-                    b.Property<int>("FormOfStudies")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsGroupOfCourses")
                         .HasColumnType("bit");
 
@@ -596,7 +595,6 @@ namespace PWRSyllabus.Infrastructure.Migrations
                         {
                             Id = 1,
                             FinalCourseForm = 0,
-                            FormOfStudies = 0,
                             IsGroupOfCourses = true,
                             NameInEnglish = "Calculus",
                             NameInPolish = "Analiza matematyczna",

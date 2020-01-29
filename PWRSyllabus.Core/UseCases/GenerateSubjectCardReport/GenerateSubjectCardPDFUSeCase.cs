@@ -56,7 +56,7 @@ namespace PWRSyllabus.Core.UseCases.GenerateSubjectCardReport
 
         private string GetHTMLString(SubjectCard subjectCard)
         {
-            var objectives = subjectCard.Objectivties.Split('|');
+            var objectives = subjectCard.Objectivities.Split('|');
             var primaryLiterature = subjectCard.PrimaryLiterature.Split('|');
             var secondaryLiterature = subjectCard.SecondaryLiterature.Split('|');
             var supervisor = subjectCard.Supervisor;

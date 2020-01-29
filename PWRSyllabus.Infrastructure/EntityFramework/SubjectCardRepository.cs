@@ -33,6 +33,8 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
             var SubjectCard = await _dbContext.SubjectCards
                 .Include(sc => sc.Supervisor)
                 .Include(sc => sc.Courses)
+                .Include(sc => sc.Courses).ThenInclude(c => c.Classes)
+                .Include(sc => sc.EducationalEffectSubjectCards).ThenInclude(x => x.EducationalEffect)
                 .FirstAsync(me => me.Id == SubjectCardId);
 
             return SubjectCard;
@@ -56,7 +58,7 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 .Include(sc => sc.Courses).ThenInclude(sc => sc.Classes)
                 .Where(x => x.NameInEnglish.Contains(query) || 
                             x.NameInPolish.Contains(query) || 
-                            x.Objectivties.Contains(query) || 
+                            x.Objectivities.Contains(query) || 
                             x.Prerequisites.Contains(query) || 
                             x.PrimaryLiterature.Contains(query) || 
                             x.SecondaryLiterature.Contains(query) || 

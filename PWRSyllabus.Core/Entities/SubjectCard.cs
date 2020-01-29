@@ -10,7 +10,7 @@ namespace PWRSyllabus.Core.Entities
         public string SubjectCode { get; set; }
         public bool IsGroupOfCourses { get; set; }
         public string Prerequisites { get; set; }
-        public string Objectivties { get; set; }
+        public string Objectivities { get; set; }
         public string PrimaryLiterature { get; set; }
         public string SecondaryLiterature { get; set; }
         public string TeachingTools { get; set; }
@@ -23,5 +23,6 @@ namespace PWRSyllabus.Core.Entities
         public List<StudyProgramSubjectCard> StudyProgramSubjectCards { get; set; }
         public List<EducationalEffectSubjectCard> EducationalEffectSubjectCards { get; set; }
         public List<Course> Courses { get; set; }
+        public FormOfStudies FormOfStudies { get; set; }
     }
 }
