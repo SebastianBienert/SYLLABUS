@@ -66,5 +66,10 @@ export default new Router({
       name: 'add-subject',
       component: () => import('./views/subjectCards/AddSubject.vue'),
     },
+    {
+      path: '/edit-subject/:id',
+      name: 'edit-subject',
+      component: () => import('./views/subjectCards/EditSubject.vue'),
+    },
   ],
 });

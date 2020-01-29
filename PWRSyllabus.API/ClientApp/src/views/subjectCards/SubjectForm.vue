@@ -137,7 +137,7 @@
               v-on:changeList="updateceducationalEffects($event)"
               v-on:closeModal="closeeducationalEffectsmModal($event)"
               :list="
-                subjectCard.educationalEffects.map(x => Object.assign({}, x))
+                [...subjectCard.educationalEffects]
               "
               :label="$t('subjectCardHeaders.educationalEffects')"
               :placeholder="$t('subjectCardHeaders.educationalEffects')"
@@ -289,6 +289,7 @@ export default class SubjectForm extends Vue {
   public seedData(initialData: SubjectCard) {
     if (initialData) {
       this.subjectCard = { ...(this.initialData as SubjectCard) };
+      console.log(this.subjectCard);
     }
   }
 

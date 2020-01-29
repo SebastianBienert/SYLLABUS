@@ -56,10 +56,21 @@ namespace PWRSyllabus.API.Controllers
 
         // GET: api/SubjectCard/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var subjectCard = await _subjectCardRepository.GetSubjectCard(id);
+            var subjectCardDTO = _mapper.Map<SubjectCard, SubjectCardDTO>(subjectCard);
+            return Ok(subjectCardDTO);
         }
+
+        //[HttpGet("{id}", Name = "GetStudyProgramById")]
+        //public async Task<IActionResult> GetStudyProgramDetails(int id)
+        //{
+        //    var studyPrograms = await _repository.GetStudyProgram(id);
+        //    var studyProgramDto = _mapper.Map<StudyProgram, StudyProgramDTO>(studyPrograms);
+
+        //    return Ok(studyProgramDto);
+        //}
 
         // POST: api/SubjectCard
         [HttpPost]

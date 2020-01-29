@@ -110,7 +110,7 @@ export default class CoursesTable extends Vue {
         isSelected: false,
         Classes: []
       });
-      this.copied = this.originalPrepared.map(x => Object.assign({}, x));
+      this.copied = this.originalPrepared;
     });
   }
   private changeList() {
@@ -119,7 +119,7 @@ export default class CoursesTable extends Vue {
 
   private cancelHandler() {
     console.log(this.originalPrepared);
-    this.copied =  this.originalPrepared.map(x => Object.assign({}, x));
+    this.copied =  this.originalPrepared;
     this.$emit("closeModal");
   }
 }

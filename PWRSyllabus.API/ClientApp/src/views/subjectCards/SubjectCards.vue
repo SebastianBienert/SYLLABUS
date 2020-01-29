@@ -22,12 +22,12 @@
     >
       <template v-slot:item.action="{ item }">
         <div class="table--action">
-            <v-icon
-                small
-                @click="fetchPDF(item.id, item.subjectCode)"
-            >
-                picture_as_pdf
-            </v-icon>
+          <v-icon small class="mr-2" @click="redirectToEdit(item.id)"
+            >edit</v-icon
+          >
+          <v-icon small @click="fetchPDF(item.id, item.subjectCode)">
+            picture_as_pdf
+          </v-icon>
         </div>
       </template>
     </v-data-table>
@@ -53,45 +53,53 @@ export default class SubjectCards extends Vue {
       // { text: this.$t("subjectCardsHeaders.fieldOfStudy"), value: "fieldOfStudy.name" },
       // { text: this.$t("subjectCardsHeaders.specialization"), value: "specialization" },
       { text: this.$t("subjectCardsHeaders.code"), value: "subjectCode" },
-      { text: this.$t("subjectCardsHeaders.subjectName"), value: "nameInPolish" },
-      { text: this.$t("subjectCardsHeaders.subjectName"), value: "nameInEnglish" },
-      { text: '', value: 'action', sortable: false }
+      {
+        text: this.$t("subjectCardsHeaders.subjectName"),
+        value: "nameInPolish"
+      },
+      {
+        text: this.$t("subjectCardsHeaders.subjectName"),
+        value: "nameInEnglish"
+      },
+      { text: "", value: "action", sortable: false }
     ];
   }
   public async created() {
     this.fetchSubjectCards();
   }
 
-  private async fetchPDF(subjectCardId: number, subjectCardCode: string){
+  private async fetchPDF(subjectCardId: number, subjectCardCode: string) {
     this.loading = true;
-      try {
-        const response = await axios.get(`api/SubjectCard/${subjectCardId}/pdf`,{
-          responseType: 'blob'
-        });
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `SubjectCard_${subjectCardCode}.pdf`);
-        document.body.appendChild(link);
-        link.click();
-      } catch (e) {      
-      } finally{
-        this.loading = false;
-      }
+    try {
+      const response = await axios.get(`api/SubjectCard/${subjectCardId}/pdf`, {
+        responseType: "blob"
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `SubjectCard_${subjectCardCode}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+    } catch (e) {
+    } finally {
+      this.loading = false;
     }
+  }
 
-
-  
   private async fetchSubjectCards() {
     this.loading = true;
     try {
       const response = await axios.get<SubjectCard[]>("api/SubjectCard");
       this.subjectCards = response.data;
       console.log(this.subjectCards);
-    } catch (e) {}
-    finally{
+    } catch (e) {
+    } finally {
       this.loading = false;
     }
+  }
+
+  private redirectToEdit(subjectCardId: number): void {
+    this.$router.push(`edit-subject/${subjectCardId}`);
   }
 }
 </script>
