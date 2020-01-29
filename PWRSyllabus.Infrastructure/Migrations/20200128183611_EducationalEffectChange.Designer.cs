@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PWRSyllabus.Infrastructure.EntityFramework;
 
 namespace PWRSyllabus.Infrastructure.Migrations
 {
     [DbContext(typeof(PWRSyllabusContext))]
-    partial class PWRSyllabusContextModelSnapshot : ModelSnapshot
+    [Migration("20200128183611_EducationalEffectChange")]
+    partial class EducationalEffectChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -6,8 +6,7 @@ namespace PWRSyllabus.Core.Entities
     public class EducationalEffect : BaseEntity
     {
         public string Code { get; set; }
-        public Profile Profile { get; set; }
-        public Level Level { get; set; }
+        public string Description { get; set; }
         public List<EducationalEffectSubjectCard> EducationalEffectSubjectCards { get; set; }
         public List<MinisterialEffectEducationalEffect> MinisterialEffectEducationalEffects { get; set; }
     }

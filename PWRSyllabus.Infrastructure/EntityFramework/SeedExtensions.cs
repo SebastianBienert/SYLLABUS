@@ -103,8 +103,7 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 {
                     Id = 1,
                     Code = "PEK_W1",
-                    Level = Level.St1Inzynier,
-                    Profile = Profile.Practical
+                    Description = "Umie robić ciekawe rzeczy."
                 }
             );
 

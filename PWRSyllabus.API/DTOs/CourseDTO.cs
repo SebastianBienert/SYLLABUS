@@ -13,5 +13,7 @@ namespace PWRSyllabusAPI.DTOs
         public int ZZU { get; set; }
         public int CNPS { get; set; }
         public string CourseForm { get; set; }
+        public string FormOfCrediting { get; set; }
+        public IEnumerable<ClassDTO> Classes { get; set; }
     }
 }

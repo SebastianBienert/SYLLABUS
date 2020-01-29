@@ -84,12 +84,6 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 .WithMany(ee => ee.MinisterialEffectEducationalEffects)
                 .HasForeignKey(meee => meee.EducationalEffectId);
 
-            modelBuilder.Entity<EducationalEffect>()
-                .Property(me => me.Level)
-                .HasConversion(levelToStringConverter);
-            modelBuilder.Entity<EducationalEffect>()
-                .Property(me => me.Profile)
-                .HasConversion(profileToStringConverter);
 
 
             modelBuilder.Entity<StudyProgram>()

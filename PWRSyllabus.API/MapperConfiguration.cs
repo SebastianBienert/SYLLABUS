@@ -24,12 +24,30 @@ namespace PWRSyllabusAPI
             CreateMap<Course, CourseDTO>()
                 .ForMember(dto => dto.CourseForm,
                            opt => opt.MapFrom(c => MapCourseFormToString(c.CourseForm)));
-
+            
             CreateMap<CourseDTO, Course>()
                 .ForMember(dto => dto.CourseForm,
                            opt => opt.MapFrom(c => GetCourseFormEnum(c.CourseForm)));
 
-            CreateMap<SubjectCard, SubjectCardDTO>();
+            CreateMap<EducationalEffectDTO, EducationalEffect>();
+
+            CreateMap<EducationalEffectDTO, EducationalEffectSubjectCard>()
+                .ForMember(dto => dto.EducationalEffect,
+                           opt => opt.MapFrom(c => c))
+                .ForMember(dto => dto.EducationalEffectId,
+                           opt => opt.MapFrom(c => c.Id));
+
+            CreateMap<ClassDTO, Class>().ReverseMap();
+
+            CreateMap<SubjectCard, SubjectCardDTO>()
+                .ForMember(input => input.Prerequisites,
+                    opt => opt.MapFrom(dto => dto.Prerequisites.Split(new char[] { '|' })))
+                //.ForMember(input => input.Objectivties,
+                //    opt => opt.MapFrom(dto => string.Join("|", dto.Objectivities)))
+                .ForMember(input => input.PrimaryLiterature,
+                    opt => opt.MapFrom(dto => dto.PrimaryLiterature.Split(new char[] { '|' })))
+                .ForMember(input => input.SecondaryLiterature,
+                    opt => opt.MapFrom(dto => dto.SecondaryLiterature.Split(new char[] { '|' })));
 
             CreateMap<StudyProgramSubjectCard, SubjectCardDTO>()
                 .ForMember(dto => dto.Id,
@@ -99,7 +117,17 @@ namespace PWRSyllabusAPI
                     opt => opt.MapFrom(input => GetLevelEnum(input.Level)));
             CreateMap<SubjectCardDTO, SubjectCard>()
                 .ForMember(input => input.SupervisorId,
-                    opt => opt.MapFrom(dto => dto.Supervisor.Id));
+                    opt => opt.MapFrom(dto => dto.Supervisor.Id))
+                .ForMember(input => input.EducationalEffectSubjectCards,
+                    opt => opt.MapFrom(dto => dto.EducationalEffects))
+                .ForMember(input => input.Prerequisites,
+                    opt => opt.MapFrom(dto => string.Join("|", dto.Prerequisites)))
+                //.ForMember(input => input.Objectivties,
+                //    opt => opt.MapFrom(dto => string.Join("|", dto.Objectivities)))
+                .ForMember(input => input.PrimaryLiterature,
+                    opt => opt.MapFrom(dto => string.Join("|", dto.PrimaryLiterature)))
+                .ForMember(input => input.SecondaryLiterature,
+                    opt => opt.MapFrom(dto => string.Join("|", dto.SecondaryLiterature)));
 
 
             //TODO
