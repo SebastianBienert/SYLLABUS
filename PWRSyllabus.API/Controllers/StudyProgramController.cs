@@ -72,7 +72,7 @@ namespace PWRSyllabus.API.Controllers
             studyProgram.FieldOfStudy = null;
             
             var addedEffect = await _crudRepository.AddAsync(studyProgram);
-            return CreatedAtRoute("GetStudyProgramById", new { id = addedEffect.Id });
+            return Ok();
         }
     }
 }

@@ -53,11 +53,15 @@
         :placeholder="$t('studyProgramsHeaders.language')"
         required
     ></v-text-field> -->
-    <v-text-field
+    <v-select
         v-model="studyProgram.formOfStudies"
         :label="$t('studyProgramsHeaders.formOfStudies')"
         :placeholder="$t('studyProgramsHeaders.formOfStudies')"
-    ></v-text-field>
+        :items="availableFormsOfStudy"
+        item-text="name"
+        return-object
+        required
+    ></v-select>
     
     <v-dialog v-model="dialog" persistent max-width="600">
         <template v-slot:activator="{ on }">
@@ -99,6 +103,7 @@ export default class StudyProgramForm extends Vue {
     private dialog: boolean = false;
     private availableLevels: string[] = ["6", "7"];
     private availableLanguages: string[] = ["polski", "angielski"];
+    private availableFormsOfStudy: string[] = ["stacjonarne", "niestacjonarne"];
 
     @Prop()
     public fieldsOfStudies!: FieldOfStudy[];
