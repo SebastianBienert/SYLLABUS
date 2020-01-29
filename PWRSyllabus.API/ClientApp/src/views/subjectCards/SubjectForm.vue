@@ -238,7 +238,7 @@
     <v-btn class="mr-4" @click="$emit('submit', subjectCard)">{{
       $t("submit")
     }}</v-btn>
-    <v-btn @click="test()">{{ $t("cancel") }}</v-btn>
+    <v-btn @click="$emit('cancel')">{{ $t("cancel") }}</v-btn>
   </v-form>
 </template>
 

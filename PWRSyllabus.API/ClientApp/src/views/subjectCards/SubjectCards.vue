@@ -25,6 +25,12 @@
           <v-icon small class="mr-2" @click="redirectToEdit(item.id)"
             >edit</v-icon
           >
+          <v-icon
+                            small
+                            @click="deleteEffect(item.id)"
+                        >
+                            delete
+                        </v-icon>
           <v-icon small @click="fetchPDF(item.id, item.subjectCode)">
             picture_as_pdf
           </v-icon>
@@ -101,5 +107,11 @@ export default class SubjectCards extends Vue {
   private redirectToEdit(subjectCardId: number): void {
     this.$router.push(`edit-subject/${subjectCardId}`);
   }
+
+  private deleteEffect(effectId: number): void {
+        const response = axios.delete<SubjectCard[]>(`api/SubjectCard/${effectId}`);
+        this.subjectCards = this.subjectCards.filter((x) => x.id !== effectId);
+    }
+
 }
 </script>
