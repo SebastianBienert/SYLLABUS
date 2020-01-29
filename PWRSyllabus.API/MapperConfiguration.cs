@@ -123,19 +123,24 @@ namespace PWRSyllabusAPI
             CreateMap<UpdateMinisterialEffectInput, MinisterialEffect>()
                 .ForMember(effect => effect.Level,
                     opt => opt.MapFrom(input => GetLevelEnum(input.Level)));
+            
             CreateMap<SubjectCardDTO, SubjectCard>()
                 .ForMember(input => input.SupervisorId,
                     opt => opt.MapFrom(dto => dto.Supervisor.Id))
                 .ForMember(input => input.EducationalEffectSubjectCards,
                     opt => opt.MapFrom(dto => dto.EducationalEffects))
+                .ForMember(input => input.FormOfStudies,
+                    opt => opt.MapFrom(dto => GetFormOfStudiesEnum(dto.FormOfStudies)))
                 .ForMember(input => input.Prerequisites,
                     opt => opt.MapFrom(dto => string.Join("|", dto.Prerequisites)))
-                //.ForMember(input => input.Objectivties,
-                //    opt => opt.MapFrom(dto => string.Join("|", dto.Objectivities)))
+                .ForMember(input => input.Objectivities,
+                    opt => opt.MapFrom(dto => string.Join("|", dto.Objectivities)))
                 .ForMember(input => input.PrimaryLiterature,
                     opt => opt.MapFrom(dto => string.Join("|", dto.PrimaryLiterature)))
                 .ForMember(input => input.SecondaryLiterature,
-                    opt => opt.MapFrom(dto => string.Join("|", dto.SecondaryLiterature)));
+                    opt => opt.MapFrom(dto => string.Join("|", dto.SecondaryLiterature)))
+                .ForMember(input => input.TeachingTools,
+                    opt => opt.MapFrom(dto => string.Join("|", dto.TeachingTools)));
 
 
             //TODO
