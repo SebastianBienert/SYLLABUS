@@ -48,12 +48,18 @@ export default class App extends Vue {
   private right: boolean = true;
   private items = [
     { title: 'Home', icon: 'home', link: '/' },
-    // { title: 'Counter', icon: 'touch_app', link: '/counter' },
-    // { title: 'Fetch data', icon: 'get_app', link: '/fetch-data' },
+    { title: this.getTitleFromTranslation('mainMenu.studyPlans'), icon: 'mdi-briefcase', link: '/study-programs' },
+    { title: this.getTitleFromTranslation('mainMenu.ministerialEffects'), icon: 'mdi-meditation', link: '/ministerial-effects' },
+    { title: this.getTitleFromTranslation('mainMenu.subjectCards'), icon: 'mdi-cards-playing-outline', link: '/subject-cards' },
+    { title: this.getTitleFromTranslation('mainMenu.trackingMatrix'), icon: 'mdi-sunglasses', link: '/trace-matrix' }
   ];
 
   private get title() {
     return this.$t('header');
+  }
+
+  private getTitleFromTranslation(title: string) {
+    return this.$t(title);
   }
 
 }
