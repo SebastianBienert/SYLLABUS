@@ -24,7 +24,7 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import axios from "axios";
 import EditableListWithoutButtons from "@/views/subjectCards/EditableListWithoutButtons.vue";
-import Course from "@models/Course";
+import Course from "@/models/Course";
 import ClassForCourse from "@/views/subjectCards/ClassForCourse.vue";
 @Component({
   components: {

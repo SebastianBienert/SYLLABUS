@@ -68,8 +68,8 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import axios from "axios";
-import EducationalEffect from "@models/EducationalEffect";
-import Class from "@models/Class";
+import EducationalEffect from "@/models/EducationalEffect";
+import Class from "@/models/Class";
 @Component
 export default class ClassForCourse extends Vue {
   @Prop()
@@ -95,7 +95,7 @@ export default class ClassForCourse extends Vue {
         Hours: this.hours,
         Description: this.description,
         ClassNumber: codeC
-      });
+      } as Class);
       this.description = "";
       this.hours = 0;
     }

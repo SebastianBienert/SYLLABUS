@@ -250,7 +250,7 @@ import FieldOfStudy from "@/models/FieldOfStudy";
 import Employee from "../../models/Employee";
 import EditableList from "@/views/subjectCards/EditableList.vue";
 import EducationalEffects from "@/views/subjectCards/EducationalEffects.vue";
-import EducationalEffect from "@models/EducationalEffect";
+import EducationalEffect from "@/models/EducationalEffect";
 import CoursesTable from "@/views/subjectCards/CoursesTable.vue";
 import Curriculum from "@/views/subjectCards/Curriculum.vue";
 import { Course } from "@/models/Course";

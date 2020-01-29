@@ -46,7 +46,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import axios from "axios";
-import EducationalEffect from '@models/EducationalEffect';
+import EducationalEffect from '@/models/EducationalEffect';
 @Component
 export default class EditableList extends Vue {
   @Prop()
@@ -65,7 +65,7 @@ export default class EditableList extends Vue {
   private addObjToArray() {
     if (this.strin !== "") {
       const codeC = this.copied.length + 1;
-      this.copied.push({code: this.eduEffectCodeStart + codeC, description: this.strin});
+      this.copied.push({code: this.eduEffectCodeStart + codeC, description: this.strin} as EducationalEffect);
       this.strin = "";
     }
   }
