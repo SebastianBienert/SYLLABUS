@@ -84,10 +84,10 @@ namespace PWRSyllabus.API.Controllers
 
         // PUT: api/SubjectCard/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] SubjectCardDTO subjectCardDto)
+        public async Task<IActionResult> Put(int id, [FromBody] SubjectCardDTO subjectCardDto)
         {
             var subjectCard = _mapper.Map<SubjectCardDTO, SubjectCard>(subjectCardDto);
-            _crudRepository.UpdateAsync<SubjectCard>(subjectCard);
+            await _crudRepository.UpdateAsync<SubjectCard>(subjectCard);
 
             return Ok();
         }
