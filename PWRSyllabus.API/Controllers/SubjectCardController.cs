@@ -63,14 +63,6 @@ namespace PWRSyllabus.API.Controllers
             return Ok(subjectCardDTO);
         }
 
-        //[HttpGet("{id}", Name = "GetStudyProgramById")]
-        //public async Task<IActionResult> GetStudyProgramDetails(int id)
-        //{
-        //    var studyPrograms = await _repository.GetStudyProgram(id);
-        //    var studyProgramDto = _mapper.Map<StudyProgram, StudyProgramDTO>(studyPrograms);
-
-        //    return Ok(studyProgramDto);
-        //}
 
         // POST: api/SubjectCard
         [HttpPost]
@@ -79,7 +71,7 @@ namespace PWRSyllabus.API.Controllers
             var subjectCard = _mapper.Map<SubjectCardDTO, SubjectCard>(subjectCardDTO);
             subjectCard.Supervisor = null;
             var addedSubjectCard = await _crudRepository.AddAsync(subjectCard);
-            return CreatedAtRoute("GetStudyProgramById", new { id = addedSubjectCard.Id });
+            return Ok();
         }
 
         // PUT: api/SubjectCard/5
@@ -94,8 +86,11 @@ namespace PWRSyllabus.API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _crudRepository.DeleteAsync<SubjectCard>(id);
+
+            return Ok();
         }
 
         [HttpGet("{id}/pdf", Name = "GetSubjectCardPDF")]

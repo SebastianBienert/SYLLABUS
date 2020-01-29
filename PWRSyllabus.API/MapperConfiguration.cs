@@ -45,7 +45,7 @@ namespace PWRSyllabusAPI
                 .ForMember(input => input.FormOfStudies,
                     opt => opt.MapFrom(dto => MapFormOfStudiesToString(dto.FormOfStudies)))
                 .ForMember(input => input.SubjectType,
-                    opt => opt.MapFrom(dto => dto.EducationalEffectSubjectCards.Select(x => x.EducationalEffect)))
+                    opt => opt.MapFrom(dto => MapSubjectTypeToString(dto.SubjectType)))
                 .ForMember(input => input.Prerequisites,
                     opt => opt.MapFrom(dto => dto.Prerequisites.Split(new char[] { '|' })))
                 .ForMember(input => input.Objectivities,
@@ -131,6 +131,8 @@ namespace PWRSyllabusAPI
                     opt => opt.MapFrom(dto => dto.EducationalEffects))
                 .ForMember(input => input.FormOfStudies,
                     opt => opt.MapFrom(dto => GetFormOfStudiesEnum(dto.FormOfStudies)))
+                .ForMember(input => input.SubjectType,
+                    opt => opt.MapFrom(dto => GetSubjectTypeEnum(dto.SubjectType)))
                 .ForMember(input => input.Prerequisites,
                     opt => opt.MapFrom(dto => string.Join("|", dto.Prerequisites)))
                 .ForMember(input => input.Objectivities,
@@ -217,6 +219,28 @@ namespace PWRSyllabusAPI
                 "P" => CourseForm.Project,
                 "S" => CourseForm.Seminar,
                 _ => CourseForm.Lecture,
+            };
+        }
+
+        private string MapSubjectTypeToString(SubjectType courseForm)
+        {
+            return courseForm switch
+            {
+                SubjectType.Obligatory => "Obligatory",
+                SubjectType.Optional => "Optional",
+                SubjectType.UniversityWide => "UniversityWide",
+                _ => "UniversityWide",
+            };
+        }
+
+        private SubjectType GetSubjectTypeEnum(string courseForm)
+        {
+            return courseForm switch
+            {
+                "Obligatory" => SubjectType.Obligatory,
+                "Optional" => SubjectType.Optional,
+                "UniversityWide" => SubjectType.UniversityWide,
+                _ => SubjectType.UniversityWide,
             };
         }
     }
