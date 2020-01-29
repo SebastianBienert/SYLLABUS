@@ -84,8 +84,12 @@ namespace PWRSyllabus.API.Controllers
 
         // PUT: api/SubjectCard/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] SubjectCardDTO subjectCardDto)
         {
+            var subjectCard = _mapper.Map<SubjectCardDTO, SubjectCard>(subjectCardDto);
+            _crudRepository.UpdateAsync<SubjectCard>(subjectCard);
+
+            return Ok();
         }
 
         // DELETE: api/ApiWithActions/5
