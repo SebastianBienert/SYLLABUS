@@ -29,7 +29,7 @@ namespace PWRSyllabusAPI
                 .ForMember(dto => dto.CourseForm,
                            opt => opt.MapFrom(c => GetCourseFormEnum(c.CourseForm)));
 
-            CreateMap<EducationalEffectDTO, EducationalEffect>();
+            CreateMap<EducationalEffectDTO, EducationalEffect>().ReverseMap();
 
             CreateMap<EducationalEffectDTO, EducationalEffectSubjectCard>()
                 .ForMember(dto => dto.EducationalEffect,
@@ -40,14 +40,22 @@ namespace PWRSyllabusAPI
             CreateMap<ClassDTO, Class>().ReverseMap();
 
             CreateMap<SubjectCard, SubjectCardDTO>()
+                .ForMember(input => input.EducationalEffects,
+                    opt => opt.MapFrom(dto => dto.EducationalEffectSubjectCards.Select(x => x.EducationalEffect)))
+                .ForMember(input => input.FormOfStudies,
+                    opt => opt.MapFrom(dto => MapFormOfStudiesToString(dto.FormOfStudies)))
+                .ForMember(input => input.SubjectType,
+                    opt => opt.MapFrom(dto => dto.EducationalEffectSubjectCards.Select(x => x.EducationalEffect)))
                 .ForMember(input => input.Prerequisites,
                     opt => opt.MapFrom(dto => dto.Prerequisites.Split(new char[] { '|' })))
-                //.ForMember(input => input.Objectivties,
-                //    opt => opt.MapFrom(dto => string.Join("|", dto.Objectivities)))
+                .ForMember(input => input.Objectivities,
+                    opt => opt.MapFrom(dto => dto.Objectivities.Split(new char[] { '|' })))
                 .ForMember(input => input.PrimaryLiterature,
                     opt => opt.MapFrom(dto => dto.PrimaryLiterature.Split(new char[] { '|' })))
                 .ForMember(input => input.SecondaryLiterature,
-                    opt => opt.MapFrom(dto => dto.SecondaryLiterature.Split(new char[] { '|' })));
+                    opt => opt.MapFrom(dto => dto.SecondaryLiterature.Split(new char[] { '|' })))
+                .ForMember(input => input.TeachingTools,
+                    opt => opt.MapFrom(dto => dto.TeachingTools.Split(new char[] { '|' })));
 
             CreateMap<StudyProgramSubjectCard, SubjectCardDTO>()
                 .ForMember(dto => dto.Id,
