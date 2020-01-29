@@ -19,7 +19,7 @@ namespace PWRSyllabusAPI
                 .ForMember(dto => dto.Faculty,
                            opt => opt.MapFrom(fos => fos.Faculty.Name));
 
-            CreateMap<FieldOfStudyDTO, FieldOfStudy>();
+            CreateMap<FieldOfStudyDTO, FieldOfStudy>().ForMember(x => x.Faculty, opt => opt.Ignore());
 
             CreateMap<Course, CourseDTO>()
                 .ForMember(dto => dto.CourseForm,
