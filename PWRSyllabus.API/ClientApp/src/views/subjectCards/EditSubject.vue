@@ -44,10 +44,11 @@ export default class EditSubject extends Vue {
     private async create(createdSubject: SubjectCard) {
         await axios.post<any>('/api/SubjectCard', createdSubject);
         console.log(createdSubject)
-        // this.$router.push('/study-programs');
+        this.$router.push('/study-programs');
     }
 
     private async edit(editedSubjectCard: SubjectCard) {
+        console.log('dupa romana');
         await axios.put<any>(`/api/SubjectCard/${this.$route.params.id}`, editedSubjectCard);
         this.$router.push('/subject-cards');
     }
