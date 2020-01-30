@@ -27,6 +27,6 @@ namespace PWRSyllabusAPI.DTOs
         public IEnumerable<EducationalEffectDTO> EducationalEffects { get; set; }
         public int Version { get; set; }
         public string FinalCourseForm { get; set; }
-        public Level Level { get; set; }
+        public string Level { get; set; }
     }
 }

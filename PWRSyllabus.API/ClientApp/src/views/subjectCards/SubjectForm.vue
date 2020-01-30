@@ -44,12 +44,9 @@
             v-model="subjectCard.level"
             :label="$t('subjectCardHeaders.level')"
           >
-            <v-radio
-              v-for="n in 3"
-              :key="n"
-              :label="`${n} stopień`"
-              :value="n"
-            ></v-radio>
+            <v-radio :label="`Inzynier`" :value="'6'"></v-radio>
+            <v-radio :label="`Magister`" :value="'7'"></v-radio>
+            <v-radio :label="`Doktor`" :value="'8'"></v-radio>
           </v-radio-group>
         </v-col>
         <v-col cols="1"></v-col>
@@ -291,7 +288,7 @@ export default class SubjectForm extends Vue {
   public seedData(initialData: SubjectCard) {
     if (initialData) {
       this.subjectCard = { ...(this.initialData as SubjectCard) };
-      console.log(this.subjectCard);
+      this.subjectCard.level = "6";
     }
   }
 

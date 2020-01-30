@@ -2,11 +2,11 @@
   <div class="modal-backdrop">
     <v-container class="modal">
       <v-tabs>
-        <v-tab v-for="course in courses" v-bind:key="course.courseForm">
-          {{ getFormLabel(course.courseForm) }}
+        <v-tab v-for="course in courses" v-bind:key="course.CourseForm">
+          {{ getFormLabel(course.CourseForm) }}
         </v-tab>
-        <v-tab-item v-for="course in courses" v-bind:key="course.courseForm">
-          <ClassForCourse :classes="course.classes" :courseForm="getFormLabel(course.courseForm)"> </ClassForCourse>
+        <v-tab-item v-for="course in courses" v-bind:key="course.CourseForm">
+          <ClassForCourse :classes="course.Classes" :courseForm="getFormLabel(course.CourseForm)"> </ClassForCourse>
         </v-tab-item>
       </v-tabs>
       <v-row>

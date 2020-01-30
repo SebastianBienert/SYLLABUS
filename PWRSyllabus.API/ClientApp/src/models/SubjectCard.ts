@@ -30,7 +30,7 @@ const DefaultSubjectCard: SubjectCard = {
     nameInPolish: '',
     nameInEnglish: '',
     specialization: '',
-    level: '',
+    level: '6',
     formOfStudies: '',
     isGroupOfCourses: false,
     subjectType: '',
