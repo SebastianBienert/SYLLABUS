@@ -55,7 +55,7 @@ export default {
         specialization: 'Specialization',
         code: 'Code',
         subjectName: 'Subject name',
-        newSubject: '+ New subject'
+        newSubject: '+ New subject',
     },
     traceMatrixHeaders: {
         ministerialEffectCode: 'Ministerial effect code',
@@ -122,7 +122,8 @@ export default {
         creditingWithGrade: 'Crediting with grade',
         knowledgeField: 'Relating to knowledge',
         competenciesField: 'Relating to skills',
-        socialField: 'Relating to social competencies'
+        socialField: 'Relating to social competencies',
+        Lecture: 'Lecture',
 
       }
 };
