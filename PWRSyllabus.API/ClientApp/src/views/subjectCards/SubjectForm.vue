@@ -291,6 +291,7 @@ export default class SubjectForm extends Vue {
   public seedData(initialData: SubjectCard) {
     if (initialData) {
       this.subjectCard = { ...(this.initialData as SubjectCard) };
+      console.log(this.subjectCard);
     }
   }
 

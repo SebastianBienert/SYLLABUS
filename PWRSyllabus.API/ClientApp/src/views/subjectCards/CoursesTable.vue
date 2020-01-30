@@ -92,21 +92,22 @@ import { Course } from "@/models/Course";
 @Component
 export default class CoursesTable extends Vue {
   @Prop()
-  public courses!: Course[] | Course[];
+  public courses!: any[] | Course[];
   private copied: Course[] = [];
   private originalPrepared: Course[] = [];
   private allForms: string[] = ["Lecture", "Seminar", "Laboratory", "Class", "Project"];
 
   public async created() {
     this.allForms.forEach(form => {
-      const corresponding = this.courses.find(v => v.CourseForm == form);
+      const corresponding = this.courses.find(v => v.courseForm === form);
+      console.log(corresponding);
       this.originalPrepared.push({
         id:  corresponding && corresponding.id || 0,
-        ECTS: corresponding && corresponding.ECTS || 0,
-        ZZU: corresponding && corresponding.ZZU || 0,
-        CNPS: corresponding && corresponding.CNPS || 0,
+        ECTS: corresponding && corresponding.ects || 0,
+        ZZU: corresponding && corresponding.zzu || 0,
+        CNPS: corresponding && corresponding.cnps || 0,
         CourseForm: form,
-        FormOfCrediting: corresponding && corresponding.FormOfCrediting || "",
+        FormOfCrediting: corresponding && corresponding.formOfCrediting || "",
         isSelected: corresponding && true || false,
         Classes: []
       });

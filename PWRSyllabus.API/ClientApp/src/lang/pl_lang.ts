@@ -107,7 +107,7 @@ export default {
         courseGroup: 'Grupa kursów',
         subjectType: 'Rodzaj przedmiotu',
         prerequisites: 'Wymagania wstępne',
-        newPrerequisit: 'Nowe wymaganie',
+        newPrerequisite: 'Nowe wymaganie',
         objectivities: 'Cele przedmiotu',
         teachingTools: 'Narzędzia dydaktyczne',
         primaryLiterature: 'Literatura główna',
