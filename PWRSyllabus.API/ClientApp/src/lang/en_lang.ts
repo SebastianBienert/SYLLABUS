@@ -124,6 +124,9 @@ export default {
         competenciesField: 'Relating to skills',
         socialField: 'Relating to social competencies',
         Lecture: 'Lecture',
-
+        Seminar: "Seminar",
+        Laboratory: "Laboratory",
+        Class: "Class",
+        Project: "Project"
       }
 };
