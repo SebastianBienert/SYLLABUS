@@ -233,9 +233,9 @@
             ></Curriculum>
           </v-dialog>
 
-          <v-btn block color="primary" class="mt-4">{{
+          <!-- <v-btn block color="primary" class="mt-4">{{
             $t("subjectCardHeaders.trackingMatrix")
-          }}</v-btn>
+          }}</v-btn> -->
         </v-col>
       </v-row>
     </v-container>

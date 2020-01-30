@@ -132,7 +132,12 @@ export default {
         creditingWithGrade: 'Zaliczenie',
         knowledgeField: 'Z zakresu wiedzy',
         competenciesField: 'Z zakresu umiejętności',
-        socialField: 'Z zakresu kompetencji społecznych'
+        socialField: 'Z zakresu kompetencji społecznych',
+        Lecture: 'Wykład',
+        Seminar: "Seminarium",
+        Laboratory: "Laboratoria",
+        Class: "Ćwiczenia",
+        Project: "Projekt"
 
 
     }

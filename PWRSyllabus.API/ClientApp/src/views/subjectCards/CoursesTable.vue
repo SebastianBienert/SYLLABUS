@@ -13,7 +13,7 @@
               <v-col>
                 <v-checkbox
                   v-model="course.isSelected"
-                  :label="course.CourseForm"
+                  :label="getFormLabel(course.CourseForm)"
                 ></v-checkbox>
               </v-col>
             </v-row>
@@ -120,6 +120,12 @@ export default class CoursesTable extends Vue {
   private cancelHandler() {
     this.$emit("closeModal");
   }
+
+  private getFormLabel(form: string) {
+    console.log('asdas')
+    const what = "subjectCardHeaders." + form;
+    return this.$t(what);
+  } 
 }
 </script>
 <style>
