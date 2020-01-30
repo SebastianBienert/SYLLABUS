@@ -2,7 +2,7 @@
     <v-container>
         <subject-form
             @cancel="handleCancel"
-            @submit="create"
+            @submit="edit"
             :fieldsOfStudies="availableFieldsOfStudies"
             :supervisors="availableSupervisors"
             :initial-data="subjectCard"

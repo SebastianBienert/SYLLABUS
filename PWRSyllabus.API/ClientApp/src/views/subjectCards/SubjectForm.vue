@@ -29,10 +29,16 @@
             :label="$t('subjectCardHeaders.supervisor')"
             :placeholder="$t('subjectCardHeaders.supervisor')"
             :items="supervisors"
-            item-text="firstName"
             return-object
             required
-          ></v-select>
+          >
+            <template slot="selection" slot-scope="data">
+              {{ data.item.firstName }} {{ data.item.lastName }}
+            </template>
+            <template slot="item" slot-scope="data">
+              {{ data.item.firstName }} {{ data.item.lastName }}
+            </template>
+          </v-select>
 
           <v-radio-group
             v-model="subjectCard.level"
@@ -46,7 +52,7 @@
             ></v-radio>
           </v-radio-group>
         </v-col>
-        <v-col cols="1"></v-col>  
+        <v-col cols="1"></v-col>
         <v-col cols="3">
           <v-radio-group
             v-model="subjectCard.formOfStudies"
@@ -136,9 +142,7 @@
             <EducationalEffects
               v-on:changeList="updateceducationalEffects($event)"
               v-on:closeModal="closeeducationalEffectsmModal($event)"
-              :list="
-                [...subjectCard.educationalEffects]
-              "
+              :list="[...subjectCard.educationalEffects]"
               :label="$t('subjectCardHeaders.educationalEffects')"
               :placeholder="$t('subjectCardHeaders.educationalEffects')"
             ></EducationalEffects>
@@ -274,8 +278,6 @@ export default class SubjectForm extends Vue {
   private educationalEffectsModalOpen = false;
   private curriculumModalOpen = false;
 
-  private testey = [{ code: "PEK_W", description: "DUPADUP", id: 0 }];
-
   @Prop()
   public fieldsOfStudies!: FieldOfStudy[];
 
@@ -291,10 +293,6 @@ export default class SubjectForm extends Vue {
       this.subjectCard = { ...(this.initialData as SubjectCard) };
       console.log(this.subjectCard);
     }
-  }
-
-  public test() {
-    console.log(this.subjectCard.courses);
   }
 
   private updateObjectivities(updatedObjectivities: string[]) {
@@ -343,7 +341,8 @@ export default class SubjectForm extends Vue {
   }
 
   private updateschedule(updatedschedule: Course[]) {
-    this.subjectCard.courses = updatedschedule;
+    this.subjectCard.courses = updatedschedule.filter(x => x.isSelected);
+    console.log(this.subjectCard.courses);
     this.scheduleModalOpen = false;
   }
 

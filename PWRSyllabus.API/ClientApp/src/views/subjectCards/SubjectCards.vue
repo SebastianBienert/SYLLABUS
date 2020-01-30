@@ -25,12 +25,9 @@
           <v-icon small class="mr-2" @click="redirectToEdit(item.id)"
             >edit</v-icon
           >
-          <v-icon
-                            small
-                            @click="deleteEffect(item.id)"
-                        >
-                            delete
-                        </v-icon>
+          <v-icon small @click="deleteEffect(item.id)">
+            delete
+          </v-icon>
           <v-icon small @click="fetchPDF(item.id, item.subjectCode)">
             picture_as_pdf
           </v-icon>
@@ -60,11 +57,11 @@ export default class SubjectCards extends Vue {
       // { text: this.$t("subjectCardsHeaders.specialization"), value: "specialization" },
       { text: this.$t("subjectCardsHeaders.code"), value: "subjectCode" },
       {
-        text: this.$t("subjectCardsHeaders.subjectName"),
+        text: this.$t("subjectCardHeaders.nameInPolish"),
         value: "nameInPolish"
       },
       {
-        text: this.$t("subjectCardsHeaders.subjectName"),
+        text: this.$t("subjectCardHeaders.nameInEnglish"),
         value: "nameInEnglish"
       },
       { text: "", value: "action", sortable: false }
@@ -109,9 +106,8 @@ export default class SubjectCards extends Vue {
   }
 
   private deleteEffect(effectId: number): void {
-        const response = axios.delete<SubjectCard[]>(`api/SubjectCard/${effectId}`);
-        this.subjectCards = this.subjectCards.filter((x) => x.id !== effectId);
-    }
-
+    const response = axios.delete<SubjectCard[]>(`api/SubjectCard/${effectId}`);
+    this.subjectCards = this.subjectCards.filter(x => x.id !== effectId);
+  }
 }
 </script>

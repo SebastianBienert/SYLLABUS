@@ -95,10 +95,10 @@ export default class CoursesTable extends Vue {
   public courses!: Course[] | Course[];
   private copied: Course[] = [];
   private originalPrepared: Course[] = [];
+  private allForms: string[] = ["Lecture", "Seminar", "Laboratory", "Class", "Project"];
 
   public async created() {
-
-    ["Lecture", "Seminar", "Laboratory", "Classes", "Project"].forEach(form => {
+    this.allForms.forEach(form => {
       const corresponding = this.courses.find(v => v.CourseForm == form);
       this.originalPrepared.push({
         id:  corresponding && corresponding.id || 0,
@@ -107,7 +107,7 @@ export default class CoursesTable extends Vue {
         CNPS: corresponding && corresponding.CNPS || 0,
         CourseForm: form,
         FormOfCrediting: corresponding && corresponding.FormOfCrediting || "",
-        isSelected: false,
+        isSelected: corresponding && true || false,
         Classes: []
       });
       this.copied = this.originalPrepared;
@@ -118,8 +118,6 @@ export default class CoursesTable extends Vue {
   }
 
   private cancelHandler() {
-    console.log(this.originalPrepared);
-    this.copied =  this.originalPrepared;
     this.$emit("closeModal");
   }
 }
