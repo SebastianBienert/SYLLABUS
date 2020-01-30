@@ -78,7 +78,6 @@ public async created() {
 
   private deleteObjFromArray(index: number) {
     this.copied.splice(index-1, 1);
-    console.log(this.copied);
   }
 
   private changeList() {

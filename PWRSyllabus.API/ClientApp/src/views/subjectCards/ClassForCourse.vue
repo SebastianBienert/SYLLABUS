@@ -9,13 +9,13 @@
     <v-row>
       <v-col cols="2" class="text-center" align-self="center"> </v-col>
       <v-col cols="2" class="text-center" align-self="center">
-        <v-label>Number</v-label>
+        <v-label>{{ $t("subjectCardHeaders.number") }}</v-label>
       </v-col>
       <v-col cols="4" class="text-left" align-self="center">
-        <v-label>Description</v-label>
+        <v-label>{{ $t("subjectCardHeaders.description") }}</v-label>
       </v-col>
       <v-col cols="1" class="text-left" align-self="center">
-        <v-label>Hours</v-label>
+        <v-label>{{ $t("subjectCardHeaders.hours") }}</v-label>
       </v-col>
     </v-row>
     <v-row v-for="n in copied.length" v-bind:key="n">
@@ -106,9 +106,7 @@ export default class ClassForCourse extends Vue {
   //   Hours: number;
 
   public async created() {
-    console.log(this.classes);
     this.copied = this.classes;
-    console.log(this.copied);
   }
 
   private deleteObjFromArray(index: number) {

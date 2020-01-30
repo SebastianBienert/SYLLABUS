@@ -291,7 +291,6 @@ export default class SubjectForm extends Vue {
   public seedData(initialData: SubjectCard) {
     if (initialData) {
       this.subjectCard = { ...(this.initialData as SubjectCard) };
-      console.log(this.subjectCard);
     }
   }
 
@@ -342,7 +341,6 @@ export default class SubjectForm extends Vue {
 
   private updateschedule(updatedschedule: Course[]) {
     this.subjectCard.courses = updatedschedule.filter(x => x.isSelected);
-    console.log(this.subjectCard.courses);
     this.scheduleModalOpen = false;
   }
 
@@ -353,7 +351,6 @@ export default class SubjectForm extends Vue {
   private updateceducationalEffects(
     updatededucationalEffects: EducationalEffect[]
   ) {
-    console.log(updatededucationalEffects);
     this.subjectCard.educationalEffects = updatededucationalEffects;
     this.educationalEffectsModalOpen = false;
   }

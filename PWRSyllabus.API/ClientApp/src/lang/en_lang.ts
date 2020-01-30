@@ -127,6 +127,9 @@ export default {
         Seminar: "Seminar",
         Laboratory: "Laboratory",
         Class: "Class",
-        Project: "Project"
+        Project: "Project",
+        number: 'Number',
+        description: 'Description',
+        hours: 'Hours'
       }
 };

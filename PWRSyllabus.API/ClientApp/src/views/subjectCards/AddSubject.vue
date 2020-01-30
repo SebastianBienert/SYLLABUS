@@ -33,7 +33,6 @@ export default class AddSubject extends Vue {
         const supervisorsResponse = await axios.get<Employee[]>('/api/Employee')
         this.availableFieldsOfStudies = response.data;
         this.availableSupervisors = supervisorsResponse.data;
-        console.log(supervisorsResponse.data)
     }
     public handleCancel() {
         this.$router.push('/subject-cards');
@@ -41,7 +40,6 @@ export default class AddSubject extends Vue {
 
     private async create(createdSubject: SubjectCard) {
         await axios.post<any>('/api/SubjectCard', createdSubject);
-        console.log(createdSubject)
         this.$router.push('/subject-cards');
     }
 

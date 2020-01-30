@@ -135,9 +135,12 @@ export default {
         socialField: 'Z zakresu kompetencji społecznych',
         Lecture: 'Wykład',
         Seminar: "Seminarium",
-        Laboratory: "Laboratoria",
+        Laboratory: "Laboratorium",
         Class: "Ćwiczenia",
-        Project: "Projekt"
+        Project: "Projekt",
+        number: 'Numer',
+        description: 'Opis',
+        hours: 'Godziny'
 
 
     }

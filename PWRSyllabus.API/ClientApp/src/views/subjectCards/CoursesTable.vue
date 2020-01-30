@@ -122,7 +122,6 @@ export default class CoursesTable extends Vue {
   }
 
   private getFormLabel(form: string) {
-    console.log('asdas')
     const what = "subjectCardHeaders." + form;
     return this.$t(what);
   } 

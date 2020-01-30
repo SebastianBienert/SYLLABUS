@@ -94,7 +94,6 @@ export default class SubjectCards extends Vue {
     try {
       const response = await axios.get<SubjectCard[]>("api/SubjectCard");
       this.subjectCards = response.data;
-      console.log(this.subjectCards);
     } catch (e) {
     } finally {
       this.loading = false;

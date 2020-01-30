@@ -3,10 +3,10 @@
     <v-container class="modal">
       <v-tabs>
         <v-tab v-for="course in courses" v-bind:key="course.CourseForm">
-          {{ course.CourseForm }}
+          {{ getFormLabel(course.CourseForm) }}
         </v-tab>
         <v-tab-item v-for="course in courses" v-bind:key="course.CourseForm">
-          <ClassForCourse :classes="course.Classes" :courseForm="course.CourseForm"> </ClassForCourse>
+          <ClassForCourse :classes="course.Classes" :courseForm="getFormLabel(course.CourseForm)"> </ClassForCourse>
         </v-tab-item>
       </v-tabs>
       <v-row>
@@ -41,11 +41,6 @@ export default class Curriculum extends Vue {
     this.copied = this.courses;
   }
 
-  // private deleteObjFromArray(index: number) {
-  //   this.copied.splice(index - 1, 1);
-  //   console.log(this.copied);
-  // }
-
   private changeList() {
     // let arr: EducationalEffect[] = [];
     // this.copied = arr.concat(this.knowledge).concat(this.competencies).concat(this.skill);
@@ -57,6 +52,13 @@ export default class Curriculum extends Vue {
     // this.copied = arr.concat(this.knowledge).concat(this.competencies).concat(this.skill);
     this.$emit("changeList", this.copied);
   }
+
+  private getFormLabel(form: string) {
+    const what = "subjectCardHeaders." + form;
+    return this.$t(what);
+  } 
+
+
 }
 </script>
 <style>

@@ -64,27 +64,10 @@ export default class EducationalEffects extends Vue {
   public skill: EducationalEffect[] = this.list.filter( obj => obj.code.substring(0, 5) === "PEK_U");
   public competencies: EducationalEffect[] = this.list.filter( obj => obj.code.substring(0, 5) === "PEK_K");
   private copied: EducationalEffect[] = [];
-  // private strin: string = "";
-  // @Prop()
-  // label!: string | string;
-  // @Prop()
-  // placeholder!: string | string;
-
-  // private addObjToArray() {
-  //   if (this.strin !== "") {
-  //     this.copied.push(this.strin);
-  //     this.strin = "";
-  //   }
-  // }
 
   public async created() {
     this.copied = this.list;
   }
-
-  // private deleteObjFromArray(index: number) {
-  //   this.copied.splice(index - 1, 1);
-  //   console.log(this.copied);
-  // }
 
   private changeList() {
     let arr: EducationalEffect[] = [];
