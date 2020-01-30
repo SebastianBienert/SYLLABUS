@@ -89,6 +89,7 @@ namespace PWRSyllabusAPI
                         "{*path}",
                         new SpaOptions { SourcePath = "ClientApp" },
                         npmScript: "serve",
+                        port: 8181,
                         regex: "Compiled successfully");
                 }
 

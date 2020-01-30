@@ -1,14 +1,21 @@
 <template>
     <form>
     <v-select
-        v-model="studyProgram.fieldOfStudy"
-        :label="$t('studyProgramsHeaders.fieldOfStudy')"
-        :placeholder="$t('studyProgramsHeaders.fieldOfStudy')"
-        :items="fieldsOfStudies"
-        item-text="name"
-        return-object
-        required
-    ></v-select>
+            v-model="studyProgram.fieldOfStudy"
+            :label="$t('studyProgramsHeaders.fieldOfStudy')"
+            :placeholder="$t('studyProgramsHeaders.fieldOfStudy')"
+            :items="fieldsOfStudies"
+            item-text="name"
+            return-object
+            required
+          >
+            <template slot="selection" slot-scope="data">
+              {{ data.item.name }}, {{ data.item.faculty }}, {{ data.item.specialization }}
+            </template>
+            <template slot="item" slot-scope="data">
+              {{ data.item.name }}, {{ data.item.faculty }}, {{ data.item.specialization }}
+            </template>
+          </v-select>
     <v-text-field
     disabled
         v-model="studyProgram.fieldOfStudy.specialization"
@@ -63,7 +70,9 @@
         required
     ></v-select>
     
-    <v-dialog v-model="dialog" persistent max-width="600">
+    <v-row>
+        <v-col cols="12">
+            <v-dialog v-model="dialog" persistent max-width="600">
         <template v-slot:activator="{ on }">
           <v-btn color="primary" dark v-on="on">{{$t('studyProgramsHeaders.selectSubjectCards')}}</v-btn>
         </template>
@@ -79,9 +88,15 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-
-    <v-btn class="mr-4" @click="$emit('submit', studyProgram)">{{$t('submit')}}</v-btn>
-    <v-btn @click="$emit('cancel')">{{$t('cancel')}}</v-btn>
+        </v-col>
+    </v-row>
+    
+    <v-row>
+        <v-col cols="12">
+            <v-btn class="mr-4" @click="$emit('submit', studyProgram)">{{$t('submit')}}</v-btn>
+        <v-btn @click="$emit('cancel')">{{$t('cancel')}}</v-btn>
+        </v-col>
+    </v-row>
     </form>
 </template>
 
@@ -103,7 +118,7 @@ export default class StudyProgramForm extends Vue {
     private dialog: boolean = false;
     private availableLevels: string[] = ["6", "7"];
     private availableLanguages: string[] = ["polski", "angielski"];
-    private availableFormsOfStudy: string[] = ["stacjonarne", "niestacjonarne"];
+    private availableFormsOfStudy: string[] = ["Stacjonarne", "Niestacjonarne"];
 
     @Prop()
     public fieldsOfStudies!: FieldOfStudy[];

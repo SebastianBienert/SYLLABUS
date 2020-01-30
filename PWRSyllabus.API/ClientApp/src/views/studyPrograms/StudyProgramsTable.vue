@@ -34,7 +34,7 @@
                     </v-icon>
                     <v-icon
                         small
-                        @click="deleteItem(item)"
+                        @click="deleteItem(item.id)"
                     >
                         delete
                     </v-icon>
@@ -89,6 +89,10 @@ export default class StudyProgramsTable extends Vue {
         this.$router.push(`edit-study-program/${programId}`);
     }
 
+    private deleteItem(effectId: number): void {
+        const response = axios.delete<StudyProgram[]>(`api/StudyProgram/${effectId}`);
+        this.studyPrograms = this.studyPrograms.filter((x) => x.id !== effectId);
+    }
 }
 </script>
 
