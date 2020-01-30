@@ -1,7 +1,7 @@
 import Course from './Course';
 import FieldOfStudy from './FieldOfStudy';
 import {Employee, DefaultEmployee} from './Employee';
-import EducationalEffect from '@models/EducationalEffect';
+import EducationalEffect from '@/models/EducationalEffect';
 
 
 export default interface SubjectCard {

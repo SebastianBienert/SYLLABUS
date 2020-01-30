@@ -44,7 +44,7 @@ import SubjectCard from "../../models/SubjectCard";
 @Component
 export default class SubjectCards extends Vue {
   private search: string = "";
-  private subjectCards: any = [];
+  private subjectCards: SubjectCard[] = [];
   private loading: boolean = false;
   get headers() {
     return [
