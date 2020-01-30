@@ -200,12 +200,12 @@ namespace PWRSyllabusAPI
         {
             return courseForm switch
             {
-                CourseForm.Classes => "C",
-                CourseForm.Laboratory => "L",
-                CourseForm.Lecture => "W",
-                CourseForm.Project => "P",
-                CourseForm.Seminar => "S",
-                _ => "W",
+                CourseForm.Classes => "Class",
+                CourseForm.Laboratory => "Laboratory",
+                CourseForm.Lecture => "Lecture",
+                CourseForm.Project => "Project",
+                CourseForm.Seminar => "Seminar",
+                _ => "Laboratory",
             };
         }
 
@@ -213,11 +213,11 @@ namespace PWRSyllabusAPI
         {
             return courseForm switch
             {
-                "C" => CourseForm.Classes,
-                "L" => CourseForm.Laboratory,
-                "W" => CourseForm.Lecture,
-                "P" => CourseForm.Project,
-                "S" => CourseForm.Seminar,
+                "Class" => CourseForm.Classes,
+                "Laboratory" => CourseForm.Laboratory,
+                "Lecture" => CourseForm.Lecture,
+                "Project" => CourseForm.Project,
+                "Seminar" => CourseForm.Seminar,
                 _ => CourseForm.Lecture,
             };
         }

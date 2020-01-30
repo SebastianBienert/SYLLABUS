@@ -74,5 +74,12 @@ namespace PWRSyllabus.API.Controllers
             var addedEffect = await _crudRepository.AddAsync(studyProgram);
             return Ok();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteStudyProgram(int id)
+        {
+            await _crudRepository.DeleteAsync<StudyProgram>(id);
+            return Ok();
+        }
     }
 }
