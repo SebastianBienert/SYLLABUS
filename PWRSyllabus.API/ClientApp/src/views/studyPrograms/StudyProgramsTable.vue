@@ -79,9 +79,10 @@ export default class StudyProgramsTable extends Vue {
     }
 
     private async fetchStudyPrograms(): Promise<StudyProgram[]> {
-        
+        this.loading = true;
         const response = await axios.get<StudyProgram[]>('/api/StudyProgram');
         const studyPrograms = response.data;
+        this.loading = false;
         return studyPrograms;
     }
 

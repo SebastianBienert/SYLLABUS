@@ -46,13 +46,16 @@ export default class App extends Vue {
   private drawer: boolean = true;
   private miniVariant: boolean = false;
   private right: boolean = true;
-  private items = [
-    { title: 'Home', icon: 'home', link: '/' },
-    { title: this.getTitleFromTranslation('mainMenu.studyPlans'), icon: 'mdi-briefcase', link: '/study-programs' },
-    { title: this.getTitleFromTranslation('mainMenu.ministerialEffects'), icon: 'mdi-meditation', link: '/ministerial-effects' },
-    { title: this.getTitleFromTranslation('mainMenu.subjectCards'), icon: 'mdi-cards-playing-outline', link: '/subject-cards' },
-    { title: this.getTitleFromTranslation('mainMenu.trackingMatrix'), icon: 'mdi-sunglasses', link: '/trace-matrix' }
-  ];
+
+  get items() {
+    return [
+      { title: 'Menu', icon: 'home', link: '/' },
+      { title: this.$t('mainMenu.studyPlans'), icon: 'mdi-briefcase', link: '/study-programs' },
+      { title: this.$t('mainMenu.ministerialEffects'), icon: 'mdi-meditation', link: '/ministerial-effects' },
+      { title: this.$t('mainMenu.subjectCards'), icon: 'mdi-cards-playing-outline', link: '/subject-cards' },
+      { title: this.$t('mainMenu.trackingMatrix'), icon: 'mdi-sunglasses', link: '/trace-matrix' }
+    ];
+  }
 
   private get title() {
     return this.$t('header');

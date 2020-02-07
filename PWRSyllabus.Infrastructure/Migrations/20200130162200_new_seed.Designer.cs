@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PWRSyllabus.Infrastructure.EntityFramework;
 
 namespace PWRSyllabus.Infrastructure.Migrations
 {
     [DbContext(typeof(PWRSyllabusContext))]
-    partial class PWRSyllabusContextModelSnapshot : ModelSnapshot
+    [Migration("20200130162200_new_seed")]
+    partial class new_seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

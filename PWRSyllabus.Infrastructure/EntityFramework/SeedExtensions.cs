@@ -21,11 +21,38 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                 }
             );
 
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee
+                {
+                    Id = 2,
+                    FirstName = "Michał",
+                    LastName = "Szczepanik",
+                    EmailAddress = "michal.szczepanik@smail.pwr.edu.pl"
+                }
+            );
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee
+                {
+                    Id = 3,
+                    FirstName = "Bogumiła",
+                    LastName = "Hnatkowska",
+                    EmailAddress = "bogumila.hnatkowska@smail.pwr.edu.pl"
+                }
+            );
+
             modelBuilder.Entity<Faculty>().HasData(
                 new Faculty
                 {
                     Id = 1,
                     Name = "Wydział elektroniki",
+                }
+            );
+
+            modelBuilder.Entity<Faculty>().HasData(
+                new Faculty
+                {
+                    Id = 2,
+                    Name = "Wydział informatyki i zarządzania",
                 }
             );
 
@@ -35,6 +62,16 @@ namespace PWRSyllabus.Infrastructure.EntityFramework
                     FacultyId = 1,
                     Name = "Informatyka",
                     Specialization = "Inżynieria systemow i siecki komputerowych",
+                }
+            );
+
+            modelBuilder.Entity<FieldOfStudy>().HasData(
+                new FieldOfStudy
+                {
+                    Id = 2,
+                    FacultyId = 2,
+                    Name = "Inzynieria Systemów",
+                    Specialization = "Systemy wbudowane",
                 }
             );
 
