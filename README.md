@@ -26,6 +26,12 @@ Web application providing interface for creating subject cards and syllabus for 
 - [DinktToPdf](https://github.com/rdvojmoc/DinkToPdf) - .NET Core P/Invoke wrapper for wkhtmltopdf library that uses Webkit engine to convert HTML pages to PDF
 - [Automapper](https://automapper.org/) - A convention-based object-object mapper.
 
+### Infrastructure:
+- [Docker](www.docker.com) - set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in containers.
+- [Docker compose](https://docs.docker.com/compose/) - tool for defining and running multi-container Docker applications.
+- [Vagrant](www.vagrantup.com) - open-source software product for building and maintaining portable virtual software development environments.
+- [Jenkins](https://jenkins.io/) - free and open source automation server.
+
 ## Features
 
 * Hot module replacement
