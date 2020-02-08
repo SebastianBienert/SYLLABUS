@@ -1,13 +1,5 @@
-# app-team07
-app-team07 created by GitHub Classroom
-
-## Features
-
-* Hot module replacement
-* Code-splitting
-* Tree-shaking
-* ES2017 transpilation
-* Long term caching and so on
+# SYLLABUS
+Web application providing interface for creating subject cards and syllabus for unversity study programs.
 
 ## Used Technology Stack
 
@@ -25,12 +17,28 @@ app-team07 created by GitHub Classroom
 * 3rd party component frameworks (Vuetify, Vue Bootstrap etc.)
 * publish your personal/enterprise plugin and so on...
 
+### Frontend:
+- [Vuetify](https://vuetifyjs.com/) - Material Design component framework for Vue.js. It aims to provide all the tools necessary to create beautiful content rich applications
+- [Vue I18n](https://kazupon.github.io/vue-i18n/) - internationalization plugin for Vue.js 
+
+### Backend:
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) - lightweight, extensible, and cross-platform version of the popular Entity Framework data access technology.
+- [DinktToPdf](https://github.com/rdvojmoc/DinkToPdf) - .NET Core P/Invoke wrapper for wkhtmltopdf library that uses Webkit engine to convert HTML pages to PDF
+- [Automapper](https://automapper.org/) - A convention-based object-object mapper.
+
+## Features
+
+* Hot module replacement
+* Code-splitting
+* Tree-shaking
+* ES2017 transpilation
+* Long term caching and so on
+
 ## Prerequisites
 
 * [.NET Core](https://www.microsoft.com/net/download/windows) >= 3.0
 * [NodeJS](https://nodejs.org/) >= 8.9
 * [Vue CLI](https://cli.vuejs.org/) >= 4.0
-* Your favourite editor (I prefer [VS Code](https://code.visualstudio.com/)), or VS 2017/19
 
 ## Before running application
 ### Initialize database
@@ -53,10 +61,9 @@ You have two choices when it comes to how you prefer to run the app. You can eit
 
 ## View your application running
 
-Browse to [http://localhost:5000](http://localhost:5000) for ASP.&#8203;NET Core + Vue app or browse to [http://localhost:8080](http://localhost:8080) for Vue app only.
+Browse to [http://localhost:5000](http://localhost:5001) for ASP.&#8203;NET Core + Vue app or browse to [http://localhost:8080](http://localhost:8080) for Vue app only.
 
-![Application screenshot](./screenshot.png)
-
-## Recommended plugin for debugging Vue
-
-* Get Chrome DevTools for Vue.js [here](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+![Main menu](main.PNG)
+![Subject card form](subject_card_1.PNG)
+![Educational effects form](subject_card_2.PNG)
+![Ministerial effects](ministerial_effects.PNG)
