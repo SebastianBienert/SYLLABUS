@@ -73,3 +73,5 @@ Browse to [http://localhost:5000](http://localhost:5001) for ASP.&#8203;NET Core
 ![Subject card form](subject_card_1.PNG)
 ![Educational effects form](subject_card_2.PNG)
 ![Ministerial effects](ministerial_effects.PNG)
+
+Documentation available only in polish (see Docs folder)
